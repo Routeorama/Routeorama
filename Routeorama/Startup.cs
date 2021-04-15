@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Routeorama.Data;
+using Routeorama.Data.Implementation;
 
 namespace Routeorama
 {
@@ -28,7 +29,7 @@ namespace Routeorama
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<IFetchData, ImplFetchData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
