@@ -1,18 +1,7 @@
 ﻿@page "/"
-
-@using Routeorama.Data
-@inject IFetchData IFetchData;
-<h3>Test Page</h3>
-
-<button @onclick="FetchTheText"> Click here </button>
-<label> @LabelFill </label>
+@using LoginComponent
+<Login/>
 
 @code {
-
-    private string? LabelFill;
-    
-    private async Task FetchTheText(){
-        LabelFill = await IFetchData.FetchLabelData();
-    }
 
 }

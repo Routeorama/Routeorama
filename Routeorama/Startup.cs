@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Routeorama.Authentication;
 using Routeorama.Data;
 using Routeorama.Data.Implementation;
 
@@ -29,7 +31,10 @@ namespace Routeorama
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<IFetchData, ImplFetchData>();
+            services.AddScoped<IUserService, ImplUserService>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            //TODO add policies
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
