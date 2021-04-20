@@ -83,8 +83,8 @@ using Routeorama.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Index.razor"
-using Routeorama.Data;
+#line 2 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Index.razor"
+using LoginComponent;
 
 #line default
 #line hidden
@@ -97,21 +97,6 @@ using Routeorama.Data;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 10 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Index.razor"
-       
-
-    private string? LabelFill;
-    
-    private async Task FetchTheText(){
-        LabelFill = await IFetchData.FetchLabelData();
-    }
-
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IFetchData IFetchData { get; set; }
     }
 }
 #pragma warning restore 1591
