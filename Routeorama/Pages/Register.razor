@@ -1,0 +1,73 @@
+﻿@page "/register"
+@using Routeorama.Models
+@using Routeorama.Authentication
+@namespace RegisterComponent
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<div class="registercontainer">
+    <h3>Register</h3>
+    
+    <label class="registerlabel">Username</label>
+    <div class="username-placeholder">
+        <input type="text" placeholder="user name" @bind-value="username"/>
+    </div>
+    
+    <label class="registerlabel">Password</label>
+    <div class="password-placeholder">
+        <input type="password" placeholder="password" @bind-value="password"/>
+    </div>
+
+    <label class="registerlabel">DisplayName</label>
+    <div class="password-placeholder">
+        <input type="displayName" placeholder="displayName" @bind-value="displayName"/>
+    </div>
+
+    <label class="registerlabel">DOB</label>
+    <div class="password-placeholder">
+        <input type="dateOfBirth" placeholder="dateOfBirth" @bind-value="dateOfBirth"/>
+    </div>
+
+    <div class="button-placeholder">
+        <a class="register-button" href="/register" @onclick="PerformRegister">
+            Register
+        </a>
+        <a class="goBack-button" href="/">
+            Go back
+        </a>
+    </div>
+
+    <div class="errorLabel">@errorMessage</div>
+</div>
+
+@code {
+
+    private string username;
+    private string password;
+    private string displayName;
+    private string dateOfBirth;
+    private string errorMessage;
+    
+    private async Task PerformRegister()
+    {
+        errorMessage = "";
+        try
+        {
+            User registerUser = new User
+            {
+                displayName = displayName, dob = dateOfBirth, password = password, username = username
+            };
+            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Register(registerUser);
+            username = "";
+            password = "";
+            displayName = "";
+            dateOfBirth = "";
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
+        }
+    }
+}

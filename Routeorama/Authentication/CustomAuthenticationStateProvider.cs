@@ -65,7 +65,25 @@ namespace Routeorama.Authentication
             }
             NotifyAuthenticationStateChanged(
                 Task.FromResult(new AuthenticationState(new ClaimsPrincipal(identity))));
-
+        }
+        public async Task Register(User user)
+        {
+            Console.WriteLine("Validating register...");
+            if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) && string.IsNullOrEmpty(user.dob) && string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter credentials");
+            if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
+            if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
+            if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
+            if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
+            
+            try
+            {
+                bool response = await userService.Register(user);
+                if (!response) throw new Exception("Wrong credentials");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Wrong credentials");
+            }
         }
 
         public void Logout() {
@@ -82,8 +100,8 @@ namespace Routeorama.Authentication
             List<Claim> claims = new List<Claim>();
             
             claims.Add(new Claim(ClaimTypes.Name, user.username));
-            claims.Add(new Claim("BirthYear", user.dob));
-            claims.Add(new Claim("Role", user.role.ToString()));
+            //claims.Add(new Claim("BirthYear", user.dob));
+            //claims.Add(new Claim("Role", user.role.ToString()));
 
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
             return identity;
