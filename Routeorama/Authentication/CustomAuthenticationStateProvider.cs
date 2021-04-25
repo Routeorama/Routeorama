@@ -69,12 +69,13 @@ namespace Routeorama.Authentication
         public async Task Register(User user)
         {
             Console.WriteLine("Validating register...");
-            if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) && string.IsNullOrEmpty(user.dob) && string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter credentials");
+            if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) && string.IsNullOrEmpty(user.dob) && string.IsNullOrEmpty(user.displayName) && string.IsNullOrEmpty(user.email)) throw new Exception("Enter credentials");
             if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
+            if (string.IsNullOrEmpty(user.email)) throw new Exception("Enter email");
             if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
-            if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
             if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
-            
+            if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
+
             try
             {
                 bool response = await userService.Register(user);

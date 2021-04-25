@@ -105,25 +105,33 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Register.razor"
+#line 54 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Register.razor"
        
 
     private string username;
     private string password;
+    private string repeatPassword;
     private string displayName;
     private string dateOfBirth;
+    private string email;
     private string errorMessage;
-    
+
     private async Task PerformRegister()
     {
         errorMessage = "";
         try
         {
+
             User registerUser = new User
             {
-                displayName = displayName, dob = dateOfBirth, password = password, username = username
+                displayName = displayName, dob = dateOfBirth, password = password, username = username, email = email, role = RoleEnum.user
             };
+
+            if (!password.Equals(repeatPassword))
+                throw new Exception("Password´s do not match");
+            
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Register(registerUser);
+
             username = "";
             password = "";
             displayName = "";
