@@ -26,7 +26,7 @@
 
     <label class="registerlabel">Repeat Password</label>
     <div class="repeatPassword-placeholder">
-        <input type="repeatPassword" placeholder="repeat password" @bind-value="repeatPassword"/>
+        <input type="password" placeholder="repeat password" @bind-value="repeatPassword"/>
     </div>
 
     <label class="registerlabel">DisplayName</label>
@@ -53,13 +53,13 @@
 
 @code {
 
-    private string username;
-    private string password;
-    private string repeatPassword;
-    private string displayName;
-    private string dateOfBirth;
-    private string email;
-    private string errorMessage;
+    private string username = "";
+    private string password = "";
+    private string repeatPassword = "";
+    private string displayName = "";
+    private string dateOfBirth = "";
+    private string email = "";
+    private string errorMessage = "";
 
     private async Task PerformRegister()
     {

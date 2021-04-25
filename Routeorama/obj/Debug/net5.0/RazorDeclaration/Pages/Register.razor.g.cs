@@ -108,13 +108,13 @@ using Routeorama.Authentication;
 #line 54 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Register.razor"
        
 
-    private string username;
-    private string password;
-    private string repeatPassword;
-    private string displayName;
-    private string dateOfBirth;
-    private string email;
-    private string errorMessage;
+    private string username = "";
+    private string password = "";
+    private string repeatPassword = "";
+    private string displayName = "";
+    private string dateOfBirth = "";
+    private string email = "";
+    private string errorMessage = "";
 
     private async Task PerformRegister()
     {
