@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj": {}
+    "D:\\University\\SEP3\\RouteoramaTesting\\Routeorama\\Routeorama.csproj": {}
   },
   "projects": {
-    "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj": {
+    "D:\\University\\SEP3\\RouteoramaTesting\\Routeorama\\Routeorama.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj",
+        "projectUniqueName": "D:\\University\\SEP3\\RouteoramaTesting\\Routeorama\\Routeorama.csproj",
         "projectName": "Routeorama",
-        "projectPath": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj",
-        "packagesPath": "C:\\Users\\karl1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\obj\\",
+        "projectPath": "D:\\University\\SEP3\\RouteoramaTesting\\Routeorama\\Routeorama.csproj",
+        "packagesPath": "C:\\Users\\cirst\\.nuget\\packages\\",
+        "outputPath": "D:\\University\\SEP3\\RouteoramaTesting\\Routeorama\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\karl1\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\cirst\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -37,6 +37,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Radzen.Blazor": {
+              "target": "Package",
+              "version": "[3.2.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\karl1\\.dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
