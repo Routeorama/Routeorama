@@ -1,8 +1,8 @@
-﻿.main-page {
+﻿.logincontainer{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     align-content: stretch;
 }

@@ -1,0 +1,25 @@
+﻿@page "/Design"
+@inject NavigationManager NavigationManager;
+
+<div class="main">
+    <div class="title">Routeorama.</div>
+    <div class="bottom">
+        <button class="sign-in" @onclick="toLogin">Sign in</button>
+        <button class="register" @onclick="toRegister">Create an account</button>
+        <button class="guest">Log in as Guest</button>
+    </div>
+
+</div>
+
+@code {
+
+    private void toLogin()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+    private void toRegister()
+    {
+        NavigationManager.NavigateTo("/register");
+    }
+}
