@@ -65,9 +65,8 @@ namespace Routeorama.Authentication
             }
             NotifyAuthenticationStateChanged(
                 Task.FromResult(new AuthenticationState(new ClaimsPrincipal(identity))));
-
         }
-        
+
         public async Task Register(User user)
         {
             Console.WriteLine("Validating register...");
@@ -118,8 +117,8 @@ namespace Routeorama.Authentication
             List<Claim> claims = new List<Claim>();
             
             claims.Add(new Claim(ClaimTypes.Name, user.username));
-            claims.Add(new Claim("BirthYear", user.dob));
-            claims.Add(new Claim("Role", user.role.ToString()));
+            //claims.Add(new Claim("BirthYear", user.dob));
+            //claims.Add(new Claim("Role", user.role.ToString()));
 
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
             return identity;

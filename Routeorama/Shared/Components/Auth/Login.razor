@@ -5,17 +5,27 @@
 @inject NavigationManager NavigationManager
 
 <div class="logincontainer">
+    <h3>Login</h3>
+    
     <label class="loginlabel">Username</label>
     <div class="username-placeholder">
         <input type="text" placeholder="user name" @bind-value="username"/>
     </div>
+
     <label class="loginlabel">Password</label>
     <div class="password-placeholder">
         <input type="password" placeholder="password" @bind-value="password"/>
     </div>
-    <a class="login-button" href="" @onclick="PerformLogin">
-        Login
-    </a>
+    
+    <div class="button-placeholder">
+        <a class="login-button" href="" @onclick="PerformLogin">
+            Login
+        </a>
+        <a class="login-button" href="/register">
+            Register
+        </a>
+    </div>
+    
     <div class="errorLabel">@errorMessage</div>
 </div>
 
@@ -39,5 +49,4 @@
             errorMessage = e.Message;
         }
     }
-
 }
