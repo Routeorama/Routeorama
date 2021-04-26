@@ -62,5 +62,30 @@ namespace Routeorama.Data.Implementation
             string responseContent = await responseMessage.Content.ReadAsStringAsync();
 
         }
+        public async Task<bool> Register(User user)
+        {
+            client = new HttpClient();
+
+            string userAsJson = JsonSerializer.Serialize(user);
+
+            StringContent content = new StringContent(
+            userAsJson, Encoding.UTF8, "application/json"
+            );
+            
+            HttpResponseMessage responseMessage = await client.PostAsync("http://localhost:8080/auth/register", content);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
+            
+            string responseContent = await responseMessage.Content.ReadAsStringAsync();
+
+            bool finalUser = JsonSerializer.Deserialize<bool>(responseContent, new JsonSerializerOptions {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            
+            if (!finalUser) throw new Exception("Wrong credentials");
+            
+            return finalUser;
+        }
     }
 }
