@@ -126,7 +126,7 @@ using Routeorama.Authentication;
             {
                 displayName = displayName, dob = dateOfBirth, password = password, username = username, email = email, role = RoleEnum.user
             };
-
+            //Console.WriteLine();
             if (!password.Equals(repeatPassword))
                 throw new Exception("Password´s do not match");
             
