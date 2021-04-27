@@ -19,7 +19,7 @@
     justify-content: space-between;
     align-items: stretch;
     align-content: stretch;
-    background-image: url("https://wallpaperaccess.com/full/1261203.jpg");
+    background-image: url("img/bogdanel1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -68,7 +68,7 @@ button:focus[b-8tc6hsjh8w]{
 }
 
 .register[b-8tc6hsjh8w], .guest[b-8tc6hsjh8w]{
-    background-color: #07354e;
+    background-color: #255169;
 }
 /* _content/Routeorama/Pages/Main/Main.razor.rz.scp.css */
 /* _content/Routeorama/Shared/Components/Auth/Login.razor.rz.scp.css */
@@ -76,9 +76,9 @@ button:focus[b-8tc6hsjh8w]{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
-    align-content: stretch;
+    align-content: center;
 }
 /* _content/Routeorama/Shared/MainLayout.razor.rz.scp.css */
 .page[b-k1hu7hwkki] {

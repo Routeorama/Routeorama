@@ -16,6 +16,7 @@
     <link href="css/site.css" rel="stylesheet"/>
     <link href="Routeorama.styles.css" rel="stylesheet"/>
     <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+    <script src="google.js"></script>
 </head>
 <body>
 <component type="typeof(App)" render-mode="Server"/>
@@ -31,6 +32,11 @@
     <a class="dismiss">🗙</a>
 </div>
 
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAh258uXALauCLGnfTyJCiU98L0KSPf3Yk&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
 <script src="_framework/blazor.server.js"></script>
+
 </body>
 </html>

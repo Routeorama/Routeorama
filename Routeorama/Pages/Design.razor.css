@@ -8,7 +8,7 @@
     justify-content: space-between;
     align-items: stretch;
     align-content: stretch;
-    background-image: url("https://wallpaperaccess.com/full/1261203.jpg");
+    background-image: url("img/bogdanel1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -57,5 +57,5 @@ button:focus{
 }
 
 .register, .guest{
-    background-color: #07354e;
+    background-color: #255169;
 }

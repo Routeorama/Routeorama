@@ -8,4 +8,8 @@
       <PackageReference Include="Radzen.Blazor" Version="3.2.7" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\google.js" />
+    </ItemGroup>
+
 </Project>

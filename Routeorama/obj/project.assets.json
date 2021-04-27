@@ -593,11 +593,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\University\\SEP3\\RouteoramaTesting\\Routeorama\\Routeorama.csproj",
+      "projectUniqueName": "D:\\University\\SEP3\\Routeorama\\Routeorama\\Routeorama.csproj",
       "projectName": "Routeorama",
-      "projectPath": "D:\\University\\SEP3\\RouteoramaTesting\\Routeorama\\Routeorama.csproj",
+      "projectPath": "D:\\University\\SEP3\\Routeorama\\Routeorama\\Routeorama.csproj",
       "packagesPath": "C:\\Users\\cirst\\.nuget\\packages\\",
-      "outputPath": "D:\\University\\SEP3\\RouteoramaTesting\\Routeorama\\obj\\",
+      "outputPath": "D:\\University\\SEP3\\Routeorama\\Routeorama\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\cirst\\AppData\\Roaming\\NuGet\\NuGet.Config"

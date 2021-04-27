@@ -119,25 +119,27 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 18 "D:\University\SEP3\Routeorama\Routeorama\Pages\NewPage.razor"
+#line 6 "D:\University\SEP3\Routeorama\Routeorama\Pages\NewPage.razor"
        
-    int zoom = 3;
-    bool showMadridMarker;
 
-    void OnMapClick(GoogleMapClickEventArgs args)
-    {
-        Console.WriteLine($"Map clicked at Lat: {args.Position.Lat}, Lng: {args.Position.Lng}");
-    }
+    string src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAh258uXALauCLGnfTyJCiU98L0KSPf3Yk&callback=initMap&libraries=&v=weekly";
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     await _runtime.InvokeVoidAsync("initMap");
+    // }
 
-    void OnMarkerClick(RadzenGoogleMapMarker marker)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        Console.WriteLine($"Map {marker.Title} marker clicked. Marker position -> Lat: {marker.Position.Lat}, Lng: {marker.Position.Lng}");
+        if(firstRender)
+       await _runtime.InvokeVoidAsync("initMap");
     }
+    
 
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _runtime { get; set; }
     }
 }
 #pragma warning restore 1591

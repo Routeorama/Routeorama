@@ -125,7 +125,7 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 22 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Auth\Login.razor"
+#line 32 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Auth\Login.razor"
        
     private string username;
     private string password;
@@ -146,7 +146,6 @@ using Routeorama.Authentication;
             errorMessage = e.Message;
         }
     }
-
 
 #line default
 #line hidden

@@ -124,7 +124,6 @@ using Radzen.Blazor;
 	private string _name; 
 	private string _description;
 	private string _country;
-	private string _county;
 	private string _city;
 
 	private void Submit()
@@ -135,7 +134,6 @@ using Radzen.Blazor;
 		{ 
 			City = _city,
 			Country = _country,
-			County = _county,
 			Latitude = 0,
 			Longitude = 0
 		};
