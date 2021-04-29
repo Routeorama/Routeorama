@@ -82,6 +82,83 @@ button:focus[b-8tc6hsjh8w]{
     align-items: center;
     align-content: center;
 }
+/* _content/Routeorama/Shared/Components/Feed/Feed.razor.rz.scp.css */
+.feed[b-w1eoh866ea]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 40vw;
+}
+/* _content/Routeorama/Shared/Components/Map/Map.razor.rz.scp.css */
+#map[b-v5ce1vgkhm]{
+    height: 100%;
+    width: 60vw;
+}
+
+.content[b-v5ce1vgkhm]{
+    height: 92vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding:0;
+}
+/* _content/Routeorama/Shared/Components/Nav/Nav.razor.rz.scp.css */
+.navigation[b-1xueg0a0iu]{
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    height: 8vh;
+}
+
+.navigation ul[b-1xueg0a0iu]{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin:0;
+    height: 100%;
+    padding: 0 15px;
+}
+
+.navigation ul li[b-1xueg0a0iu]{
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.navigation ul li div[b-1xueg0a0iu]{
+    cursor: pointer;
+}
+
+ul #logo[b-1xueg0a0iu]{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+ul #search[b-1xueg0a0iu]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul #profile[b-1xueg0a0iu]{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.login-button[b-1xueg0a0iu]{
+    margin-right: 10px;
+}
+
+.signin-button[b-1xueg0a0iu]{
+    margin-right: 10px;
+}
 /* _content/Routeorama/Shared/MainLayout.razor.rz.scp.css */
 .page[b-k1hu7hwkki] {
     position: relative;

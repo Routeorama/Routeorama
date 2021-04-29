@@ -1,0 +1,14 @@
+#map[b-v5ce1vgkhm]{
+    height: 100%;
+    width: 60vw;
+}
+
+.content[b-v5ce1vgkhm]{
+    height: 92vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding:0;
+}

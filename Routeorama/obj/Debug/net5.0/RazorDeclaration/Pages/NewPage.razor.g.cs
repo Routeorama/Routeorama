@@ -110,6 +110,34 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 15 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Nav;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Map;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Feed;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Post;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/googlemap")]
     public partial class NewPage : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -121,12 +149,6 @@ using Radzen.Blazor;
 #nullable restore
 #line 6 "D:\University\SEP3\Routeorama\Routeorama\Pages\NewPage.razor"
        
-
-    string src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAh258uXALauCLGnfTyJCiU98L0KSPf3Yk&callback=initMap&libraries=&v=weekly";
-    // protected override async Task OnInitializedAsync()
-    // {
-    //     await _runtime.InvokeVoidAsync("initMap");
-    // }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

@@ -111,6 +111,34 @@ using Radzen.Blazor;
 #line hidden
 #nullable disable
 #nullable restore
+#line 15 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Nav;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Map;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Feed;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Post;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Auth\Logout.razor"
 using Routeorama.Authentication;
 

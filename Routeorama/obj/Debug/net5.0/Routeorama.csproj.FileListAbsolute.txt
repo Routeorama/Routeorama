@@ -67,3 +67,14 @@ D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Main\M
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\Register.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Auth\Register.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Auth\Register.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Map\Map.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Nav\Nav.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Map\Map.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Nav\Nav.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Nav\Nav.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Map\Map.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Feed\Feed.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Feed\Feed.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Feed\Feed.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\Post.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\Post.razor.g.cs

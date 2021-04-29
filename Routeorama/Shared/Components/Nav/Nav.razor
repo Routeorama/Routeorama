@@ -1,0 +1,51 @@
+﻿@inject NavigationManager _navigationManager
+
+<nav class="navigation">
+    <ul>
+        <li id="logo">
+            <div @onclick="NavigateToMain">
+                Logo
+            </div>
+        </li>
+        <li id="search">
+            <div>
+                Search bar
+            </div> 
+        </li>
+        <AuthorizeView>
+            <Authorized>
+                <li id="profile">
+                    <div>
+                        Profile
+                    </div>
+                </li>
+            </Authorized>
+            <NotAuthorized>
+                <li id="profile">
+                    <div class="login-button" @onclick="NavigateToLogin">
+                        Login
+                    </div>
+                    <div class="signin-button" @onclick="NavigateToRegister">
+                        Sign up
+                    </div>
+                </li>
+            </NotAuthorized>
+        </AuthorizeView>
+    </ul>
+</nav>
+
+@code {
+
+    private void NavigateToLogin()
+    {
+        _navigationManager.NavigateTo("/login");
+    }
+    private void NavigateToRegister()
+    {
+        _navigationManager.NavigateTo("/register");
+    }
+    private void NavigateToMain()
+    {
+        _navigationManager.NavigateTo("/");
+    }
+}

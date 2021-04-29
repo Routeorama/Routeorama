@@ -1,0 +1,18 @@
+﻿@inject IJSRuntime _runtime;
+
+<div class="content">
+    <div id="map"></div>
+    <Feed/>
+</div>
+
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+       await _runtime.InvokeVoidAsync("initMap");
+    }
+    
+    
+
+}
