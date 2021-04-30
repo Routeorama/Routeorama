@@ -4,15 +4,27 @@
     <div id="map"></div>
     <Feed/>
 </div>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="exit">&times;</span>
+        <div class="modal-inner-content">
+            Is this information correct?<br><br>
+            Name:<input type="text" class="inner-field" id="name"><br>
+            Description:<textarea style="resize: none" class="inner-field" id="description"></textarea><br>
+            Coordonates:<span class="inner-field" id="coords"></span><br>
+            Country:<span class="inner-field" id="country"></span><br> 
+            City:<span class="inner-field" id="city"></span><br>
+        </div>
+        <button class="create-place" id="create-place-button">Create place</button>
+    </div>
+</div>
 
 @code {
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender)
-       await _runtime.InvokeVoidAsync("initMap");
+        if (firstRender)
+            await _runtime.InvokeVoidAsync("initMap");
     }
-    
-    
 
 }

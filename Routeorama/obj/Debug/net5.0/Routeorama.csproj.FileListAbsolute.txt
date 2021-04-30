@@ -78,3 +78,5 @@ D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Component
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Feed\Feed.razor.rz.scp.css
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\Post.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\Post.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Places\AddPlace.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Places\AddPlace.razor.g.cs

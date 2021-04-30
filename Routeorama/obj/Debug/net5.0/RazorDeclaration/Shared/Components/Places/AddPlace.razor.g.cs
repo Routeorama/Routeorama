@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Routeorama.Shared.Components.Map
+namespace Routeorama.Shared.Components.Places
 {
     #line hidden
     using System;
@@ -138,28 +138,13 @@ using Routeorama.Shared.Components.Post;
 #line default
 #line hidden
 #nullable disable
-    public partial class Map : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class AddPlace : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 22 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Map\Map.razor"
-       
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-            await _runtime.InvokeVoidAsync("initMap");
-    }
-
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _runtime { get; set; }
     }
 }
 #pragma warning restore 1591
