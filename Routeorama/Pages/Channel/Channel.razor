@@ -1,0 +1,52 @@
+﻿@inject IPlaceService PlaceService;
+@inject IJSRuntime _runtime;
+@page "/channel"
+@using Routeorama.Data
+<AuthorizeView>
+    <Authorized>
+        <div class="everything-place">
+            <div class="place">              
+                    <h1>
+                        @place.name
+                    </h1>
+                    <h1>
+                        @place.description
+                    </h1>
+            </div>
+            <div class="weather-description" id="description"/>
+            <div class="degrees" id="temp"/>
+            <div class="feels-like_degrees" id="feels_like"/>
+            <div class="pressure" id="pressure"/>
+            <div class="location" id="location"/>
+            <div class="sunrise" id="sunrise"/>
+            <div class="sunset" id="sunset"/>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <h1> U hacker</h1>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private Place place;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Location location = new Location
+        {
+            city = "Aarhus",
+            country = "Denmark",
+            lat = 56.143932, lng = 10.194573
+        };
+        place = new Place
+        {
+            name = "COOL PLACE",
+            description = "IT IS SERIOUSLY SUPER COOL",
+            followCount = 238573495,
+            location = location
+        };
+        //place = await PlaceService.FetchPlaceData();
+        await _runtime.InvokeVoidAsync("fetchWeather", place.location.lat, place.location.lng);
+    }
+    
+}

@@ -14,4 +14,11 @@
       <None Include="wwwroot\google.js" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Places\AddPlace.razor" />
+      <_ContentIncludedByDefault Remove="Shared\Components\Places\AddPlace.razor" />
+      <_ContentIncludedByDefault Remove="Shared\Components\Post\Post.razor" />
+      <_ContentIncludedByDefault Remove="Shared\Components\Feed\Feed.razor" />
+    </ItemGroup>
+
 </Project>
