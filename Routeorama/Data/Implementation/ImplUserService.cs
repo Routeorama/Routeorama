@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Routeorama.Models;
 
@@ -36,9 +37,10 @@ namespace Routeorama.Data.Implementation
                 throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
             
             string responseContent = await responseMessage.Content.ReadAsStringAsync();
+          
 
             User finalUser = JsonSerializer.Deserialize<User>(responseContent, new JsonSerializerOptions {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase, Converters = {new JsonStringEnumConverter()}
             });
             
             if (finalUser == null) throw new Exception("Wrong credentials");

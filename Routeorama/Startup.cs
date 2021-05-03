@@ -33,6 +33,8 @@ namespace Routeorama
             services.AddServerSideBlazor();
             services.AddScoped<IUserService, ImplUserService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            services.AddScoped<IPlaceService, ImplPlaceService>();
+
             //TODO add policies
 
         }

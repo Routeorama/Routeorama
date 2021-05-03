@@ -1,8 +1,19 @@
 ﻿@page "/"
+@using LoginComponent
+@inherits LayoutComponentBase
 
-
-<Nav/>
-<Map/>
+<div class="page">
+    <AuthorizeView>
+        <NotAuthorized>
+            <Login/>
+        </NotAuthorized>
+        <Authorized>
+            <Nav/>
+            <Map/>
+            @Body
+        </Authorized>
+    </AuthorizeView>
+</div>
 
 @code {
 

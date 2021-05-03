@@ -8,6 +8,33 @@
     align-items: center;
     align-content: center;
 }
+/* _content/Routeorama/Pages/Channel/Channel.razor.rz.scp.css */
+.everything-place[b-cnnkug9k5o]{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+}
+
+.place[b-cnnkug9k5o]{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+}
+
+.weather[b-cnnkug9k5o]{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-around;
+}
 /* _content/Routeorama/Pages/Design.razor.rz.scp.css */
 
 .main[b-8tc6hsjh8w]{

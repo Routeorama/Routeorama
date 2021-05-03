@@ -1,4 +1,12 @@
-﻿@inject IJSRuntime _runtime;
+﻿@using System.Text.Json
+@using Json
+@using Routeorama.Data
+@using System.ComponentModel
+@using Routeorama.Authentication
+@inject IJSRuntime _runtime;
+@inject IPlaceService PlaceService;
+@inject AuthenticationStateProvider StateProvider;
+@inject NavigationManager NavigationManager;
 
 <div class="content">
     <div id="map"></div>
@@ -6,25 +14,98 @@
 </div>
 <div id="myModal" class="modal">
     <div class="modal-content">
-        <span class="exit">&times;</span>
+        <span class="exit" @onclick="ClearData">&times;</span>
         <div class="modal-inner-content">
             Is this information correct?<br><br>
-            Name:<input type="text" class="inner-field" id="name"><br>
-            Description:<textarea style="resize: none" class="inner-field" id="description"></textarea><br>
-            Coordonates:<span class="inner-field" id="coords"></span><br>
-            Country:<span class="inner-field" id="country"></span><br> 
-            City:<span class="inner-field" id="city"></span><br>
+            Placename:<input class="inner-field" @bind-value="@Name"><br>
+            Description:<textarea style="resize: none" class="inner-field" @bind="@Description"></textarea><br>
+            Coordinates:<input disabled class="inner-field" id="coords" @bind-value="@Coordinates"><br>
+            country:<input disabled class="inner-field" id="country" @bind-value="@Country"><br>
+            city:<input class="inner-field" id="city" @bind-value="@City"><br>
+            <label>@label</label>
         </div>
-        <button class="create-place" id="create-place-button">Create place</button>
+        <button class="create-place" id="create-place-button" @onclick="CreateThePlace">Create place</button>
     </div>
 </div>
 
+
 @code {
+
+    private string Name;
+    private string Description;
+    private string Coordinates;
+    private string Lat;
+    private string Lng;
+    private string Country;
+    private string City;
+    private string label;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
             await _runtime.InvokeVoidAsync("initMap");
     }
+
+    private async Task CreateThePlace(){  
+        if (string.IsNullOrEmpty(Description) && string.IsNullOrEmpty(Name))
+                 label = ("Fill out the name and description of the place.");
+
+        else if (string.IsNullOrEmpty(Name))
+            label = ("Fill out the name of the place.");
+
+        else if (string.IsNullOrEmpty(Description))
+            label = ("Fill out the description of the place.");
+        
+        else
+        {
+            if (string.IsNullOrEmpty(City))
+            {
+                City = await _runtime.InvokeAsync<string>("FetchCity");
+            }
+            if (string.IsNullOrEmpty(Country))
+            {
+                Country = await _runtime.InvokeAsync<string>("FetchCountry");
+            }
+
+            Coordinates = await _runtime.InvokeAsync<string>("FetchCoordinates");
+
+            var coordinates = Coordinates.Split(", ");
+            Lat = coordinates[0].TrimStart('(');
+            Lng = coordinates[1].TrimEnd(')');
+            Console.WriteLine(Lat);
+            Console.WriteLine(Lng);
+
+            Location location = new Location
+            {
+                city = City, country = Country, lat = Double.Parse(Lat), lng = Double.Parse(Lng)
+            };
+
+            int Id = ((CustomAuthenticationStateProvider) StateProvider).GetUserId();
+            Place place = new Place()
+            {
+                userId = Id,
+                description = Description,
+                id = 0,
+                location = location,
+                name = Name,
+                followCount = 0
+            };
+            
+            PlaceService.CreateNewPlace(place);
+            PlaceService.SetPlaceName(Name);
+            await ClearData();
+            NavigationManager.NavigateTo("/channel");
+        }
+    }
+
+    private async Task ClearData()
+    {
+        Name = "";
+        Description = "";
+        Coordinates = "";
+        Country = "";
+        City = "";
+    }
+
 
 }

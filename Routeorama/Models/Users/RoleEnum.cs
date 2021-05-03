@@ -1,6 +1,6 @@
 ﻿namespace Routeorama.Models
 {
-    public enum RoleEnum
+    public enum RoleEnum 
     {
         user, 
         admin

@@ -42,7 +42,6 @@
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
             username = "";
             password = "";
-            NavigationManager.NavigateTo("/mainpage");
         }
         catch (Exception e)
         {
