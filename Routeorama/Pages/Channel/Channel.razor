@@ -23,29 +23,16 @@
         </div>
     </Authorized>
     <NotAuthorized>
-        <h1> U hacker</h1>
+        <h1>U hacker</h1>
     </NotAuthorized>
 </AuthorizeView>
 
 @code {
-    private Place place;
+    private Place place = new Place();
 
     protected override async Task OnInitializedAsync()
     {
-        Location location = new Location
-        {
-            city = "Aarhus",
-            country = "Denmark",
-            lat = 56.143932, lng = 10.194573
-        };
-        place = new Place
-        {
-            name = "COOL PLACE",
-            description = "IT IS SERIOUSLY SUPER COOL",
-            followCount = 238573495,
-            location = location
-        };
-        //place = await PlaceService.FetchPlaceData();
+        place = await PlaceService.FetchPlaceData();
         await _runtime.InvokeVoidAsync("fetchWeather", place.location.lat, place.location.lng);
     }
     

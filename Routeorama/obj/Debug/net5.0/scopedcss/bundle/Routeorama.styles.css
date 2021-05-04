@@ -107,15 +107,6 @@ button:focus[b-8tc6hsjh8w]{
     align-items: center;
     align-content: center;
 }
-/* _content/Routeorama/Shared/Components/Feed/Feed.razor.rz.scp.css */
-.feed[b-w1eoh866ea]{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    width: 40vw;
-}
 /* _content/Routeorama/Shared/Components/Map/Map.razor.rz.scp.css */
 #map[b-v5ce1vgkhm]{
     height: 100%;

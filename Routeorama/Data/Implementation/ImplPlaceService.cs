@@ -19,7 +19,6 @@ namespace Routeorama.Data.Implementation
         public async Task<Place> CreateNewPlace(Place place)
         {
             client = new HttpClient();
-            Console.WriteLine(place.ToString());
 
             string placeAsJson = JsonSerializer.Serialize(place);
 
@@ -38,8 +37,7 @@ namespace Routeorama.Data.Implementation
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
             
-            if (finalPlace == null) throw new Exception("Something went wrong");
-            Console.WriteLine(finalPlace);
+            if (finalPlace == null) throw new Exception("Creating new place went wrong");
             return finalPlace;
         }
 
@@ -47,14 +45,8 @@ namespace Routeorama.Data.Implementation
         public async Task<Place> FetchPlaceData()
         {
             client = new HttpClient();
-
-            string placeAsJson = JsonSerializer.Serialize(placeName);
-
-            StringContent content = new StringContent(
-                placeAsJson, Encoding.UTF8, "application/json"
-            );
             
-            HttpResponseMessage responseMessage = await client.PostAsync("http://localhost:8080/places/place", content);
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:8080/auth/place/{placeName}");
 
             if (!responseMessage.IsSuccessStatusCode)
                 throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
@@ -64,9 +56,8 @@ namespace Routeorama.Data.Implementation
             Place finalPlace = JsonSerializer.Deserialize<Place>(responseContent, new JsonSerializerOptions {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
-            
-            if (finalPlace == null) throw new Exception("Something went wrong");
-            Console.WriteLine(finalPlace);
+
+            if (finalPlace == null) throw new Exception("Fetching place went wrong");
             return finalPlace;
         }
     }

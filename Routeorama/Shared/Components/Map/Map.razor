@@ -72,8 +72,8 @@
             var coordinates = Coordinates.Split(", ");
             Lat = coordinates[0].TrimStart('(');
             Lng = coordinates[1].TrimEnd(')');
-            Console.WriteLine(Lat);
-            Console.WriteLine(Lng);
+            //Console.WriteLine(Lat);
+            //Console.WriteLine(Lng);
 
             Location location = new Location
             {
@@ -81,8 +81,7 @@
             };
 
             int Id = ((CustomAuthenticationStateProvider) StateProvider).GetUserId();
-            Place place = new Place()
-            {
+            Place place = new Place() {
                 userId = Id,
                 description = Description,
                 id = 0,
@@ -91,7 +90,7 @@
                 followCount = 0
             };
             
-            PlaceService.CreateNewPlace(place);
+            await PlaceService.CreateNewPlace(place);
             PlaceService.SetPlaceName(Name);
             await ClearData();
             NavigationManager.NavigateTo("/channel");
