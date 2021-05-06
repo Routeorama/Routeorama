@@ -49,7 +49,7 @@
                 <label for="error" @bind="@error"></label>
             </div>
             <button class="CreateButton" type="button" href="javascript:void(0)"
-                    @onclick="createNewPost">
+                    @onclick="createNewPostAsync">
                 Create a post
             </button>
         </div>
@@ -80,7 +80,7 @@
     private string? photo;
     private string? error;
 
-    private async void createNewPost()
+    private async void createNewPostAsync()
     {
         Post post = new Post
         {
