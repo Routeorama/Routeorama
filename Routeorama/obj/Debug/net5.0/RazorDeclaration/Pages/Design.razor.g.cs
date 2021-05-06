@@ -117,13 +117,6 @@ using Routeorama.Shared.Components.Nav;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
-using Routeorama.Shared.Components.Map;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/Design")]
     public partial class Design : Microsoft.AspNetCore.Components.ComponentBase
     {

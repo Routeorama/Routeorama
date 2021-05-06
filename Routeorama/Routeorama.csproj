@@ -19,6 +19,7 @@
       <_ContentIncludedByDefault Remove="Shared\Components\Places\AddPlace.razor" />
       <_ContentIncludedByDefault Remove="Shared\Components\Post\Post.razor" />
       <_ContentIncludedByDefault Remove="Shared\Components\Feed\Feed.razor" />
+      <_ContentIncludedByDefault Remove="Shared\Components\Map\Map.razor" />
     </ItemGroup>
 
 </Project>

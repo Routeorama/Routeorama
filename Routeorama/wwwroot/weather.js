@@ -17,7 +17,7 @@ function drawWeather(d) {
     var celcius = Math.round(parseFloat(d.main.temp) - 273.15);
     var feelslike = Math.round(parseFloat(d.main.feels_like) - 273.15);
     var description = d.weather[0].description;
-    var pressure1 = Math.round(parseFloat(d.main.pressure) - 273.15);
+    var pressure1 = d.main.pressure;
     console.log(celcius);
     console.log(description);
 

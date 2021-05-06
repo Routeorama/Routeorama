@@ -34,7 +34,7 @@ namespace Routeorama
             services.AddScoped<IUserService, ImplUserService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddScoped<IPlaceService, ImplPlaceService>();
-
+            services.AddScoped<IPostService, ImplPostService>();
             //TODO add policies
 
         }

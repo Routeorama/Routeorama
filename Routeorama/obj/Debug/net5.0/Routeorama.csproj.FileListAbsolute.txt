@@ -239,11 +239,11 @@ C:\Users\karl1\RiderProjects\Routeorama\Routeorama\bin\Debug\net5.0\JObject.dll
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\bin\Debug\net5.0\Json.dll
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Channel\Channel.razor.g.cs
-C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Map\Map.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Nav\Nav.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Channel\Channel.razor.g.cs
-C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Map\Map.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Nav\Nav.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Channel\Channel.razor.rz.scp.css
-C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Map\Map.razor.rz.scp.css
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Nav\Nav.razor.rz.scp.css
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Map\Map.razor.g.cs
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Map\Map.razor.g.cs
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Map\Map.razor.rz.scp.css

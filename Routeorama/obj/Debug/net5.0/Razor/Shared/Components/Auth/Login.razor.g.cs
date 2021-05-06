@@ -115,13 +115,6 @@ using Routeorama.Shared.Components.Nav;
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
-using Routeorama.Shared.Components.Map;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Auth\Login.razor"
 using Routeorama.Authentication;
 

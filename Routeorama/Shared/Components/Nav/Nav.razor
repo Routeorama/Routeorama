@@ -1,33 +1,35 @@
 ﻿@inject NavigationManager _navigationManager
+@using Routeorama.Authentication
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <nav class="navigation">
     <ul>
-        <li id="logo">
-            <div @onclick="NavigateToMain">
-                Logo
-            </div>
+        <li>
+            <a href="/">Logo</a>
         </li>
-        <li id="search">
-            <div>
-                Search bar
-            </div> 
+        <li>
+            <a>Search bar</a>
         </li>
         <AuthorizeView>
             <Authorized>
-                <li id="profile">
-                    <div>
-                        Profile
-                    </div>
+                <li style="float:right">
+                    <a href="/" @onclick="PerformLogout">
+                        Log out
+                    </a>
+                </li>
+                <li style="float:right">
+                    <a href="/">Profile</a>
+                </li>
+                <li style="float:right">
+                    <a href="/createPlace">Create a Place</a>
                 </li>
             </Authorized>
             <NotAuthorized>
-                <li id="profile">
-                    <div class="login-button" @onclick="NavigateToLogin">
-                        Login
-                    </div>
-                    <div class="signin-button" @onclick="NavigateToRegister">
-                        Sign up
-                    </div>
+                <li style="float:right">
+                    <a href="/login">Login</a>
+                </li>
+                <li style="float:right">
+                    <a href="/register">Sign up</a>
                 </li>
             </NotAuthorized>
         </AuthorizeView>
@@ -36,6 +38,10 @@
 
 @code {
 
+    public async Task PerformLogout()
+    {
+        ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+    }
     private void NavigateToLogin()
     {
         _navigationManager.NavigateTo("/login");
@@ -47,5 +53,9 @@
     private void NavigateToMain()
     {
         _navigationManager.NavigateTo("/");
+    }
+    private void CreateAPlace()
+    {
+        _navigationManager.NavigateTo("/createPlace");
     }
 }

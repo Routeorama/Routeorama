@@ -1,15 +1,13 @@
 ﻿@using Routeorama.Authentication
 @inject AuthenticationStateProvider AuthenticationStateProvider
-<AuthorizeView>
-    <Authorized>
-        <a href="" @onclick="PerformLogout">
-            Log out 
-        </a>
-    </Authorized>
-</AuthorizeView>
+
+<a href="" @onclick="PerformLogout">
+    Log out
+</a>
 
 @code {
-    public async Task PerformLogout(){
+    public async Task PerformLogout()
+    {
         ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
     }
 }

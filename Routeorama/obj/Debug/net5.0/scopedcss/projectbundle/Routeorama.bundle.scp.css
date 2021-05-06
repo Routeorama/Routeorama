@@ -37,6 +37,56 @@
     align-items: center;
     align-content: space-around;
 }
+
+.buttonCreatePlace[b-cnnkug9k5o] {
+    padding: 10px;
+}
+
+.black_overlay[b-cnnkug9k5o]{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+
+.white_content[b-cnnkug9k5o] {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    padding: 16px;
+    border: 16px solid orange;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+    align-content: center;
+}
+
+.XButton[b-cnnkug9k5o] {
+    float: right;
+}
+
+.tittle[b-cnnkug9k5o] {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.CreateButton[b-cnnkug9k5o] {
+    float: right;
+}
 /* _content/Routeorama/Pages/Design.razor.rz.scp.css */
 
 .main[b-8tc6hsjh8w]{
@@ -100,22 +150,13 @@ button:focus[b-8tc6hsjh8w]{
     background-color: #255169;
 }
 /* _content/Routeorama/Pages/Main/Main.razor.rz.scp.css */
-/* _content/Routeorama/Shared/Components/Auth/Login.razor.rz.scp.css */
-.logincontainer[b-w6hnzd4qau]{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    align-content: center;
-}
-/* _content/Routeorama/Shared/Components/Map/Map.razor.rz.scp.css */
-#map[b-v5ce1vgkhm]{
+/* _content/Routeorama/Pages/Map/Map.razor.rz.scp.css */
+#map[b-aai2lqi8ku]{
     height: 100%;
     width: 60vw;
 }
 
-.content[b-v5ce1vgkhm]{
+.content[b-aai2lqi8ku]{
     height: 92vh;
     width: 100vw;
     display: flex;
@@ -125,27 +166,27 @@ button:focus[b-8tc6hsjh8w]{
     padding:0;
 }
 
-.add-place[b-v5ce1vgkhm]{
+.add-place[b-aai2lqi8ku]{
     border: none;
     background-color: dodgerblue;
     color: white;
 }
 
-.modal[b-v5ce1vgkhm] {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
+.modal[b-aai2lqi8ku] {
+    display: none;
+    position: fixed;
+    z-index: 1;
     justify-content: center;
     align-items: center;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
+    width: 100%;
+    height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content[b-v5ce1vgkhm] {
+.modal-content[b-aai2lqi8ku] {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -156,25 +197,25 @@ button:focus[b-8tc6hsjh8w]{
     align-items: center;
 }
 
-.exit[b-v5ce1vgkhm] {
+.exit[b-aai2lqi8ku] {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.exit:hover[b-v5ce1vgkhm],
-.exit:focus[b-v5ce1vgkhm] {
+.exit:hover[b-aai2lqi8ku],
+.exit:focus[b-aai2lqi8ku] {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
 
-.inner-field[b-v5ce1vgkhm]{
+.inner-field[b-aai2lqi8ku]{
     margin-left: 10px;
 }
 
-.create-place[b-v5ce1vgkhm]{
+.create-place[b-aai2lqi8ku]{
     border: none;
     border-radius: 5px;
     background-color: deepskyblue;
@@ -184,31 +225,45 @@ button:focus[b-8tc6hsjh8w]{
     display: inline-block;
 }
 
-.create-place:focus[b-v5ce1vgkhm]{
+.create-place:focus[b-aai2lqi8ku]{
     outline: none;
+}
+/* _content/Routeorama/Shared/Components/Auth/Login.razor.rz.scp.css */
+.logincontainer[b-w6hnzd4qau]{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
 }
 /* _content/Routeorama/Shared/Components/Nav/Nav.razor.rz.scp.css */
 .navigation[b-1xueg0a0iu]{
-    background-color: whitesmoke;
+    
+}
+
+.navigation ul[b-1xueg0a0iu] {
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    height: 8vh;
+    overflow: hidden;
+    background-color: #333;
 }
 
-.navigation ul[b-1xueg0a0iu]{
-    list-style-type: none;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin:0;
-    height: 100%;
-    padding: 0 15px;
-}
-
-.navigation ul li[b-1xueg0a0iu]{
+.navigation li[b-1xueg0a0iu] {
     float: left;
-    width: 100%;
-    height: 100%;
+}
+
+.navigation li a[b-1xueg0a0iu] {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active)[b-1xueg0a0iu] {
+    background-color: #111;
 }
 
 .navigation ul li div[b-1xueg0a0iu]{
@@ -239,6 +294,15 @@ ul #profile[b-1xueg0a0iu]{
 
 .signin-button[b-1xueg0a0iu]{
     margin-right: 10px;
+}
+
+div #rightSide[b-1xueg0a0iu]{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
 }
 /* _content/Routeorama/Shared/MainLayout.razor.rz.scp.css */
 .page[b-k1hu7hwkki] {

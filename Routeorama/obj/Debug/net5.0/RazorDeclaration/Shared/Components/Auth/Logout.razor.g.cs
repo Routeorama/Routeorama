@@ -118,13 +118,6 @@ using Routeorama.Shared.Components.Nav;
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
-using Routeorama.Shared.Components.Map;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Auth\Logout.razor"
 using Routeorama.Authentication;
 
@@ -139,9 +132,10 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Auth\Logout.razor"
+#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Auth\Logout.razor"
        
-    public async Task PerformLogout(){
+    public async Task PerformLogout()
+    {
         ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
     }
 

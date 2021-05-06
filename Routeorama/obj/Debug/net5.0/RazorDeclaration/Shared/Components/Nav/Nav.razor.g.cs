@@ -118,8 +118,8 @@ using Routeorama.Shared.Components.Nav;
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
-using Routeorama.Shared.Components.Map;
+#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Nav\Nav.razor"
+using Routeorama.Authentication;
 
 #line default
 #line hidden
@@ -132,9 +132,13 @@ using Routeorama.Shared.Components.Map;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 37 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Nav\Nav.razor"
+#line 39 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Nav\Nav.razor"
        
 
+    public async Task PerformLogout()
+    {
+        ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+    }
     private void NavigateToLogin()
     {
         _navigationManager.NavigateTo("/login");
@@ -147,10 +151,15 @@ using Routeorama.Shared.Components.Map;
     {
         _navigationManager.NavigateTo("/");
     }
+    private void CreateAPlace()
+    {
+        _navigationManager.NavigateTo("/createPlace");
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
     }
 }

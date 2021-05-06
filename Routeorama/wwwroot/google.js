@@ -1,19 +1,17 @@
-﻿
-var descriptionOfThePlace;
-var city;
+﻿var city;
 var country;
-var placesCoordinates;
-var placesLat;
-var placesLng;
 var coords;
 var address;
 var result;
 var name;
+var map;
+var wrapper;
+var markers = [];
 
 function initMap() {
-    const myLatlng = {lat: -25.363, lng: 131.044};
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
+    const myLatlng = {lat: 48.855348, lng: 2.344311};
+    map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
         center: myLatlng,
         disableDefaultUI: true,
         zoomControl: true,
@@ -25,6 +23,40 @@ function initMap() {
         content: "Welcome to Routeorama!"
     });
     infoWindow.open(map);
+    
+    //Configure listener for bounds
+    var viewportBox;
+    google.maps.event.addListener(map, 'idle', function(event) {
+        var bounds = map.getBounds();
+
+        var ne = bounds.getNorthEast();
+        var sw = bounds.getSouthWest();
+
+        //console.log(map.getZoom());
+        if (map.getZoom() <= 6) {
+            clearMarkers();
+        }
+        else {
+            ChangeValueFromJs(ne.lat(), ne.lng(), sw.lat(), sw.lng());
+        }
+        /*var viewportPoints = [
+            ne, new google.maps.LatLng(ne.lat(), sw.lng()),
+            sw, new google.maps.LatLng(sw.lat(), ne.lng())
+        ];
+        /*strokeOpacity = 0 , if don't want to show the border moving. 
+        if (viewportBox) {
+            viewportBox.setPath(viewportPoints);
+        } else {
+            viewportBox = new google.maps.Polyline({
+                path: viewportPoints,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 4
+            });
+            viewportBox.setMap(map);
+        };*/
+    });
+    
     // Configure the click listener.
     map.addListener("click", (mapsMouseEvent) => {
         // Close the current InfoWindow.
@@ -101,6 +133,54 @@ function geocode(geocoder, map, infoWindow, latLng) {
     });
 }
 
+function ChangeValueFromJs(NELat, NELng, SWLat, SWLng)
+{
+    return wrapper.invokeMethodAsync("invokeFromJS", NELat, NELng, SWLat, SWLng);
+}
+
+function setWrapper(wrapper1) {
+    wrapper = wrapper1;
+}
+
+function clearMarkers() {
+    //Loop through all the markers and remove
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+}
+
+function MakeMarker(id3, name3, description3, userId3, followCount3,
+    city3, country3, lat3, lng3) {
+    console.log("created markers");
+    var myLatLng = new google.maps.LatLng(lat3, lng3);
+    
+    const contentString =
+        '<div id="content">' +
+        '<h1 id="firstHeading" class="firstHeading" style="font-size: 20px;">'+ name3 +'</h1>' +
+        '<div id="bodyContent">' +
+        "<p><b>" + name3 + "</b>, " + description3 + "</p>" +
+        "</div>" +
+        "</div>";
+    
+    const infowindow = new google.maps.InfoWindow({
+        content: contentString,
+    });
+    
+    var myMarkerOptions = {
+        position: myLatLng,
+        map: map,
+        animation: google.maps.Animation.DROP
+    }
+
+    var myMarker = new google.maps.Marker(myMarkerOptions);
+
+    myMarker.addListener("click", () => {
+        infowindow.open(map, myMarker);
+    });
+    
+    markers.push(myMarker);
+}
 
 function FetchCity() {
     return city.value;

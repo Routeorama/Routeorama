@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -58,6 +59,30 @@ namespace Routeorama.Data.Implementation
             });
 
             if (finalPlace == null) throw new Exception("Fetching place went wrong");
+            return finalPlace;
+        }
+        public async Task<List<Place>> getPlacesInBounds(List<double> bounds)
+        {
+            client = new HttpClient();
+
+            string placeAsJson = JsonSerializer.Serialize(bounds);
+
+            StringContent content = new StringContent(
+            placeAsJson, Encoding.UTF8, "application/json"
+            );
+            
+            HttpResponseMessage responseMessage = await client.PostAsync("http://localhost:8080/auth/place/bounds", content);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
+            
+            string responseContent = await responseMessage.Content.ReadAsStringAsync();
+            
+            List<Place> finalPlace = JsonSerializer.Deserialize<List<Place>>(responseContent, new JsonSerializerOptions {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            
+            if (finalPlace == null) throw new Exception("Fetching bounded places did not work");
             return finalPlace;
         }
     }
