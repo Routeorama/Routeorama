@@ -30,7 +30,6 @@
     </div>
 </div>
 
-
 @code {
 
     private string Name;
@@ -58,6 +57,13 @@
         
         return Task.CompletedTask;
     }
+    
+    [JSInvokable("channel")]
+    public Task GoToPlace(string name)
+    {
+        NavigationManager.NavigateTo($"/channel/{name}");
+        return Task.CompletedTask;
+    }
 
     private async void makeMarkers()
     {
@@ -77,7 +83,6 @@
         
         foreach (Place place in places)
         {
-            //Console.WriteLine(place);
             await _runtime.InvokeVoidAsync("MakeMarker", place.id, place.name, place.description, place.userId, place.followCount,
                 place.location.city, place.location.country, place.location.lat, place.location.lng);
         }

@@ -7,5 +7,6 @@
         public int likeCount { get; set; }
         public string dateOfCreation { get; set; }
         public int placeId { get; set; }
+        public int userId { get; set; }
     }
 }

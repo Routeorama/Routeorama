@@ -61,6 +61,27 @@ namespace Routeorama.Data.Implementation
             if (finalPlace == null) throw new Exception("Fetching place went wrong");
             return finalPlace;
         }
+        
+        public async Task<Place> FetchPlaceData(string name)
+        {
+            client = new HttpClient();
+            
+            HttpResponseMessage responseMessage = await client.GetAsync($"http://localhost:8080/auth/place/{name}");
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
+            
+            string responseContent = await responseMessage.Content.ReadAsStringAsync();
+            
+            Place finalPlace = JsonSerializer.Deserialize<Place>(responseContent, new JsonSerializerOptions {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+
+            if (finalPlace == null) throw new Exception("Fetching place went wrong");
+            placeName = name;
+            return finalPlace;
+        }
+        
         public async Task<List<Place>> getPlacesInBounds(List<double> bounds)
         {
             client = new HttpClient();

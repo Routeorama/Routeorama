@@ -23,10 +23,10 @@ function initMap() {
         content: "Welcome to Routeorama!"
     });
     infoWindow.open(map);
-    
+
     //Configure listener for bounds
     var viewportBox;
-    google.maps.event.addListener(map, 'idle', function(event) {
+    google.maps.event.addListener(map, 'idle', function (event) {
         var bounds = map.getBounds();
 
         var ne = bounds.getNorthEast();
@@ -35,8 +35,7 @@ function initMap() {
         //console.log(map.getZoom());
         if (map.getZoom() <= 6) {
             clearMarkers();
-        }
-        else {
+        } else {
             ChangeValueFromJs(ne.lat(), ne.lng(), sw.lat(), sw.lng());
         }
         /*var viewportPoints = [
@@ -56,7 +55,7 @@ function initMap() {
             viewportBox.setMap(map);
         };*/
     });
-    
+
     // Configure the click listener.
     map.addListener("click", (mapsMouseEvent) => {
         // Close the current InfoWindow.
@@ -104,10 +103,10 @@ function geocode(geocoder, map, infoWindow, latLng) {
                 //placesCoordinates = results[0].geometry.location;
 
                 address = results[0].address_components;
-                
+
                 result = results[0];
                 address.forEach((item) => {
-                    
+
                     if (item.types.includes("locality")) {
                         city.value = item.long_name;
                     }
@@ -133,8 +132,7 @@ function geocode(geocoder, map, infoWindow, latLng) {
     });
 }
 
-function ChangeValueFromJs(NELat, NELng, SWLat, SWLng)
-{
+function ChangeValueFromJs(NELat, NELng, SWLat, SWLng) {
     return wrapper.invokeMethodAsync("invokeFromJS", NELat, NELng, SWLat, SWLng);
 }
 
@@ -151,22 +149,24 @@ function clearMarkers() {
 }
 
 function MakeMarker(id3, name3, description3, userId3, followCount3,
-    city3, country3, lat3, lng3) {
+                    city3, country3, lat3, lng3) {
     console.log("created markers");
     var myLatLng = new google.maps.LatLng(lat3, lng3);
-    
     const contentString =
         '<div id="content">' +
-        '<h1 id="firstHeading" class="firstHeading" style="font-size: 20px;">'+ name3 +'</h1>' +
+        '<h1 id="firstHeading" class="firstHeading" style="font-size: 20px;">' + name3 + '</h1>' +
         '<div id="bodyContent">' +
         "<p><b>" + name3 + "</b>, " + description3 + "</p>" +
         "</div>" +
+        "<button onclick=\"navigateToChannel()\" >Go to channel</button>" +
         "</div>";
-    
+
     const infowindow = new google.maps.InfoWindow({
         content: contentString,
     });
     
+    //infowindow.addListener()
+
     var myMarkerOptions = {
         position: myLatLng,
         map: map,
@@ -178,9 +178,18 @@ function MakeMarker(id3, name3, description3, userId3, followCount3,
     myMarker.addListener("click", () => {
         infowindow.open(map, myMarker);
     });
-    
+
     markers.push(myMarker);
 }
+
+function enfgieng(){
+    console.log(smth.value = name3);
+}
+
+function navigateToChannel() {
+    var asdf = document.getElementById("firstHeading").innerHTML;
+    wrapper.invokeMethodAsync("channel", asdf);
+} 
 
 function FetchCity() {
     return city.value;
