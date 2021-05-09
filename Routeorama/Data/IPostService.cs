@@ -7,6 +7,6 @@ namespace Routeorama.Data {
 
         Task<Post> CreateNewPost(Post post);
 
-        Task<IList<Post>> FetchPosts(int placeId);
+        Task<PostContainer> FetchPosts(int placeId, int postId);
     }
 }

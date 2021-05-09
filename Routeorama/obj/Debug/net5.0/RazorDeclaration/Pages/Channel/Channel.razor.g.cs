@@ -154,7 +154,7 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 80 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 81 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
        
     private Place place = new Place();
     private IList<Post> posts = new List<Post>();
@@ -210,7 +210,8 @@ using Routeorama.Authentication;
         {
             place = await PlaceService.FetchPlaceData(placeName);
             await _runtime.InvokeVoidAsync("fetchWeather", place.location.lat, place.location.lng);
-            posts = await PostService.FetchPosts(place.id);
+            var container = await PostService.FetchPosts(place.id, 0);
+            posts = container.posts;
         }
         catch (NullReferenceException ex)
         {

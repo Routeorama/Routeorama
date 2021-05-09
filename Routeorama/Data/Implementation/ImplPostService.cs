@@ -37,12 +37,12 @@ namespace Routeorama.Data.Implementation
             return returnedPost;
         }
 
-        public async Task<IList<Post>> FetchPosts(int placeId)
+        public async Task<PostContainer> FetchPosts(int placeId, int postId)
         {
             var posts = new List<Post>();
             client = new HttpClient();
 
-            var contentAsJson = JsonSerializer.Serialize(new[] {98, 0});
+            var contentAsJson = JsonSerializer.Serialize(new[] {placeId, postId});
 
             var content = new StringContent(
                 contentAsJson, Encoding.UTF8, "application/json"
@@ -52,37 +52,23 @@ namespace Routeorama.Data.Implementation
             {
                 var response = await client.PostAsync("http://localhost:8080/post/getposts", content);
                 var responseContent = await response.Content.ReadAsStringAsync();
-                var returnedPost = JsonSerializer.Deserialize<IDictionary<bool, Post>>(responseContent,
+                var returnedPost = JsonSerializer.Deserialize<PostContainer>(responseContent,
                     new JsonSerializerOptions
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     });
 
-                Console.WriteLine(returnedPost);
+                if (returnedPost != null)
+                {
+                    return returnedPost;
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
 
-
-            // var response = await client.GetAsync($"http://localhost:8080/auth/post/getposts/placeId={placeId}&postId={0}");
-            // Console.WriteLine(response.Content.ToString());
-            // try
-            // {
-            //     var responseContent = await response.Content.ReadAsStringAsync();
-            //     posts = JsonSerializer.Deserialize<List<Post>>(responseContent,
-            //         new JsonSerializerOptions
-            //         {
-            //             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            //         });
-            // }
-            // catch (Exception e)
-            // {
-            //     Console.WriteLine(e);
-            // }
-
-            return posts;
+            return null;
         }
     }
 }
