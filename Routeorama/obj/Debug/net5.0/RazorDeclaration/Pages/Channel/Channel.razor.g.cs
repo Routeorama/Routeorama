@@ -118,28 +118,49 @@ using Routeorama.Shared.Components.Nav;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
-using Routeorama.Data;
+#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 9 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
-using Routeorama.Models.Post;
+using Routeorama.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 10 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
-using System.IO;
+using Routeorama.Models.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 11 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+using System.Text;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+using Microsoft.AspNetCore.Hosting;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Routeorama.Authentication;
 
 #line default
@@ -154,100 +175,125 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 81 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 88 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
        
-    private Place place = new Place();
-    private IList<Post> posts = new List<Post>();
+    private Place _place = new();
+    private IList<Post> _posts = new List<Post>();
+    private IList<Post> _filteredPosts = new List<Post>();
+    private ElementReference _imgUpload;
 
     [Parameter]
-    public string placeName { get; set; }
+    public string PlaceName { get; set; }
+        private const long MaxFileSize = 15000000;
+        private const int MaxAllowedFiles = 1;
+    private string _cssClass = "overlay .";
+    private bool _isOpen;
+    private int _authState;
+    private string _image;
 
-    private Dictionary<IBrowserFile, string> loadedFiles =
-        new Dictionary<IBrowserFile, string>();
-
-    private long maxFileSize = 15000000;
-    private int maxAllowedFiles = 3;
-    private bool isLoading;
-    private string cssClass = "overlay .";
-    private bool isOpen = false;
-
-    private void Open()
+    private void OpenModal()
     {
-        if (isOpen) return;
-        cssClass = cssClass.Replace(".", "open");
-        isOpen = true;
+        if (_isOpen) return;
+        _cssClass = _cssClass.Replace(".", "open");
+        _isOpen = true;
     }
 
-    private void Close()
+    private void CloseModal()
     {
-        cssClass = cssClass.Replace("open", ".");
-        isOpen = false;
+        if (!_isOpen) return;
+        _cssClass = _cssClass.Replace("open", ".");
+        _isOpen = false;
+        _error = "";
     }
 
     async Task LoadFiles(InputFileChangeEventArgs e)
     {
-        isLoading = true;
-        loadedFiles.Clear();
-
+        _image = "";
         try
         {
-            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
-            {
-                using var reader = new StreamReader(file.OpenReadStream(maxFileSize));
-                loadedFiles.Add(file, await reader.ReadToEndAsync());
-            }
-        }
+            var file = e.GetMultipleFiles(MaxAllowedFiles).FirstOrDefault();
+            var stream = await new StreamReader(file.OpenReadStream()).ReadToEndAsync();
+            var encoded = Encoding.Default.GetBytes(stream);
+            _image = Convert.ToBase64String(encoded); 
+    // foreach (var file in e.GetMultipleFiles(MaxAllowedFiles))
+    // {
+    //     
+    //     _image = Convert.ToBase64String(
+    //         Encoding.UTF8.GetBytes(
+    //             await new StreamReader(file.OpenReadStream()).ReadToEndAsync()));
+    // }
+        } 
         catch (Exception ex)
         {
             Console.WriteLine(ex);
         }
-        isLoading = false;
     }
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            place = await PlaceService.FetchPlaceData(placeName);
-            await _runtime.InvokeVoidAsync("fetchWeather", place.location.lat, place.location.lng);
-            var container = await PostService.FetchPosts(place.id, 0);
-            posts = container.posts;
+            _authState = ((CustomAuthenticationStateProvider) _provider).GetUserId();
+            _place = await _placeService.FetchPlaceData(PlaceName);
+            await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+            var container = await _postService.FetchPosts(_place.id, 0);
+            _posts = container.posts;
+            Filter();
         }
         catch (NullReferenceException ex)
         {
             Console.WriteLine(ex);
-        } 
+        }
     }
 
-    private string? title;
-    private string? description;
-    private string? photo;
-    private string? error; 
- 
-    private async void createNewPostAsync()
+    private void Filter()
     {
-        var img = "";
-        foreach (var (file, actualImg) in loadedFiles)
+        _filteredPosts = _posts;
+    }
+
+    private string? _title;
+    private string? _description;
+    private string? _error;
+
+    private async void CreateNewPostAsync()
+    {
+        var post = new Post
         {
-            img = actualImg;
-        }
-        Post post = new Post
-        {
-            userId= ((CustomAuthenticationStateProvider) _provider).GetUserId() , postId = 0, title = title, content = description, photo = "img", likeCount = 0, dateOfCreation = null, placeId = place.id
+            userId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
+            postId = 0,
+            title = _title,
+            content = _description,
+            photo = _image,
+            likeCount = 0,
+            dateOfCreation = null,
+            placeId = _place.id
         };
-
-        Console.WriteLine(post);
-
+        
         try
         {
-            var randomPost = await PostService.CreateNewPost(post);  
-            posts.Add(randomPost);
-            Close();
-            Console.WriteLine("this is happening");
+            await _postService.CreateNewPost(post);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
+            _error = "Something went wrong, please try again later";
+        }
+        CloseModal();
+        await FetchLatestPosts();
+    }
+
+    private async Task FetchLatestPosts()
+    {
+        _posts = (await _postService.FetchPosts(_place.id, 0)).posts;
+        Filter();
+    }
+
+    private async Task FetchMorePosts()
+    {
+        var container = await _postService.FetchPosts(_place.id, _filteredPosts.Last().postId);
+        foreach (var post in container.posts)
+        {
+            _filteredPosts.Add(post);
         }
     }
 
@@ -255,11 +301,12 @@ using Routeorama.Authentication;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment Environment { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _provider { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPostService PostService { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPostService _postService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _runtime { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPlaceService PlaceService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPlaceService _placeService { get; set; }
     }
 }
 #pragma warning restore 1591

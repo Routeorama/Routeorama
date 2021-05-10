@@ -84,7 +84,7 @@
 }
 
 .overlay[b-cnnkug9k5o]{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: none;
@@ -111,7 +111,8 @@
     height: 20%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 .overlay-content-inner[b-cnnkug9k5o]{
@@ -135,9 +136,6 @@
 
 
 
-input[type="file"][b-cnnkug9k5o] {
-    display: none;
-}
 
 .feed[b-cnnkug9k5o]{
     display: flex;
@@ -146,45 +144,6 @@ input[type="file"][b-cnnkug9k5o] {
     justify-content: center;
     align-items: center;
     align-content: stretch;
-    width: 100vw;
     padding: 0;
     margin: 0;
-}
-
-.post[b-cnnkug9k5o]{
-    width: 60%;
-    background-color: dimgray;
-    color: white;
-    border-radius: 5px;
-}
-
-.post-title[b-cnnkug9k5o]{
-    font-weight: bolder;
-    font-size: 25px;
-    width: 100%;
-}
-
-.post-content[b-cnnkug9k5o]{
-    font-size: 16px;
-    width: 100%;
-}
-
-.post-title[b-cnnkug9k5o], .post-content[b-cnnkug9k5o], .post-likes[b-cnnkug9k5o]{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-}
-
-.post-img[b-cnnkug9k5o]{
-    height: 500px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.post-likes[b-cnnkug9k5o]{
-    width: 100%;
-    font-weight: bolder;
-    font-size: 16px;
 }

@@ -133,7 +133,7 @@ namespace Routeorama.Authentication
 
         public int GetUserId()
         {
-            return cachedUser.UserId;
+            return cachedUser?.UserId ?? 0;
         }
     }
 }

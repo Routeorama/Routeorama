@@ -21,7 +21,6 @@ D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.MvcApplicat
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.RazorComponent.input.cache
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
-D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\NewPage.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.RazorComponent.output.cache
@@ -31,7 +30,6 @@ D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.TagHelpers.
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.RazorCoreGenerate.cache
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\App.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
-D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\NewPage.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.RazorAssemblyInfo.cache
@@ -49,9 +47,6 @@ D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.dll
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\ref\Routeorama.dll
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.pdb
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.genruntimeconfig.cache
-D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Design.razor.g.cs
-D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Design.razor.g.cs
-D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Design.razor.rz.scp.css
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Auth\Login.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Auth\Logout.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Auth\Login.razor.g.cs
@@ -244,3 +239,6 @@ D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Channel\Ch
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Map\Map.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Channel\Channel.razor.rz.scp.css
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Map\Map.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\PostComponent.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\PostComponent.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Post\PostComponent.razor.rz.scp.css

@@ -95,7 +95,7 @@
 }
 
 .overlay[b-cnnkug9k5o]{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: none;
@@ -122,7 +122,8 @@
     height: 20%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 .overlay-content-inner[b-cnnkug9k5o]{
@@ -146,9 +147,6 @@
 
 
 
-input[type="file"][b-cnnkug9k5o] {
-    display: none;
-}
 
 .feed[b-cnnkug9k5o]{
     display: flex;
@@ -157,109 +155,8 @@ input[type="file"][b-cnnkug9k5o] {
     justify-content: center;
     align-items: center;
     align-content: stretch;
-    width: 100vw;
     padding: 0;
     margin: 0;
-}
-
-.post[b-cnnkug9k5o]{
-    width: 60%;
-    background-color: dimgray;
-    color: white;
-    border-radius: 5px;
-}
-
-.post-title[b-cnnkug9k5o]{
-    font-weight: bolder;
-    font-size: 25px;
-    width: 100%;
-}
-
-.post-content[b-cnnkug9k5o]{
-    font-size: 16px;
-    width: 100%;
-}
-
-.post-title[b-cnnkug9k5o], .post-content[b-cnnkug9k5o], .post-likes[b-cnnkug9k5o]{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-}
-
-.post-img[b-cnnkug9k5o]{
-    height: 500px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.post-likes[b-cnnkug9k5o]{
-    width: 100%;
-    font-weight: bolder;
-    font-size: 16px;
-}
-/* _content/Routeorama/Pages/Design.razor.rz.scp.css */
-
-.main[b-8tc6hsjh8w]{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: stretch;
-    align-content: stretch;
-    background-image: url("img/bogdanel1.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: 'Roboto', sans-serif;
-}
-
-.title[b-8tc6hsjh8w]{
-    font-weight: bolder;
-    font-size: 50px;
-    padding-left: 3.5rem;
-    padding-top: 3.5rem; 
-    color: white;
-}
-
-.bottom[b-8tc6hsjh8w]{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
-    height: 50vh;
-}
-
-button[b-8tc6hsjh8w]{
-    border: none;
-    border-radius: 3px;
-    width: 25vw;
-    height: 8vh;
-    color: white;
-    font-weight: bolder;
-    margin-bottom: 15px;
-    transition: .2s ease-in-out;
-}
-
-button:hover[b-8tc6hsjh8w]{
-    filter: brightness(1.5);
-}
-
-button:focus[b-8tc6hsjh8w]{
-    outline: none;
-}
-
-.sign-in[b-8tc6hsjh8w]{
-    background-color: #f96d5c;
-}
-
-.register[b-8tc6hsjh8w], .guest[b-8tc6hsjh8w]{
-    background-color: #255169;
 }
 /* _content/Routeorama/Pages/Main/Main.razor.rz.scp.css */
 /* _content/Routeorama/Pages/Map/Map.razor.rz.scp.css */
@@ -415,6 +312,131 @@ div #rightSide[b-1xueg0a0iu]{
     justify-content: space-around;
     align-items: center;
     align-content: space-around;
+}
+/* _content/Routeorama/Shared/Components/Post/PostComponent.razor.rz.scp.css */
+.post[b-u0y8d7kqwi] {
+    background-color: #333;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40vw;
+    border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+    margin-bottom: 15px;
+    
+}
+
+.post-image[b-u0y8d7kqwi] {
+    width: 100%;
+}
+
+.post-upper[b-u0y8d7kqwi], .post-middle[b-u0y8d7kqwi], .post-bottom[b-u0y8d7kqwi] {
+    width: 100%;
+}
+
+.post-upper[b-u0y8d7kqwi], .post-bottom[b-u0y8d7kqwi] {
+    padding: 15px;
+}
+
+.post-upper[b-u0y8d7kqwi] {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.post-upper-profile[b-u0y8d7kqwi] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.post-date[b-u0y8d7kqwi], .post-likes[b-u0y8d7kqwi] {
+    color: #B0B3B8;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.post-owner[b-u0y8d7kqwi] {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.post-owner:hover[b-u0y8d7kqwi] {
+    text-decoration: underline whitesmoke;
+}
+
+.post-options[b-u0y8d7kqwi] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 5px;
+    transition: .2s ease-in-out;
+}
+
+.post-options img[b-u0y8d7kqwi] {
+    fill: white;
+}
+
+.post-options:hover[b-u0y8d7kqwi] {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.post-description[b-u0y8d7kqwi] {
+    padding-top: 10px;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.post-likes[b-u0y8d7kqwi] {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3E4042;
+}
+
+.post-likes-inner[b-u0y8d7kqwi] {
+    font-size: 13px;
+}
+
+.post-interactions[b-u0y8d7kqwi] {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.post-like-button[b-u0y8d7kqwi], .post-comment-button[b-u0y8d7kqwi] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 49%;
+    height: 100%;
+    padding: 12px 0;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+    transition: .2s ease-in-out;
+}
+
+.post-like-button:hover[b-u0y8d7kqwi], .post-comment-button:hover[b-u0y8d7kqwi] {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.post-comment-button span[b-u0y8d7kqwi], .post-like-button span[b-u0y8d7kqwi] {
+    margin-left: 5px;
+    font-size: 15px;
+}
+
+.post-bottom[b-u0y8d7kqwi] {
+    padding-top: 0;
+    padding-bottom: 5px;
 }
 /* _content/Routeorama/Shared/MainLayout.razor.rz.scp.css */
 .page[b-k1hu7hwkki] {

@@ -1,176 +1,208 @@
-﻿@inject IPlaceService PlaceService;
+﻿@inject IPlaceService _placeService;
 @inject IJSRuntime _runtime;
-@inject NavigationManager NavigationManager;
-@inject IPostService PostService;
+@inject NavigationManager _navigationManager;
+@inject IPostService _postService;
 @inject AuthenticationStateProvider _provider;
+@inject IWebHostEnvironment Environment
 
 @page "/channel/{placeName}"
 @using Routeorama.Data
 @using Routeorama.Models.Post
 @using System.IO
+@using System.Text
+@using Microsoft.AspNetCore.Hosting
 @using Routeorama.Authentication
 <Nav/>
 <div class="everything-place">
     <div class="place">
         <h1>
-            @place.name
+            @_place.name
         </h1>
         <h1>
-            @place.description
+            @_place.description
         </h1>
     </div>
-    <div class="weather-description" id="description"/>
-    <div class="degrees" id="temp"/>
-    <div class="feels-like_degrees" id="feels_like"/>
-    <div class="pressure" id="pressure"/>
-    <div class="location" id="location"/>
-    <div class="sunrise" id="sunrise"/>
-    <div class="sunset" id="sunset"/>
-    <div class="buttonCreatePlace">
-        <button @onclick="Open">Create a post</button>
-    </div>
+    <div class="weather-description" id="description"></div>
+    <div class="degrees" id="temp"></div>
+    <div class="feels-like_degrees" id="feels_like"></div>
+    <div class="pressure" id="pressure"></div>
+    <div class="location" id="location"></div>
+    <div class="sunrise" id="sunrise"></div>
+    <div class="sunset" id="sunset"></div>
+    @if (_authState != 0)
+    {
+        <div class="buttonCreatePlace">
+            <button @onclick="OpenModal">Create a post</button>
+        </div>
+    }
+    else
+    {
+        <div>
+            Login to post
+        </div>
+    }
+
 </div>
 <div class="feed">
-    <div class="post">
-        <div class="post-title">A very cool title - <span>created at 08/06/2021</span></div>
-        <div class="post-content">
-            A very cool description that is very long and benfnaeifniaenfinaeifn
-            afegewgeguewbgiubequiogbqiebgiqbegibeqoigboepqbgpuiobqpugbpqeugb
-            eiougbeowibgoiwubgouiwbegouibwoiebgowbegibqwenbrwqnrinwqiornqwoinrwqir
-            ibndfgubegipuwbgpiubwepgubiwe
-        </div>
-        <div class="post-img">
-            <img src="https://i.pinimg.com/originals/53/aa/f6/53aaf6011bba6d6bb0499e1eef12c26d.jpg" width="400" height="500" alt="post photo">
-        </div>
-        <div class="post-likes">
-            <div class="like-button">Like</div> - <span>69</span>
-        </div>
-        
-    </div>
-    @if(posts != null){
-    @foreach (var post in posts)
+    @if (_filteredPosts != null)
     {
-        <div class="post">
-            <div class="post-title">@post.title - <span>created at @post.dateOfCreation</span></div>
-            <div class="post-content">@post.content</div>
-            <div class="post-img">
-                <img src="@post.photo" alt="post photo">
-            </div>
-            <div class="post-likes">@post.likeCount</div>
-        </div>
-    }}
+        @foreach (var post in _filteredPosts)
+        {
+            <PostComponent Post="@post"/>
+        }
+    }
 </div>
-<div class="@cssClass">
+<div class="@_cssClass">
     <div class="overlay-content">
-        <div class="overlay-title">Create post</div>
+        <div class="overlay-title">
+            <div>
+                Create post
+            </div>
+            <div style="cursor: pointer" @onclick="CloseModal">
+                X
+            </div>
+        </div>
         <div class="overlay-content-inner">
             <label for="title">Title</label>
-            <input type="text" id="title" @bind-value="title">
+            <input type="text" id="title" @bind-value="_title">
             <label for="content">Content</label>
-            <input type="text" id="content" @bind-value="description">
+            <input type="text" id="content" @bind-value="_description">
             <InputFile OnChange="@LoadFiles"/>
         </div>
         <div class="overlay-create">
-            <button @onclick="createNewPostAsync">Create post</button>
+            <button disabled="@((_title is null or "") || (_description is null or ""))" @onclick="CreateNewPostAsync">Create post</button>
+        </div>
+        <div class="error-label" style="color: red">
+            @_error
         </div>
 
+    </div>
+</div>
+<div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
+    <div style="background-color: gray; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts">
+        Load more posts
     </div>
 </div>
 
 
 @code {
-    private Place place = new Place();
-    private IList<Post> posts = new List<Post>();
+    private Place _place = new();
+    private IList<Post> _posts = new List<Post>();
+    private IList<Post> _filteredPosts = new List<Post>();
+    private ElementReference _imgUpload;
 
     [Parameter]
-    public string placeName { get; set; }
+    public string PlaceName { get; set; }
+        private const long MaxFileSize = 15000000;
+        private const int MaxAllowedFiles = 1;
+    private string _cssClass = "overlay .";
+    private bool _isOpen;
+    private int _authState;
+    private string _image;
 
-    private Dictionary<IBrowserFile, string> loadedFiles =
-        new Dictionary<IBrowserFile, string>();
-
-    private long maxFileSize = 15000000;
-    private int maxAllowedFiles = 3;
-    private bool isLoading;
-    private string cssClass = "overlay .";
-    private bool isOpen = false;
-
-    private void Open()
+    private void OpenModal()
     {
-        if (isOpen) return;
-        cssClass = cssClass.Replace(".", "open");
-        isOpen = true;
+        if (_isOpen) return;
+        _cssClass = _cssClass.Replace(".", "open");
+        _isOpen = true;
     }
 
-    private void Close()
+    private void CloseModal()
     {
-        cssClass = cssClass.Replace("open", ".");
-        isOpen = false;
+        if (!_isOpen) return;
+        _cssClass = _cssClass.Replace("open", ".");
+        _isOpen = false;
+        _error = "";
     }
 
     async Task LoadFiles(InputFileChangeEventArgs e)
     {
-        isLoading = true;
-        loadedFiles.Clear();
-
+        _image = "";
         try
         {
-            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
-            {
-                using var reader = new StreamReader(file.OpenReadStream(maxFileSize));
-                loadedFiles.Add(file, await reader.ReadToEndAsync());
-            }
-        }
+            var file = e.GetMultipleFiles(MaxAllowedFiles).FirstOrDefault();
+            var stream = await new StreamReader(file.OpenReadStream()).ReadToEndAsync();
+            var encoded = Encoding.Default.GetBytes(stream);
+            _image = Convert.ToBase64String(encoded); 
+    // foreach (var file in e.GetMultipleFiles(MaxAllowedFiles))
+    // {
+    //     
+    //     _image = Convert.ToBase64String(
+    //         Encoding.UTF8.GetBytes(
+    //             await new StreamReader(file.OpenReadStream()).ReadToEndAsync()));
+    // }
+        } 
         catch (Exception ex)
         {
             Console.WriteLine(ex);
         }
-        isLoading = false;
     }
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            place = await PlaceService.FetchPlaceData(placeName);
-            await _runtime.InvokeVoidAsync("fetchWeather", place.location.lat, place.location.lng);
-            var container = await PostService.FetchPosts(place.id, 0);
-            posts = container.posts;
+            _authState = ((CustomAuthenticationStateProvider) _provider).GetUserId();
+            _place = await _placeService.FetchPlaceData(PlaceName);
+            await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+            var container = await _postService.FetchPosts(_place.id, 0);
+            _posts = container.posts;
+            Filter();
         }
         catch (NullReferenceException ex)
         {
             Console.WriteLine(ex);
-        } 
+        }
     }
 
-    private string? title;
-    private string? description;
-    private string? photo;
-    private string? error; 
- 
-    private async void createNewPostAsync()
+    private void Filter()
     {
-        var img = "";
-        foreach (var (file, actualImg) in loadedFiles)
+        _filteredPosts = _posts;
+    }
+
+    private string? _title;
+    private string? _description;
+    private string? _error;
+
+    private async void CreateNewPostAsync()
+    {
+        var post = new Post
         {
-            img = actualImg;
-        }
-        Post post = new Post
-        {
-            userId= ((CustomAuthenticationStateProvider) _provider).GetUserId() , postId = 0, title = title, content = description, photo = "img", likeCount = 0, dateOfCreation = null, placeId = place.id
+            userId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
+            postId = 0,
+            title = _title,
+            content = _description,
+            photo = _image,
+            likeCount = 0,
+            dateOfCreation = null,
+            placeId = _place.id
         };
-
-        Console.WriteLine(post);
-
+        
         try
         {
-            var randomPost = await PostService.CreateNewPost(post);  
-            posts.Add(randomPost);
-            Close();
-            Console.WriteLine("this is happening");
+            await _postService.CreateNewPost(post);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
+            _error = "Something went wrong, please try again later";
+        }
+        CloseModal();
+        await FetchLatestPosts();
+    }
+
+    private async Task FetchLatestPosts()
+    {
+        _posts = (await _postService.FetchPosts(_place.id, 0)).posts;
+        Filter();
+    }
+
+    private async Task FetchMorePosts()
+    {
+        var container = await _postService.FetchPosts(_place.id, _filteredPosts.Last().postId);
+        foreach (var post in container.posts)
+        {
+            _filteredPosts.Add(post);
         }
     }
 

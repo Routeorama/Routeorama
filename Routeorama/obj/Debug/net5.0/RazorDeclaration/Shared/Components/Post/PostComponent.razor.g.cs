@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Routeorama.Pages
+namespace Routeorama.Shared.Components.Post
 {
     #line hidden
     using System;
@@ -117,8 +117,21 @@ using Routeorama.Shared.Components.Nav;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/googlemap")]
-    public partial class NewPage : Microsoft.AspNetCore.Components.ComponentBase
+#nullable restore
+#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Post;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 1 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
+using Routeorama.Models.Post;
+
+#line default
+#line hidden
+#nullable disable
+    public partial class PostComponent : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -126,21 +139,21 @@ using Routeorama.Shared.Components.Nav;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 6 "D:\University\SEP3\Routeorama\Routeorama\Pages\NewPage.razor"
+#line 47 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
        
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if(firstRender)
-       await _runtime.InvokeVoidAsync("initMap");
-    }
-    
+    [Parameter]
+    public Post Post { get; set; }
+
+    // protected override void OnInitialized()
+    // {
+    //     Console.WriteLine(Post.photo);
+    // }
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _runtime { get; set; }
     }
 }
 #pragma warning restore 1591

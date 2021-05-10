@@ -115,6 +115,13 @@ using Routeorama.Shared.Components.Nav;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Post;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\University\SEP3\Routeorama\Routeorama\Pages\Map\Map.razor"
 using System.Text.Json;
 
