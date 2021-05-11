@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Routeorama.Models.Post;
 
@@ -8,5 +9,6 @@ namespace Routeorama.Data {
         Task<Post> CreateNewPost(Post post);
 
         Task<PostContainer> FetchPosts(int placeId, int postId);
+        Task<Boolean> DeletePost(int postID);
     }
 }

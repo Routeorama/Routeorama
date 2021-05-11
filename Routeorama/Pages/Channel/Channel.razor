@@ -9,9 +9,11 @@
 @using Routeorama.Data
 @using Routeorama.Models.Post
 @using System.IO
+@using System.Linq
 @using System.Text
 @using Microsoft.AspNetCore.Hosting
 @using Routeorama.Authentication
+
 <Nav/>
 <div class="everything-place">
     <div class="place">
@@ -70,7 +72,7 @@
             <InputFile OnChange="@LoadFiles"/>
         </div>
         <div class="overlay-create">
-            <button disabled="@((_title is null or "") || (_description is null or ""))" @onclick="CreateNewPostAsync">Create post</button>
+            <button disabled="@((_title is null || _title.Length < 5 || _title.Length > 30) || (_description is null || _description.Length < 5 || _description.Length > 300))" @onclick="CreateNewPostAsync">Create post</button>
         </div>
         <div class="error-label" style="color: red">
             @_error

@@ -148,6 +148,7 @@ function clearMarkers() {
     markers = [];
 }
 
+var selectedInfoWindow;
 function MakeMarker(id3, name3, description3, userId3, followCount3,
                     city3, country3, lat3, lng3) {
     console.log("created markers");
@@ -161,11 +162,9 @@ function MakeMarker(id3, name3, description3, userId3, followCount3,
         "<button onclick=\"navigateToChannel()\" >Go to channel</button>" +
         "</div>";
 
-    const infowindow = new google.maps.InfoWindow({
-        content: contentString,
+    let infoWindow = new google.maps.InfoWindow({
+        position: myLatLng, content: contentString
     });
-    
-    //infowindow.addListener()
 
     var myMarkerOptions = {
         position: myLatLng,
@@ -175,15 +174,23 @@ function MakeMarker(id3, name3, description3, userId3, followCount3,
 
     var myMarker = new google.maps.Marker(myMarkerOptions);
 
-    myMarker.addListener("click", () => {
-        infowindow.open(map, myMarker);
+    google.maps.event.addListener(myMarker, "click", function() {
+        //Check if there some info window selected and if is opened then close it
+        if (selectedInfoWindow != null && selectedInfoWindow.getMap() != null) {
+            selectedInfoWindow.close();
+            //If the clicked window is the selected window, deselect it and return
+            if (selectedInfoWindow == infoWindow) {
+                selectedInfoWindow = null;
+                return;
+            }
+        }
+        //If arrive here, that mean you should open the new info window 
+        //because is different from the selected
+        selectedInfoWindow = infoWindow;
+        selectedInfoWindow.open(map, myMarker);
     });
 
     markers.push(myMarker);
-}
-
-function enfgieng(){
-    console.log(smth.value = name3);
 }
 
 function navigateToChannel() {

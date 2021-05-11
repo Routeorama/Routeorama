@@ -1,5 +1,8 @@
 ﻿@using Routeorama.Models.Post
-
+@using Routeorama.Data
+@using Routeorama.Authentication
+@inject IPostService _postService;
+@inject AuthenticationStateProvider AuthenticationStateProvider;
 
 <div class="post">
     <div class="post-upper">
@@ -9,17 +12,36 @@
                 <div class="post-date">@Post.dateOfCreation</div>
             </div>
             <div class="post-options">
-                <img src="icons/menu.svg" width="16" height="16">
+                @if (Post.userId.Equals(((CustomAuthenticationStateProvider) AuthenticationStateProvider).GetUserId()))
+                {
+                    
+                <RadzenSplitButton Click=@(args => OnClick(args)) Icon="account_circle">
+                    <ChildContent>
+                        <RadzenSplitButtonItem Text="Delete Post" Value="1" Icon="delete_outline"/>
+                    </ChildContent>
+                </RadzenSplitButton>
+                }
+                else if (!Post.userId.Equals(((CustomAuthenticationStateProvider) AuthenticationStateProvider).GetUserId()))
+                {
+                    <RadzenSplitButton Disabled="true" Click=@(args => OnClick(args)) Icon="account_circle">
+                        <ChildContent>
+                            <RadzenSplitButtonItem Text="Delete Post" Value="1" Icon="delete_outline"/>
+                        </ChildContent>
+                    </RadzenSplitButton>
+
+                }
             </div>
         </div>
         <div class="post-description">
-            @Post.content
+            Title; @Post.title
+            <br>
+            Content; @Post.content
         </div>
     </div>
     <div class="post-middle">
         @if (@Post.photo != null)
         {
-            <img alt="asdff" class="post-image" src=@("data:image/png;base64, "+ @Post.photo)>
+            <img alt="asdff" class="post-image" src=@("data:image/png;charset=utf-8;base64 " + @Post.photo)>
         }
     </div>
     <div class="post-bottom">
@@ -54,4 +76,23 @@
     //     Console.WriteLine(Post.photo);
     // }
 
+    async void OnClick(RadzenSplitButtonItem item)
+    {
+        if (item != null)
+        {
+            if (int.Parse(item.Value) == 1)
+                try
+                {
+                    await _postService.DeletePost(Post.postId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Post failed to be deleted! " + e);
+                }
+        }
+        else
+        {
+            Console.WriteLine($"Clicked");
+        }
+    }
 }

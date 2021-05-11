@@ -64,14 +64,6 @@
     transition: .2s ease-in-out;
 }
 
-.post-options img[b-u0y8d7kqwi] {
-    fill: white;
-}
-
-.post-options:hover[b-u0y8d7kqwi] {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
 .post-description[b-u0y8d7kqwi] {
     padding-top: 10px;
     font-weight: normal;

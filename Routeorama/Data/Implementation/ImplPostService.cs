@@ -70,5 +70,28 @@ namespace Routeorama.Data.Implementation
 
             return null;
         }
+        public async Task<bool> DeletePost(int postID)
+        {
+            client = new HttpClient();
+
+            string postAsJsonID = JsonSerializer.Serialize(postID);
+
+            StringContent content = new StringContent(
+            postAsJsonID, Encoding.UTF8, "application/json"
+            );
+
+            HttpResponseMessage responseMessage =
+                await client.PostAsync("http://localhost:8080/post/delete", content);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
+
+            var responseContent = await responseMessage.Content.ReadAsStringAsync();
+            Boolean returnedPostResponse = JsonSerializer.Deserialize<Boolean>(responseContent, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+            return returnedPostResponse;
+        }
     }
 }

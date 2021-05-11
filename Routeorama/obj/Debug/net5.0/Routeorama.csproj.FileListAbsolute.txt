@@ -83,11 +83,9 @@ C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.M
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.RazorComponent.input.cache
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
-C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\NewPage.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Auth\Logout.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\Register.razor.g.cs
-C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Design.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Main\Main.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Auth\Login.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -98,11 +96,9 @@ C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.T
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.RazorCoreGenerate.cache
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\App.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
-C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\NewPage.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Auth\Logout.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Auth\Register.razor.g.cs
-C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Design.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Main\Main.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Auth\Login.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
@@ -113,7 +109,6 @@ C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.R
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\staticwebassets\Routeorama.StaticWebAssets.Manifest.cache
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\staticwebassets\Routeorama.StaticWebAssets.xml
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Auth\Register.razor.rz.scp.css
-C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Design.razor.rz.scp.css
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Main\Main.razor.rz.scp.css
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Auth\Login.razor.rz.scp.css
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
@@ -242,3 +237,6 @@ D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Map\Ma
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\PostComponent.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\PostComponent.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Post\PostComponent.razor.rz.scp.css
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\PostComponent.razor.g.cs
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\PostComponent.razor.g.cs
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Post\PostComponent.razor.rz.scp.css

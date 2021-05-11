@@ -172,7 +172,7 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Radzen.Blazor/3.2.7": {
+      "Radzen.Blazor/3.2.8": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Components": "5.0.0",
@@ -569,10 +569,10 @@
         "newtonsoft.json.nuspec"
       ]
     },
-    "Radzen.Blazor/3.2.7": {
-      "sha512": "wv511XAYEWJhWkmsmqXKcB5XQdbs0zIvJHaHkS1zYRpTibmkaW1xmv7DbFXVMkIlgHK1xa3JzYaN+WqTDJL65g==",
+    "Radzen.Blazor/3.2.8": {
+      "sha512": "xHtyLcHouDwsiVNHTWSmuEmSuCIPsqNU00DKzLTTcq9hgwMH2HpnQnY54+6iwv+y4TpDkY8w4HW2oR7eYARyjg==",
       "type": "package",
-      "path": "radzen.blazor/3.2.7",
+      "path": "radzen.blazor/3.2.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -584,7 +584,7 @@
         "icon.png",
         "lib/net5.0/Radzen.Blazor.dll",
         "lib/netstandard2.1/Radzen.Blazor.dll",
-        "radzen.blazor.3.2.7.nupkg.sha512",
+        "radzen.blazor.3.2.8.nupkg.sha512",
         "radzen.blazor.nuspec",
         "staticwebassets/Radzen.Blazor.js",
         "staticwebassets/css/dark-base.css",
@@ -680,23 +680,23 @@
     "net5.0": [
       "JObject >= 1.0.0",
       "JSON >= 1.0.1",
-      "Radzen.Blazor >= 3.2.7"
+      "Radzen.Blazor >= 3.2.8"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cirst\\.nuget\\packages\\": {}
+    "C:\\Users\\karl1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\University\\SEP3\\Routeorama\\Routeorama\\Routeorama.csproj",
+      "projectUniqueName": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj",
       "projectName": "Routeorama",
-      "projectPath": "D:\\University\\SEP3\\Routeorama\\Routeorama\\Routeorama.csproj",
-      "packagesPath": "C:\\Users\\cirst\\.nuget\\packages\\",
-      "outputPath": "D:\\University\\SEP3\\Routeorama\\Routeorama\\obj\\",
+      "projectPath": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj",
+      "packagesPath": "C:\\Users\\karl1\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\cirst\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\karl1\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -730,7 +730,7 @@
           },
           "Radzen.Blazor": {
             "target": "Package",
-            "version": "[3.2.7, )"
+            "version": "[3.2.8, )"
           }
         },
         "imports": [
