@@ -153,12 +153,12 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
+#line 72 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
        
 
     [Parameter]
     public Post Post { get; set; }
-
+    
     // protected override void OnInitialized()
     // {
     //     Console.WriteLine(Post.photo);

@@ -197,6 +197,24 @@ using Routeorama.Authentication;
     private int _authState;
     private string _image;
 
+    
+    
+    private string imgUrl = string.Empty;
+    private byte[] byteArray = new byte[]{};
+    
+    private async Task OnFileSelection(InputFileChangeEventArgs e)
+    {
+        IBrowserFile imgFile = e.File;
+        string imageType = imgFile.ContentType;
+        var resizedImageFile = await imgFile.RequestImageFileAsync(imageType, 200, 200);
+        var buffers = new byte[resizedImageFile.Size];
+        await imgFile.OpenReadStream().ReadAsync(buffers);
+        byteArray = buffers;
+        imgUrl =$"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+    }
+    
+    
+    
     private void OpenModal()
     {
         if (_isOpen) return;
@@ -218,12 +236,17 @@ using Routeorama.Authentication;
         try
         {
             var file = e.GetMultipleFiles(MaxAllowedFiles).FirstOrDefault();
-            _image = Convert.ToBase64String(
-                 Encoding.UTF8.GetBytes(
-                     await new StreamReader(file.OpenReadStream()).ReadToEndAsync()));
-            Console.WriteLine(_image);
-        }
-        
+            var stream = await new StreamReader(file.OpenReadStream()).ReadToEndAsync();
+            var encoded = Encoding.Default.GetBytes(stream);
+            _image = Convert.ToBase64String(encoded); 
+    // foreach (var file in e.GetMultipleFiles(MaxAllowedFiles))
+    // {
+    //     
+    //     _image = Convert.ToBase64String(
+    //         Encoding.UTF8.GetBytes(
+    //             await new StreamReader(file.OpenReadStream()).ReadToEndAsync()));
+    // }
+        } 
         catch (Exception ex)
         {
             Console.WriteLine(ex);
@@ -264,7 +287,7 @@ using Routeorama.Authentication;
             postId = 0,
             title = _title,
             content = _description,
-            photo = _image,
+            photo = byteArray,
             likeCount = 0,
             dateOfCreation = null,
             placeId = _place.id
@@ -281,6 +304,9 @@ using Routeorama.Authentication;
         }
         CloseModal();
         await FetchLatestPosts();
+
+        _title = "";
+        _description = "";
     }
 
     private async Task FetchLatestPosts()

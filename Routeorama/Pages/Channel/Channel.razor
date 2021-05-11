@@ -69,7 +69,7 @@
             <input type="text" id="title" @bind-value="_title">
             <label for="content">Content</label>
             <input type="text" id="content" @bind-value="_description">
-            <InputFile OnChange="@LoadFiles"/>
+            <InputFile OnChange="@OnFileSelection"></InputFile>
         </div>
         <div class="overlay-create">
             <button disabled="@((_title is null || _title.Length < 5 || _title.Length > 30) || (_description is null || _description.Length < 5 || _description.Length > 300))" @onclick="CreateNewPostAsync">Create post</button>
@@ -102,6 +102,24 @@
     private int _authState;
     private string _image;
 
+    
+    
+    private string imgUrl = string.Empty;
+    private byte[] byteArray = new byte[]{};
+    
+    private async Task OnFileSelection(InputFileChangeEventArgs e)
+    {
+        IBrowserFile imgFile = e.File;
+        string imageType = imgFile.ContentType;
+        var resizedImageFile = await imgFile.RequestImageFileAsync(imageType, 200, 200);
+        var buffers = new byte[resizedImageFile.Size];
+        await imgFile.OpenReadStream().ReadAsync(buffers);
+        byteArray = buffers;
+        imgUrl =$"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+    }
+    
+    
+    
     private void OpenModal()
     {
         if (_isOpen) return;
@@ -174,7 +192,7 @@
             postId = 0,
             title = _title,
             content = _description,
-            photo = _image,
+            photo = byteArray,
             likeCount = 0,
             dateOfCreation = null,
             placeId = _place.id
@@ -191,6 +209,9 @@
         }
         CloseModal();
         await FetchLatestPosts();
+
+        _title = "";
+        _description = "";
     }
 
     private async Task FetchLatestPosts()

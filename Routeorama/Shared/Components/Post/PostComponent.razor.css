@@ -17,6 +17,7 @@
 
 .post-upper, .post-middle, .post-bottom {
     width: 100%;
+    border: 5px white;
 }
 
 .post-upper, .post-bottom {
