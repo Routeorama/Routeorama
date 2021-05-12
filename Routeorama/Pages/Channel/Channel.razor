@@ -8,9 +8,7 @@
 @page "/channel/{placeName}"
 @using Routeorama.Data
 @using Routeorama.Models.Post
-@using System.IO
 @using System.Linq
-@using System.Text
 @using Microsoft.AspNetCore.Hosting
 @using Routeorama.Authentication
 
@@ -24,21 +22,21 @@
             @_place.description
         </h1>
     </div>
+    <div class="errorLabel">@errorLabel</div>
+    <div class="location" id="location"></div>
     <div class="weather-description" id="description"></div>
     <div class="degrees" id="temp"></div>
     <div class="feels-like_degrees" id="feels_like"></div>
     <div class="pressure" id="pressure"></div>
-    <div class="location" id="location"></div>
     <div class="sunrise" id="sunrise"></div>
     <div class="sunset" id="sunset"></div>
-    @if (_authState != 0)
-    {
+
+    @if (_authState != 0){
         <div class="buttonCreatePlace">
-            <button @onclick="OpenModal">Create a post</button>
+            <button @onclick="@(() => ShowCreatePlace(_place.name, _place.id))" class="btn btn-primary">Create post</button>
         </div>
     }
-    else
-    {
+    else{
         <div>
             Login to post
         </div>
@@ -54,32 +52,6 @@
         }
     }
 </div>
-<div class="@_cssClass">
-    <div class="overlay-content">
-        <div class="overlay-title">
-            <div>
-                Create post
-            </div>
-            <div style="cursor: pointer" @onclick="CloseModal">
-                X
-            </div>
-        </div>
-        <div class="overlay-content-inner">
-            <label for="title">Title</label>
-            <input type="text" id="title" @bind-value="_title">
-            <label for="content">Content</label>
-            <input type="text" id="content" @bind-value="_description">
-            <InputFile OnChange="@OnFileSelection"></InputFile>
-        </div>
-        <div class="overlay-create">
-            <button disabled="@((_title is null || _title.Length < 5 || _title.Length > 30) || (_description is null || _description.Length < 5 || _description.Length > 300))" @onclick="CreateNewPostAsync">Create post</button>
-        </div>
-        <div class="error-label" style="color: red">
-            @_error
-        </div>
-
-    </div>
-</div>
 <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
     <div style="background-color: gray; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts">
         Load more posts
@@ -90,84 +62,37 @@
 @code {
     private Place _place = new();
     private IList<Post> _posts = new List<Post>();
-    private IList<Post> _filteredPosts = new List<Post>();
-    private ElementReference _imgUpload;
+    private IList<Post>? _filteredPosts = new List<Post>();
 
-    [Parameter]
-    public string PlaceName { get; set; }
-        private const long MaxFileSize = 15000000;
-        private const int MaxAllowedFiles = 1;
-    private string _cssClass = "overlay .";
-    private bool _isOpen;
+    [CascadingParameter] public IModalService Modal { get; set; }
+    [Parameter] public string PlaceName { get; set; }
     private int _authState;
-    private string _image;
+    private string errorLabel = "";
 
-    
-    
-    private string imgUrl = string.Empty;
-    private byte[] byteArray = new byte[]{};
-    
-    private async Task OnFileSelection(InputFileChangeEventArgs e)
-    {
-        IBrowserFile imgFile = e.File;
-        string imageType = imgFile.ContentType;
-        var resizedImageFile = await imgFile.RequestImageFileAsync(imageType, 200, 200);
-        var buffers = new byte[resizedImageFile.Size];
-        await imgFile.OpenReadStream().ReadAsync(buffers);
-        byteArray = buffers;
-        imgUrl =$"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
-    }
-    
-    
-    
-    private void OpenModal()
-    {
-        if (_isOpen) return;
-        _cssClass = _cssClass.Replace(".", "open");
-        _isOpen = true;
-    }
 
-    private void CloseModal()
-    {
-        if (!_isOpen) return;
-        _cssClass = _cssClass.Replace("open", ".");
-        _isOpen = false;
-        _error = "";
-    }
 
-    async Task LoadFiles(InputFileChangeEventArgs e)
-    {
-        _image = "";
-        try
-        {
-            var file = e.GetMultipleFiles(MaxAllowedFiles).FirstOrDefault();
-            var stream = await new StreamReader(file.OpenReadStream()).ReadToEndAsync();
-            var encoded = Encoding.Default.GetBytes(stream);
-            _image = Convert.ToBase64String(encoded); 
-    // foreach (var file in e.GetMultipleFiles(MaxAllowedFiles))
-    // {
-    //     
-    //     _image = Convert.ToBase64String(
-    //         Encoding.UTF8.GetBytes(
-    //             await new StreamReader(file.OpenReadStream()).ReadToEndAsync()));
-    // }
-        } 
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync(){
         try
         {
             _authState = ((CustomAuthenticationStateProvider) _provider).GetUserId();
             _place = await _placeService.FetchPlaceData(PlaceName);
-            await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+            Console.WriteLine(PlaceName);
+            try
+            {
+                await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+            }
+            catch (NullReferenceException e)
+            {
+                errorLabel = "Could not fetch the weather.";
+            }
+           
             var container = await _postService.FetchPosts(_place.id, 0);
-            _posts = container.posts;
-            Filter();
+            if (container != null)
+            {
+                _posts = container.posts;
+                Filter();
+            }
+            
         }
         catch (NullReferenceException ex)
         {
@@ -180,53 +105,42 @@
         _filteredPosts = _posts;
     }
 
-    private string? _title;
-    private string? _description;
-    private string? _error;
-
-    private async void CreateNewPostAsync()
-    {
-        var post = new Post
-        {
-            userId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
-            postId = 0,
-            title = _title,
-            content = _description,
-            photo = byteArray,
-            likeCount = 0,
-            dateOfCreation = null,
-            placeId = _place.id
-        };
-        
-        try
-        {
-            await _postService.CreateNewPost(post);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            _error = "Something went wrong, please try again later";
-        }
-        CloseModal();
-        await FetchLatestPosts();
-
-        _title = "";
-        _description = "";
-    }
-
-    private async Task FetchLatestPosts()
-    {
-        _posts = (await _postService.FetchPosts(_place.id, 0)).posts;
-        Filter();
-    }
-
     private async Task FetchMorePosts()
     {
-        var container = await _postService.FetchPosts(_place.id, _filteredPosts.Last().postId);
-        foreach (var post in container.posts)
+        PostContainer container = null;
+        if (_filteredPosts == null)
         {
-            _filteredPosts.Add(post);
+            container = await _postService.FetchPosts(_place.id, 0);
         }
+        else
+        {
+            container = await _postService.FetchPosts(_place.id, _filteredPosts.Last().postId);
+        }
+        if (container.posts == null)
+        {
+        }
+        else
+        {
+            foreach (var post in container.posts)
+            {
+                _filteredPosts.Add(post);
+            }
+        }
+    }
+    
+    void ShowCreatePlace(string placeName, int placeId)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(PostPopUp.placeName), placeName);
+        parameters.Add(nameof(PostPopUp.placeId), placeId);
+
+        var options = new ModalOptions() 
+        { 
+            Animation = ModalAnimation.FadeInOut(0.2),
+            DisableBackgroundCancel = true
+        };
+
+        Modal.Show<PostPopUp>("Create Place", parameters, options);
     }
 
 }

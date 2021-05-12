@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazored.Modal;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -35,6 +36,7 @@ namespace Routeorama
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddScoped<IPlaceService, ImplPlaceService>();
             services.AddScoped<IPostService, ImplPostService>();
+            services.AddBlazoredModal();
             //TODO add policies
 
         }

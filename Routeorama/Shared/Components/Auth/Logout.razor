@@ -6,8 +6,7 @@
 </a>
 
 @code {
-    public async Task PerformLogout()
-    {
+    public void PerformLogout(){
         ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
     }
 }

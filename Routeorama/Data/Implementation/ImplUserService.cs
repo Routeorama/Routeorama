@@ -14,9 +14,7 @@ namespace Routeorama.Data.Implementation
         private User user;
         private HttpClient client;
         
-        public async Task<User> ValidateLogin(string username, string password)
-        {
-           
+        public async Task<User> ValidateLogin(string username, string password) {
             client = new HttpClient();
 
             User user = new()
@@ -43,7 +41,7 @@ namespace Routeorama.Data.Implementation
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase, Converters = {new JsonStringEnumConverter()}
             });
             
-            if (finalUser == null) throw new Exception("Wrong credentials");
+            if (finalUser == null) throw new Exception("Wrong credentials.");
             
             return finalUser;
         }
@@ -69,13 +67,13 @@ namespace Routeorama.Data.Implementation
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
             
-            if (!finalUser) throw new Exception("Wrong credentials");
+            if (!finalUser) throw new Exception("Could not register the user.");
             
             return finalUser;
         }
 
-        public async void Logout()
-        {
+        //TODO again do we need it?
+        public async void Logout() {
             client = new HttpClient();
             StringContent content = new StringContent(
                 "logout", Encoding.UTF8, "application/json"
@@ -87,7 +85,6 @@ namespace Routeorama.Data.Implementation
                 throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
             
             string responseContent = await responseMessage.Content.ReadAsStringAsync();
-
         }
     }
 }

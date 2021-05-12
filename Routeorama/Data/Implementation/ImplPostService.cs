@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Routeorama.Models.Post;
 
@@ -39,7 +37,6 @@ namespace Routeorama.Data.Implementation
 
         public async Task<PostContainer> FetchPosts(int placeId, int postId)
         {
-            var posts = new List<Post>();
             client = new HttpClient();
 
             var contentAsJson = JsonSerializer.Serialize(new[] {placeId, postId});
@@ -63,21 +60,20 @@ namespace Routeorama.Data.Implementation
                     return returnedPost;
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+            catch (Exception e) {
+                Console.WriteLine("Could not fetch posts " + e);
             }
 
             return null;
         }
-        public async Task<bool> DeletePost(int postID)
+        public async Task<bool> DeletePost(int postId)
         {
             client = new HttpClient();
 
-            string postAsJsonID = JsonSerializer.Serialize(postID);
+            string postAsJsonId = JsonSerializer.Serialize(postId);
 
             StringContent content = new StringContent(
-            postAsJsonID, Encoding.UTF8, "application/json"
+            postAsJsonId, Encoding.UTF8, "application/json"
             );
 
             HttpResponseMessage responseMessage =

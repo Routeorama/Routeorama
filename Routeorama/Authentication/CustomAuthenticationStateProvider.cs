@@ -32,7 +32,8 @@ namespace Routeorama.Authentication
                 if (!string.IsNullOrEmpty(userAsJson))
                 {
                     User tmp = JsonSerializer.Deserialize<User>(userAsJson);
-                    ValidateLogin(tmp.username, tmp.password);
+                    await ValidateLogin(tmp.username, tmp.password);
+                    identity = SetupClaimsForUser(tmp);
                 }
             }
             else
@@ -53,17 +54,14 @@ namespace Routeorama.Authentication
             if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
 
             ClaimsIdentity identity = new ClaimsIdentity();
-            try
-            {
+            try {
                 User user = await userService.ValidateLogin(username, password);
                 identity = SetupClaimsForUser(user);
                 string serialisedData = JsonSerializer.Serialize(user);
                 await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
                 cachedUser = user;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+            catch (Exception e){
                 throw new Exception("Wrong credentials");
             }
 
@@ -95,9 +93,7 @@ namespace Routeorama.Authentication
                 throw new Exception("Display name has to be between 5 and 30 characters");
 
             if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
-            //if (string.IsNullOrEmpty(user.dob)) 
-            //throw new Exception("Date of birth not valid");
-
+            
             try
             {
                 bool response = await userService.Register(user);
@@ -114,7 +110,6 @@ namespace Routeorama.Authentication
             cachedUser = null;
             var user = new ClaimsPrincipal(new ClaimsIdentity());
             //TODO logout
-            //userService.Logout();
             jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
@@ -125,14 +120,13 @@ namespace Routeorama.Authentication
 
             claims.Add(new Claim(ClaimTypes.Name, user.username));
             claims.Add(new Claim("userId", user.UserId.ToString()));
-            //claims.Add(new Claim("Role", user.role.ToString()));
+            claims.Add(new Claim("role", user.role.ToString()));
 
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
             return identity;
         }
 
-        public int GetUserId()
-        {
+        public int GetUserId() {
             return cachedUser?.UserId ?? 0;
         }
     }

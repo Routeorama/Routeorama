@@ -1,7 +1,5 @@
-﻿@using System.Text.Json
-@using Json
+﻿
 @using Routeorama.Data
-@using System.ComponentModel
 @using Routeorama.Authentication
 @inject IJSRuntime _runtime;
 @inject IPlaceService PlaceService;
@@ -22,8 +20,8 @@
             Placename:<input class="inner-field" @bind-value="@Name"><br>
             Description:<textarea style="resize: none" class="inner-field" @bind="@Description"></textarea><br>
             Coordinates:<input disabled class="inner-field" id="coords" @bind-value="@Coordinates"><br>
-            country:<input disabled class="inner-field" id="country" @bind-value="@Country"><br>
-            city:<input class="inner-field" id="city" @bind-value="@City"><br>
+            Country:<input disabled class="inner-field" id="country" @bind-value="@Country"><br>
+            City:<input class="inner-field" id="city" @bind-value="@City"><br>
             <label>@label</label>
         </div>
         <button class="create-place" id="create-place-button" @onclick="CreateThePlace">Create place</button>
@@ -49,7 +47,6 @@
         this.NELng = NELng;
         this.SWLat = SWLat;
         this.SWLng = SWLng;
-        //Console.WriteLine(NELat + " " + NELng + " " + SWLat + " " + SWLng);
         
         StateHasChanged();
         
@@ -72,10 +69,6 @@
         bounds.Add(SWLat);
         bounds.Add(NELng);
         bounds.Add(NELat);
-        //bounds.Add(-0.8197514999999989);
-        //bounds.Add(47.27323815174191);
-        //bounds.Add(5.508373500000001);
-        //bounds.Add(50.388992078075596);
 
         List<Place> places = await PlaceService.getPlacesInBounds(bounds);
         
@@ -86,17 +79,12 @@
             await _runtime.InvokeVoidAsync("MakeMarker", place.id, place.name, place.description, place.userId, place.followCount,
                 place.location.city, place.location.country, place.location.lat, place.location.lng);
         }
-        //Console.WriteLine(places);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
             await _runtime.InvokeVoidAsync("initMap");
-        
-        //boundsLatlngSW = {lat: -48.280688, lng: 52.969311};
-        //boundsLatlngNE = {lat: 17.963884, lng: 68.0685005};
-        
         await _runtime.InvokeVoidAsync("setWrapper", DotNetObjectReference.Create(this));
     }
 
@@ -126,9 +114,7 @@
             var coordinates = Coordinates.Split(", ");
             Lat = coordinates[0].TrimStart('(');
             Lng = coordinates[1].TrimEnd(')');
-            //Console.WriteLine(Lat);
-            //Console.WriteLine(Lng);
-
+       
             Location location = new Location
             {
                 city = City, country = Country, lat = Double.Parse(Lat), lng = Double.Parse(Lng)
@@ -158,8 +144,7 @@
         }
     }
 
-    private async Task ClearData()
-    {
+    private async Task ClearData(){
         Name = "";
         Description = "";
         Coordinates = "";

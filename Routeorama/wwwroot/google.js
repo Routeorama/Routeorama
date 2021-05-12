@@ -25,35 +25,17 @@ function initMap() {
     infoWindow.open(map);
 
     //Configure listener for bounds
-    var viewportBox;
     google.maps.event.addListener(map, 'idle', function (event) {
         var bounds = map.getBounds();
 
         var ne = bounds.getNorthEast();
         var sw = bounds.getSouthWest();
-
-        //console.log(map.getZoom());
+        
         if (map.getZoom() <= 6) {
             clearMarkers();
         } else {
             ChangeValueFromJs(ne.lat(), ne.lng(), sw.lat(), sw.lng());
         }
-        /*var viewportPoints = [
-            ne, new google.maps.LatLng(ne.lat(), sw.lng()),
-            sw, new google.maps.LatLng(sw.lat(), ne.lng())
-        ];
-        /*strokeOpacity = 0 , if don't want to show the border moving. 
-        if (viewportBox) {
-            viewportBox.setPath(viewportPoints);
-        } else {
-            viewportBox = new google.maps.Polyline({
-                path: viewportPoints,
-                strokeColor: '#FF0000',
-                strokeOpacity: 1.0,
-                strokeWeight: 4
-            });
-            viewportBox.setMap(map);
-        };*/
     });
 
     // Configure the click listener.
@@ -74,10 +56,6 @@ function geocode(geocoder, map, infoWindow, latLng) {
     geocoder.geocode({location: latLng}, (results, status) => {
         if (status === "OK") {
             if (results[0]) {
-                // var marker = new google.maps.Marker({
-                //     position: latLng,
-                //     map: map
-                // });
                 infoWindow.setContent(
                     "<div style='display: flex; justify-content: space-around; align-items: flex-start; flex-direction: column'>" +
                     results[0].formatted_address +
@@ -90,7 +68,6 @@ function geocode(geocoder, map, infoWindow, latLng) {
                     "</div>"
                 );
                 infoWindow.open(map);
-                //unfortunately this needs to be here since the button isn't rendered until someone clicks on the map
                 var modal = document.getElementById("myModal");
                 var btn = document.getElementById("modal-button");
                 var span = document.getElementsByClassName("exit")[0];
@@ -100,8 +77,6 @@ function geocode(geocoder, map, infoWindow, latLng) {
                 coords = document.getElementById("coords");
 
                 coords.value = results[0].geometry.location;
-                //placesCoordinates = results[0].geometry.location;
-
                 address = results[0].address_components;
 
                 result = results[0];

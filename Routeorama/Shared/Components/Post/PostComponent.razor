@@ -3,6 +3,8 @@
 @using Routeorama.Authentication
 @inject IPostService _postService;
 @inject AuthenticationStateProvider AuthenticationStateProvider;
+@inject NavigationManager NavigationManager;
+
 
 <div class="post">
     <div class="post-upper">
@@ -39,12 +41,10 @@
         </div>
     </div>
     <div class="post-middle">
-        @if (@Post.photo != null)
-        {
+        @if (Post.photo != null){
             <div class="row">
-                <img class="post-image" style="" src=@("data:png;base64," + Convert.ToBase64String(@Post.photo))>
+                <img class="post-image" style="" src=@("data:"+ Post.photoType +";base64," + Convert.ToBase64String(Post.photo))>
             </div>
-            <!--<img alt="asdff" class="post-image" src=@("data:image/png;charset=utf-8;base64 " + @Post.photo)>-->
         }
     </div>
     <div class="post-bottom">
@@ -74,11 +74,6 @@
     [Parameter]
     public Post Post { get; set; }
     
-    // protected override void OnInitialized()
-    // {
-    //     Console.WriteLine(Post.photo);
-    // }
-
     async void OnClick(RadzenSplitButtonItem item)
     {
         if (item != null)
@@ -86,7 +81,10 @@
             if (int.Parse(item.Value) == 1)
                 try
                 {
-                    await _postService.DeletePost(Post.postId);
+                    bool deletePost = await _postService.DeletePost(Post.postId);
+                    if (deletePost)
+                        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad:true);
+
                 }
                 catch (Exception e)
                 {
@@ -95,7 +93,9 @@
         }
         else
         {
-            Console.WriteLine($"Clicked");
+            Console.WriteLine("Clicked");
         }
     }
+    
+    
 }

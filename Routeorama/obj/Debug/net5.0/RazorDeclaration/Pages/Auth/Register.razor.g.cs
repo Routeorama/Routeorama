@@ -13,120 +13,141 @@ namespace Routeorama.Pages.Auth
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 1 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 2 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 4 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 5 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 6 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 7 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 8 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 9 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 10 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 11 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 12 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Auth;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 13 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 14 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 15 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Nav;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 16 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Register.razor"
+#line 17 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Register.razor"
 using Routeorama.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Register.razor"
+using System.Globalization;
 
 #line default
 #line hidden
@@ -140,7 +161,7 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Register.razor"
+#line 54 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Register.razor"
        
     private string username = "";
     private string password = "";
@@ -149,20 +170,24 @@ using Routeorama.Authentication;
     private string dateOfBirth = "";
     private string email = "";
     private string errorMessage = "";
-
+    private DateTime? value = DateTime.Now;
+    
     private async Task PerformRegister()
     {
         errorMessage = "";
         try
         {
-
-            User registerUser = new User
-            {
-                displayName = displayName, dob = dateOfBirth, password = password, username = username, email = email, role = RoleEnum.user
+            User registerUser = new User{
+                displayName = displayName, 
+                dob = dateOfBirth, 
+                password = password, 
+                username = username, 
+                email = email, 
+                role = RoleEnum.user
             };
 
             if (!password.Equals(repeatPassword))
-                throw new Exception("Password´s do not match");
+                throw new Exception("Passwords do not match.");
             
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Register(registerUser);
 
@@ -177,6 +202,13 @@ using Routeorama.Authentication;
             errorMessage = e.Message;
         }
     }
+
+    private void OnChange(DateTime? args, string datepicker, string mmDdYyyy)
+    {
+        if (value != null) dateOfBirth = value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
+    }
+    
+
 
 #line default
 #line hidden

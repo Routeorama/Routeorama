@@ -12,161 +12,161 @@ namespace Routeorama.Pages.Channel
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 1 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 2 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 4 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 5 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 6 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 7 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 8 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 9 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 10 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 11 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 12 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Auth;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 13 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 14 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 15 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Nav;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 16 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 17 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+using Blazored.Modal;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+using Blazored.Modal.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Routeorama.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 10 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Routeorama.Models.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
-using System.IO;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 11 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using System.Linq;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
-using System.Text;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 12 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Microsoft.AspNetCore.Hosting;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 13 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Routeorama.Authentication;
 
 #line default
@@ -181,88 +181,41 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 90 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 62 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
        
     private Place _place = new();
     private IList<Post> _posts = new List<Post>();
-    private IList<Post> _filteredPosts = new List<Post>();
-    private ElementReference _imgUpload;
+    private IList<Post>? _filteredPosts = new List<Post>();
 
-    [Parameter]
-    public string PlaceName { get; set; }
-        private const long MaxFileSize = 15000000;
-        private const int MaxAllowedFiles = 1;
-    private string _cssClass = "overlay .";
-    private bool _isOpen;
+    [CascadingParameter] public IModalService Modal { get; set; }
+    [Parameter] public string PlaceName { get; set; }
     private int _authState;
-    private string _image;
+    private string errorLabel = "";
 
-    
-    
-    private string imgUrl = string.Empty;
-    private byte[] byteArray = new byte[]{};
-    
-    private async Task OnFileSelection(InputFileChangeEventArgs e)
-    {
-        IBrowserFile imgFile = e.File;
-        string imageType = imgFile.ContentType;
-        var resizedImageFile = await imgFile.RequestImageFileAsync(imageType, 200, 200);
-        var buffers = new byte[resizedImageFile.Size];
-        await imgFile.OpenReadStream().ReadAsync(buffers);
-        byteArray = buffers;
-        imgUrl =$"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
-    }
-    
-    
-    
-    private void OpenModal()
-    {
-        if (_isOpen) return;
-        _cssClass = _cssClass.Replace(".", "open");
-        _isOpen = true;
-    }
 
-    private void CloseModal()
-    {
-        if (!_isOpen) return;
-        _cssClass = _cssClass.Replace("open", ".");
-        _isOpen = false;
-        _error = "";
-    }
 
-    async Task LoadFiles(InputFileChangeEventArgs e)
-    {
-        _image = "";
-        try
-        {
-            var file = e.GetMultipleFiles(MaxAllowedFiles).FirstOrDefault();
-            var stream = await new StreamReader(file.OpenReadStream()).ReadToEndAsync();
-            var encoded = Encoding.Default.GetBytes(stream);
-            _image = Convert.ToBase64String(encoded); 
-    // foreach (var file in e.GetMultipleFiles(MaxAllowedFiles))
-    // {
-    //     
-    //     _image = Convert.ToBase64String(
-    //         Encoding.UTF8.GetBytes(
-    //             await new StreamReader(file.OpenReadStream()).ReadToEndAsync()));
-    // }
-        } 
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync(){
         try
         {
             _authState = ((CustomAuthenticationStateProvider) _provider).GetUserId();
             _place = await _placeService.FetchPlaceData(PlaceName);
-            await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+            Console.WriteLine(PlaceName);
+            try
+            {
+                await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+            }
+            catch (NullReferenceException e)
+            {
+                errorLabel = "Could not fetch the weather.";
+            }
+           
             var container = await _postService.FetchPosts(_place.id, 0);
-            _posts = container.posts;
-            Filter();
+            if (container != null)
+            {
+                _posts = container.posts;
+                Filter();
+            }
+            
         }
         catch (NullReferenceException ex)
         {
@@ -275,53 +228,42 @@ using Routeorama.Authentication;
         _filteredPosts = _posts;
     }
 
-    private string? _title;
-    private string? _description;
-    private string? _error;
-
-    private async void CreateNewPostAsync()
-    {
-        var post = new Post
-        {
-            userId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
-            postId = 0,
-            title = _title,
-            content = _description,
-            photo = byteArray,
-            likeCount = 0,
-            dateOfCreation = null,
-            placeId = _place.id
-        };
-        
-        try
-        {
-            await _postService.CreateNewPost(post);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            _error = "Something went wrong, please try again later";
-        }
-        CloseModal();
-        await FetchLatestPosts();
-
-        _title = "";
-        _description = "";
-    }
-
-    private async Task FetchLatestPosts()
-    {
-        _posts = (await _postService.FetchPosts(_place.id, 0)).posts;
-        Filter();
-    }
-
     private async Task FetchMorePosts()
     {
-        var container = await _postService.FetchPosts(_place.id, _filteredPosts.Last().postId);
-        foreach (var post in container.posts)
+        PostContainer container = null;
+        if (_filteredPosts == null)
         {
-            _filteredPosts.Add(post);
+            container = await _postService.FetchPosts(_place.id, 0);
         }
+        else
+        {
+            container = await _postService.FetchPosts(_place.id, _filteredPosts.Last().postId);
+        }
+        if (container.posts == null)
+        {
+        }
+        else
+        {
+            foreach (var post in container.posts)
+            {
+                _filteredPosts.Add(post);
+            }
+        }
+    }
+    
+    void ShowCreatePlace(string placeName, int placeId)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(PostPopUp.placeName), placeName);
+        parameters.Add(nameof(PostPopUp.placeId), placeId);
+
+        var options = new ModalOptions() 
+        { 
+            Animation = ModalAnimation.FadeInOut(0.2),
+            DisableBackgroundCancel = true
+        };
+
+        Modal.Show<PostPopUp>("Create Place", parameters, options);
     }
 
 

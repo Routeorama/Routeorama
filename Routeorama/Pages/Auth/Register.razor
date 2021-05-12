@@ -1,5 +1,6 @@
 ﻿@page "/register"
 @using Routeorama.Authentication
+@using System.Globalization
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 
@@ -33,7 +34,8 @@
 
     <label class="registerlabel">DOB</label>
     <div class="dob-placeholder">
-        <input type="dobName" placeholder="dobName" @bind-value="dateOfBirth" />
+        <h4>DatePicker</h4>
+        <RadzenDatePicker @bind-Value=@value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "MM/dd/yyyy")) />
     </div>
 
     <div class="button-placeholder">
@@ -57,20 +59,24 @@
     private string dateOfBirth = "";
     private string email = "";
     private string errorMessage = "";
-
+    private DateTime? value = DateTime.Now;
+    
     private async Task PerformRegister()
     {
         errorMessage = "";
         try
         {
-
-            User registerUser = new User
-            {
-                displayName = displayName, dob = dateOfBirth, password = password, username = username, email = email, role = RoleEnum.user
+            User registerUser = new User{
+                displayName = displayName, 
+                dob = dateOfBirth, 
+                password = password, 
+                username = username, 
+                email = email, 
+                role = RoleEnum.user
             };
 
             if (!password.Equals(repeatPassword))
-                throw new Exception("Password´s do not match");
+                throw new Exception("Passwords do not match.");
             
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Register(registerUser);
 
@@ -85,4 +91,11 @@
             errorMessage = e.Message;
         }
     }
+
+    private void OnChange(DateTime? args, string datepicker, string mmDdYyyy)
+    {
+        if (value != null) dateOfBirth = value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
+    }
+    
+
 }

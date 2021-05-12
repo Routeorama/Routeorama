@@ -431,6 +431,15 @@ div #rightSide[b-1xueg0a0iu]{
     padding-top: 0;
     padding-bottom: 5px;
 }
+/* _content/Routeorama/Shared/Components/Post/PostPopUp.razor.rz.scp.css */
+.createplace-container[b-6cocbwefpe]{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
 /* _content/Routeorama/Shared/MainLayout.razor.rz.scp.css */
 .page[b-k1hu7hwkki] {
     position: relative;

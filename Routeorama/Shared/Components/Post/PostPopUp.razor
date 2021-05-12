@@ -1,0 +1,102 @@
+﻿@using Routeorama.Data
+@using Routeorama.Authentication
+@using System.Threading
+@using Routeorama.Models.Post
+@inject NavigationManager NavigationManager;
+@inject AuthenticationStateProvider provider;
+@inject IPostService postService;
+
+<div class="createplace-container">
+    <label class="titlelabel">Title</label>
+    <div class="title-placeholder">
+        <input type="text" placeholder="title" @bind-value="post.title"/>
+    </div>
+    <label class="contentlabel">Content</label>
+    <div class="content-placeholder">
+        <input type="text" placeholder="content" @bind-value="post.content"/>
+    </div>
+    <label class="imagelabel">Image</label>
+    <div class="image-placeholder">
+        <InputFile OnChange="@OnFileSelection"></InputFile>
+    </div>
+    <div class="errorLabel">@errorMessage</div>
+    <div class="button-placeholder">
+        <RadzenButton style="margin: 0 1rem 1rem 0" Click=@(CreateNewPost) Text="Create new post" ButtonStyle="ButtonStyle.Primary"/>
+    </div>
+</div>
+
+@code {
+    private Models.Post.Post post = new Models.Post.Post();
+
+    private string errorMessage;
+    private byte[] byteArray = new byte[] {};
+
+    [Parameter]
+    public int placeId { get; set; }
+
+    [Parameter]
+    public string placeName { get; set; }
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    private string imageType;
+
+    private Post post1 = null;
+
+    private async Task CreateNewPost()
+    {
+        if (string.IsNullOrEmpty(post.content) && string.IsNullOrEmpty(post.title))
+            errorMessage = ("Fill out the title and content of the post.");
+
+        else if (string.IsNullOrEmpty(post.title))
+            errorMessage = ("Fill out the title of the post.");
+
+        else if (string.IsNullOrEmpty(post.content))
+            errorMessage = ("Fill out the content of the post.");
+
+        else if (post.content.Length > 300)
+            errorMessage = ("The content of the post should not exceed 300 characters");
+
+        else if (post.title.Length > 300)
+            errorMessage = ("The title of the post should not exceed 30 characters");
+
+        else
+        {
+            Models.Post.Post postToSend = new Models.Post.Post
+            {
+                userId = ((CustomAuthenticationStateProvider) provider).GetUserId(),
+                postId = 0,
+                title = post.title,
+                content = post.content,
+                photoType = imageType,
+                photo = byteArray,
+                likeCount = 0,
+                dateOfCreation = null,
+                placeId = placeId
+            };
+
+            try
+            {
+                post1 = await postService.CreateNewPost(postToSend);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                errorMessage = "Creating a post failed.";
+            }
+            if(post1 != null)
+                NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad:true);
+        }
+    }
+
+    private async Task OnFileSelection(InputFileChangeEventArgs e)
+    {
+        IBrowserFile imgFile = e.File;
+        imageType = imgFile.ContentType;
+        var buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream(512000000, new CancellationToken(default)).ReadAsync(buffers);
+        byteArray = buffers;
+    }
+
+}
