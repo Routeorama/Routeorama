@@ -127,7 +127,7 @@ namespace Routeorama.Data.Implementation
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
 
             var content = await responseMessage.Content.ReadAsStringAsync();
@@ -141,7 +141,7 @@ namespace Routeorama.Data.Implementation
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
 
 
@@ -153,18 +153,20 @@ namespace Routeorama.Data.Implementation
             _client = new HttpClient();
             var responseMessage = new HttpResponseMessage();
 
+            var array = new[] {placeId, userId};
+            var body = new StringContent(JsonSerializer.Serialize(array), Encoding.UTF8, "application/json");
+            
             try
             {
                 responseMessage =
-                    await _client.GetAsync($"http://localhost:8080/auth/place/followState/{placeId}%20{userId}");
+                    await _client.PostAsync($"http://localhost:8080/auth/place/isfollowed", body);
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
 
             var content = await responseMessage.Content.ReadAsStringAsync();
-
             var success = false;
             try
             {
@@ -175,7 +177,7 @@ namespace Routeorama.Data.Implementation
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
 
 

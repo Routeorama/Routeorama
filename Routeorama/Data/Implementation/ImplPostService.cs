@@ -97,13 +97,17 @@ namespace Routeorama.Data.Implementation
         {
             client = new HttpClient();
             var responseMessage = new HttpResponseMessage();
+
+            var array = new[] {postId, userId};
+            var body = new StringContent(JsonSerializer.Serialize(array), Encoding.UTF8, "application/json");
+            
             try
             {
-                responseMessage = await client.GetAsync($"http://localhost:8080/post/likes/{postId}%20{userId}");
+                responseMessage = await client.PostAsync($"http://localhost:8080/post/islikedpost", body);
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
             var responseContent = await responseMessage.Content.ReadAsStringAsync();
             var state = false;
@@ -116,7 +120,7 @@ namespace Routeorama.Data.Implementation
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
 
             return state;
@@ -132,15 +136,14 @@ namespace Routeorama.Data.Implementation
             var responseMessage = new HttpResponseMessage();
             try
             {
-                responseMessage = await client.PostAsync("http://localhost:8080/post/like", body);
+                responseMessage = await client.PostAsync("http://localhost:8080/post/likepost", body);
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
 
             var content = await responseMessage.Content.ReadAsStringAsync();
-
             var likeState = false;
             try
             {
@@ -151,7 +154,7 @@ namespace Routeorama.Data.Implementation
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
             }
             
             return likeState;

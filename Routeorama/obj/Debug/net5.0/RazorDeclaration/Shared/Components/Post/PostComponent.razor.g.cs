@@ -191,6 +191,8 @@ using System.Text.RegularExpressions;
         try
         {
             _likeState = await _postService.GetLikeState(Post.postId, ((CustomAuthenticationStateProvider) _provider).GetUserId());
+            Console.WriteLine(_likeState);
+            SetLikeState();
             ParseTags(Post.content);
         }
         catch (Exception e)
@@ -237,11 +239,13 @@ using System.Text.RegularExpressions;
         }
     }
 
-    void Like()
+    async void Like()
     {
         _likeState = !_likeState;
         SetLikeState();
-        
+        var like = await _postService.LikePost(((CustomAuthenticationStateProvider) _provider).GetUserId(), Post.postId);
+        _likeState = like;
+        SetLikeState();
     }
 
     void SetLikeState()
