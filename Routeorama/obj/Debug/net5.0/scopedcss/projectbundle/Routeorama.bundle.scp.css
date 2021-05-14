@@ -326,7 +326,7 @@ div #rightSide[b-1xueg0a0iu]{
     width: 40vw;
     border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
     margin-bottom: 15px;
-    
+
 }
 
 .post-image[b-u0y8d7kqwi] {
@@ -387,6 +387,17 @@ div #rightSide[b-1xueg0a0iu]{
     padding-top: 10px;
     font-weight: normal;
     font-size: 15px;
+}
+
+.post-description-inner[b-u0y8d7kqwi] {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.post-description-inner span[b-u0y8d7kqwi] {
+    color: dodgerblue;
+    cursor: pointer;
 }
 
 .post-likes[b-u0y8d7kqwi] {

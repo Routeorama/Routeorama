@@ -22,7 +22,7 @@
             @_place.description
         </h1>
     </div>
-    <div class="errorLabel">@errorLabel</div>
+    <div class="errorLabel">@_errorLabel</div>
     <div class="location" id="location"></div>
     <div class="weather-description" id="description"></div>
     <div class="degrees" id="temp"></div>
@@ -32,6 +32,9 @@
     <div class="sunset" id="sunset"></div>
 
     @if (_authState != 0){
+        <div>
+            <button class="btn btn-primary" @onclick="FollowPlace" style="background-color: @_followColor">@_followText</button>
+        </div>
         <div class="buttonCreatePlace">
             <button @onclick="@(() => ShowCreatePlace(_place.name, _place.id))" class="btn btn-primary">Create post</button>
         </div>
@@ -60,30 +63,36 @@
 
 
 @code {
+    [CascadingParameter] 
+    public IModalService Modal { get; set; }
+    
+    [Parameter] 
+    public string PlaceName { get; set; }
+    
     private Place _place = new();
     private IList<Post> _posts = new List<Post>();
     private IList<Post>? _filteredPosts = new List<Post>();
-
-    [CascadingParameter] public IModalService Modal { get; set; }
-    [Parameter] public string PlaceName { get; set; }
+    
     private int _authState;
-    private string errorLabel = "";
-
-
+    private string _errorLabel = "";
+    private bool _followState;
+    private string _followText = "Follow";
+    private string _followColor = "#1b6ec2";
 
     protected override async Task OnInitializedAsync(){
         try
         {
             _authState = ((CustomAuthenticationStateProvider) _provider).GetUserId();
             _place = await _placeService.FetchPlaceData(PlaceName);
-            Console.WriteLine(PlaceName);
+            _followState = await _placeService.GetFollowState(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId());
+            SetFollowState();
             try
             {
                 await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
             }
             catch (NullReferenceException e)
             {
-                errorLabel = "Could not fetch the weather.";
+                _errorLabel = "Could not fetch the weather.";
             }
            
             var container = await _postService.FetchPosts(_place.id, 0);
@@ -123,7 +132,7 @@
         {
             foreach (var post in container.posts)
             {
-                _filteredPosts.Add(post);
+                _filteredPosts?.Add(post);
             }
         }
     }
@@ -131,8 +140,8 @@
     void ShowCreatePlace(string placeName, int placeId)
     {
         var parameters = new ModalParameters();
-        parameters.Add(nameof(PostPopUp.placeName), placeName);
-        parameters.Add(nameof(PostPopUp.placeId), placeId);
+        parameters.Add(nameof(PostPopUp.PlaceName), placeName);
+        parameters.Add(nameof(PostPopUp.PlaceId), placeId);
 
         var options = new ModalOptions() 
         { 
@@ -141,6 +150,27 @@
         };
 
         Modal.Show<PostPopUp>("Create Place", parameters, options);
+    }
+
+    async void FollowPlace()
+    {
+        _followState = !_followState;
+        SetFollowState();
+        await _placeService.FollowPlace(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId());
+    }
+
+    void SetFollowState()
+    {
+        if (_followState)
+        {
+            _followText = "Following";
+            _followColor = "#ff6d41";
+        }
+        else
+        {
+            _followText = "Follow";
+            _followColor = "#1b6ec2";
+        }
     }
 
 }

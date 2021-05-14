@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Routeorama.Pages
+namespace Routeorama.Shared.Components.Post
 {
     #line hidden
     using System;
@@ -139,20 +139,123 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\University\SEP3\Routeorama\Routeorama\Pages\Index.razor"
-using LoginComponent;
+#line 1 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostPopUp.razor"
+using Routeorama.Data;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
-    public partial class Index : LayoutComponentBase
+#nullable restore
+#line 2 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostPopUp.razor"
+using Routeorama.Authentication;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostPopUp.razor"
+using System.Threading;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostPopUp.razor"
+using Routeorama.Models.Post;
+
+#line default
+#line hidden
+#nullable disable
+    public partial class PostPopUp : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 28 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostPopUp.razor"
+       
+    private Post _post = new();
+
+    private string _errorMessage;
+    private byte[] _byteArray = new byte[] {};
+
+    [Parameter]
+    public int PlaceId { get; set; }
+
+    [Parameter]
+    public string PlaceName { get; set; }
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    private string _imageType;
+
+    private Post _post1 = null;
+
+    private async Task CreateNewPost()
+    {
+        if (string.IsNullOrEmpty(_post.content) && string.IsNullOrEmpty(_post.title))
+            _errorMessage = ("Fill out the title and content of the post.");
+
+        else if (string.IsNullOrEmpty(_post.title))
+            _errorMessage = ("Fill out the title of the post.");
+
+        else if (string.IsNullOrEmpty(_post.content))
+            _errorMessage = ("Fill out the content of the post.");
+
+        else if (_post.content.Length > 300)
+            _errorMessage = ("The content of the post should not exceed 300 characters");
+
+        else if (_post.title.Length > 300)
+            _errorMessage = ("The title of the post should not exceed 30 characters");
+
+        else
+        {
+            var postToSend = new Post
+            {
+                userId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
+                postId = 0,
+                title = _post.title,
+                content = _post.content,
+                photoType = _imageType,
+                photo = _byteArray,
+                likeCount = 0,
+                dateOfCreation = null,
+                placeId = PlaceId
+            };
+
+            try
+            {
+                _post1 = await _postService.CreateNewPost(postToSend);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                _errorMessage = "Creating a post failed.";
+            }
+            if(_post1 != null)
+                _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad:true);
+        }
+    }
+
+    private async Task OnFileSelection(InputFileChangeEventArgs e)
+    {
+        var imgFile = e.File;
+        _imageType = imgFile.ContentType;
+        var buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream(512000000, new CancellationToken(default)).ReadAsync(buffers);
+        _byteArray = buffers;
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPostService _postService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _provider { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

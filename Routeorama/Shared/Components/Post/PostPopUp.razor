@@ -2,101 +2,101 @@
 @using Routeorama.Authentication
 @using System.Threading
 @using Routeorama.Models.Post
-@inject NavigationManager NavigationManager;
-@inject AuthenticationStateProvider provider;
-@inject IPostService postService;
+@inject NavigationManager _navigationManager;
+@inject AuthenticationStateProvider _provider;
+@inject IPostService _postService;
 
 <div class="createplace-container">
     <label class="titlelabel">Title</label>
     <div class="title-placeholder">
-        <input type="text" placeholder="title" @bind-value="post.title"/>
+        <input type="text" placeholder="title" @bind-value="_post.title"/>
     </div>
     <label class="contentlabel">Content</label>
     <div class="content-placeholder">
-        <input type="text" placeholder="content" @bind-value="post.content"/>
+        <input type="text" placeholder="content" @bind-value="_post.content"/>
     </div>
     <label class="imagelabel">Image</label>
     <div class="image-placeholder">
         <InputFile OnChange="@OnFileSelection"></InputFile>
     </div>
-    <div class="errorLabel">@errorMessage</div>
+    <div class="errorLabel">@_errorMessage</div>
     <div class="button-placeholder">
         <RadzenButton style="margin: 0 1rem 1rem 0" Click=@(CreateNewPost) Text="Create new post" ButtonStyle="ButtonStyle.Primary"/>
     </div>
 </div>
 
 @code {
-    private Models.Post.Post post = new Models.Post.Post();
+    private Post _post = new();
 
-    private string errorMessage;
-    private byte[] byteArray = new byte[] {};
-
-    [Parameter]
-    public int placeId { get; set; }
+    private string _errorMessage;
+    private byte[] _byteArray = new byte[] {};
 
     [Parameter]
-    public string placeName { get; set; }
+    public int PlaceId { get; set; }
+
+    [Parameter]
+    public string PlaceName { get; set; }
 
     [CascadingParameter]
     public IModalService Modal { get; set; }
 
-    private string imageType;
+    private string _imageType;
 
-    private Post post1 = null;
+    private Post _post1 = null;
 
     private async Task CreateNewPost()
     {
-        if (string.IsNullOrEmpty(post.content) && string.IsNullOrEmpty(post.title))
-            errorMessage = ("Fill out the title and content of the post.");
+        if (string.IsNullOrEmpty(_post.content) && string.IsNullOrEmpty(_post.title))
+            _errorMessage = ("Fill out the title and content of the post.");
 
-        else if (string.IsNullOrEmpty(post.title))
-            errorMessage = ("Fill out the title of the post.");
+        else if (string.IsNullOrEmpty(_post.title))
+            _errorMessage = ("Fill out the title of the post.");
 
-        else if (string.IsNullOrEmpty(post.content))
-            errorMessage = ("Fill out the content of the post.");
+        else if (string.IsNullOrEmpty(_post.content))
+            _errorMessage = ("Fill out the content of the post.");
 
-        else if (post.content.Length > 300)
-            errorMessage = ("The content of the post should not exceed 300 characters");
+        else if (_post.content.Length > 300)
+            _errorMessage = ("The content of the post should not exceed 300 characters");
 
-        else if (post.title.Length > 300)
-            errorMessage = ("The title of the post should not exceed 30 characters");
+        else if (_post.title.Length > 300)
+            _errorMessage = ("The title of the post should not exceed 30 characters");
 
         else
         {
-            Models.Post.Post postToSend = new Models.Post.Post
+            var postToSend = new Post
             {
-                userId = ((CustomAuthenticationStateProvider) provider).GetUserId(),
+                userId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
                 postId = 0,
-                title = post.title,
-                content = post.content,
-                photoType = imageType,
-                photo = byteArray,
+                title = _post.title,
+                content = _post.content,
+                photoType = _imageType,
+                photo = _byteArray,
                 likeCount = 0,
                 dateOfCreation = null,
-                placeId = placeId
+                placeId = PlaceId
             };
 
             try
             {
-                post1 = await postService.CreateNewPost(postToSend);
+                _post1 = await _postService.CreateNewPost(postToSend);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                errorMessage = "Creating a post failed.";
+                _errorMessage = "Creating a post failed.";
             }
-            if(post1 != null)
-                NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad:true);
+            if(_post1 != null)
+                _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad:true);
         }
     }
 
     private async Task OnFileSelection(InputFileChangeEventArgs e)
     {
-        IBrowserFile imgFile = e.File;
-        imageType = imgFile.ContentType;
+        var imgFile = e.File;
+        _imageType = imgFile.ContentType;
         var buffers = new byte[imgFile.Size];
         await imgFile.OpenReadStream(512000000, new CancellationToken(default)).ReadAsync(buffers);
-        byteArray = buffers;
+        _byteArray = buffers;
     }
 
 }

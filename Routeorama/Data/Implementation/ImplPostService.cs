@@ -60,12 +60,14 @@ namespace Routeorama.Data.Implementation
                     return returnedPost;
                 }
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine("Could not fetch posts " + e);
             }
 
             return null;
         }
+
         public async Task<bool> DeletePost(int postId)
         {
             client = new HttpClient();
@@ -73,7 +75,7 @@ namespace Routeorama.Data.Implementation
             string postAsJsonId = JsonSerializer.Serialize(postId);
 
             StringContent content = new StringContent(
-            postAsJsonId, Encoding.UTF8, "application/json"
+                postAsJsonId, Encoding.UTF8, "application/json"
             );
 
             HttpResponseMessage responseMessage =
@@ -83,11 +85,76 @@ namespace Routeorama.Data.Implementation
                 throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
 
             var responseContent = await responseMessage.Content.ReadAsStringAsync();
-            Boolean returnedPostResponse = JsonSerializer.Deserialize<Boolean>(responseContent, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
+            Boolean returnedPostResponse = JsonSerializer.Deserialize<Boolean>(responseContent,
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
             return returnedPostResponse;
+        }
+
+        public async Task<bool> GetLikeState(int postId, int userId)
+        {
+            client = new HttpClient();
+            var responseMessage = new HttpResponseMessage();
+            try
+            {
+                responseMessage = await client.GetAsync($"http://localhost:8080/post/likes/{postId}%20{userId}");
+            }
+            catch (Exception e)
+            {
+                //Console.WriteLine(e);
+            }
+            var responseContent = await responseMessage.Content.ReadAsStringAsync();
+            var state = false;
+            try
+            {
+                state = JsonSerializer.Deserialize<bool>(responseContent, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+            }
+            catch (Exception e)
+            {
+                //Console.WriteLine(e);
+            }
+
+            return state;
+        }
+
+        public async Task<bool> LikePost(int postId, int userId)
+        {
+            client = new HttpClient();
+            var array = new[] {postId, userId};
+
+            var body = new StringContent(JsonSerializer.Serialize(array), Encoding.UTF8, "application/json");
+
+            var responseMessage = new HttpResponseMessage();
+            try
+            {
+                responseMessage = await client.PostAsync("http://localhost:8080/post/like", body);
+            }
+            catch (Exception e)
+            {
+                //Console.WriteLine(e);
+            }
+
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
+            var likeState = false;
+            try
+            {
+                likeState = JsonSerializer.Deserialize<bool>(content, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+            }
+            catch (Exception e)
+            {
+                //Console.WriteLine(e);
+            }
+            
+            return likeState;
         }
     }
 }

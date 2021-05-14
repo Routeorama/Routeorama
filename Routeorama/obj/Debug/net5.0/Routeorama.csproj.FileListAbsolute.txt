@@ -234,3 +234,8 @@ C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\bin\Debug\net5.0\Microsoft.JS
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\PostPopUp.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\PostPopUp.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Post\PostPopUp.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\bin\Debug\net5.0\Blazored.Modal.dll
+D:\University\SEP3\Routeorama\Routeorama\bin\Debug\net5.0\Microsoft.JSInterop.WebAssembly.dll
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\PostPopUp.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\PostPopUp.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Post\PostPopUp.razor.rz.scp.css

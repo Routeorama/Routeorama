@@ -70,7 +70,7 @@
         bounds.Add(NELng);
         bounds.Add(NELat);
 
-        List<Place> places = await PlaceService.getPlacesInBounds(bounds);
+        List<Place> places = await PlaceService.GetPlacesInBounds(bounds);
         
         await _runtime.InvokeVoidAsync("clearMarkers");
         
