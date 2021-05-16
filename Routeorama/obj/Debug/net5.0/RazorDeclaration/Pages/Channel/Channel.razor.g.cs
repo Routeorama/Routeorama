@@ -275,9 +275,9 @@ using Routeorama.Authentication;
     async void FollowPlace()
     {
         _followState = !_followState;
-        var follow = await _placeService.FollowPlace(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId());
-        _followState = follow;
         SetFollowState();
+        await _placeService.FollowPlace(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId(), _followState);
+        StateHasChanged();
     }
 
     void SetFollowState()

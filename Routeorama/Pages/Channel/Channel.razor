@@ -155,8 +155,9 @@
     async void FollowPlace()
     {
         _followState = !_followState;
-        await _placeService.FollowPlace(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId(), _followState);
         SetFollowState();
+        await _placeService.FollowPlace(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId(), _followState);
+        StateHasChanged();
     }
 
     void SetFollowState()

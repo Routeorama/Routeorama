@@ -243,9 +243,8 @@ using System.Text.RegularExpressions;
     {
         _likeState = !_likeState;
         SetLikeState();
-        var like = await _postService.LikePost(((CustomAuthenticationStateProvider) _provider).GetUserId(), Post.postId);
-        _likeState = like;
-        SetLikeState();
+        await _postService.LikePost( Post.postId, ((CustomAuthenticationStateProvider) _provider).GetUserId(), _likeState);
+        StateHasChanged();
     }
 
     void SetLikeState()
