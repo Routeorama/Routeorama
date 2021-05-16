@@ -114,38 +114,35 @@ namespace Routeorama.Data.Implementation
             return finalPlace;
         }
 
-        public async Task<bool> FollowPlace(int placeId, int userId)
+        public async Task FollowPlace(int placeId, int userId, bool action)
         {
             _client = new HttpClient();
             var array = new[] {placeId, userId};
             var body = new StringContent(JsonSerializer.Serialize(array), Encoding.UTF8, "application/json");
-            var responseMessage = new HttpResponseMessage();
 
-            try
+            if (action)
             {
-                responseMessage = await _client.PostAsync("http://localhost:8080/auth/place/follow", body);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-            var content = await responseMessage.Content.ReadAsStringAsync();
-            var success = false;
-            try
-            {
-                success = JsonSerializer.Deserialize<bool>(content, new JsonSerializerOptions
+                try
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                });
+                    await _client.PostAsync("http://localhost:8080/auth/place/follow", body);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
+                try
+                {
+                    await _client.PostAsync("http://localhost:8080/auth/place/unfollow", body);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
-
-
-            return success;
+            
         }
 
         public async Task<bool> GetFollowState(int placeId, int userId)

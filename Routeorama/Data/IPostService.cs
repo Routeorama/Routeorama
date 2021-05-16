@@ -10,6 +10,6 @@ namespace Routeorama.Data {
         Task<PostContainer> FetchPosts(int placeId, int postId);
         Task<bool> DeletePost(int postId);
         Task<bool> GetLikeState(int postId, int userId);
-        Task<bool> LikePost(int postId, int userId);
+        Task LikePost(int postId, int userId, bool action);
     }
 }

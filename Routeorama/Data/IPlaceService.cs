@@ -12,7 +12,7 @@ namespace Routeorama.Data
         Task<Place> FetchPlaceData();
         Task<Place> FetchPlaceData(string name);
         Task<List<Place>> GetPlacesInBounds(List<double> bounds);
-        Task<bool> FollowPlace(int placeId, int userId);
+        Task FollowPlace(int placeId, int userId, bool action);
         Task<bool> GetFollowState(int placeId, int userId);
     }
 }

@@ -148,9 +148,7 @@
     async void Like()
     {
         _likeState = !_likeState;
-        SetLikeState();
-        var like = await _postService.LikePost(((CustomAuthenticationStateProvider) _provider).GetUserId(), Post.postId);
-        _likeState = like;
+        await _postService.LikePost(((CustomAuthenticationStateProvider) _provider).GetUserId(), Post.postId, _likeState);
         SetLikeState();
     }
 

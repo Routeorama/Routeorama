@@ -126,38 +126,34 @@ namespace Routeorama.Data.Implementation
             return state;
         }
 
-        public async Task<bool> LikePost(int postId, int userId)
+        public async Task LikePost(int postId, int userId, bool action)
         {
             client = new HttpClient();
             var array = new[] {postId, userId};
-
             var body = new StringContent(JsonSerializer.Serialize(array), Encoding.UTF8, "application/json");
-
-            var responseMessage = new HttpResponseMessage();
-            try
+            if (action)
             {
-                responseMessage = await client.PostAsync("http://localhost:8080/post/likepost", body);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-            var content = await responseMessage.Content.ReadAsStringAsync();
-            var likeState = false;
-            try
-            {
-                likeState = JsonSerializer.Deserialize<bool>(content, new JsonSerializerOptions
+                try
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                });
+                    await client.PostAsync("http://localhost:8080/post/likepost", body);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
+                try
+                {
+                    await client.PostAsync("http://localhost:8080/post/unlikethepost", body);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
             
-            return likeState;
         }
     }
 }
