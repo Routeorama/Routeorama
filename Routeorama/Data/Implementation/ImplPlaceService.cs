@@ -43,8 +43,7 @@ namespace Routeorama.Data.Implementation
             if (finalPlace == null) throw new Exception("Creating new place went wrong");
             return finalPlace;
         }
-
-
+        
         public async Task<Place> FetchPlaceData()
         {
             _client = new HttpClient();

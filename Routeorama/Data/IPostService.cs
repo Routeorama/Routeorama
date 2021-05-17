@@ -11,5 +11,7 @@ namespace Routeorama.Data {
         Task<bool> DeletePost(int postId);
         Task<bool> GetLikeState(int postId, int userId);
         Task LikePost(int postId, int userId, bool action);
+        Task<PostContainer> GetPostsForNewsFeed(int userId);
+        Task<PostContainer> LoadMorePostsForNewsFeed(int userId, int postId);
     }
 }

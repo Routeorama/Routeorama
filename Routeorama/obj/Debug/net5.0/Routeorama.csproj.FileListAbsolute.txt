@@ -239,3 +239,11 @@ D:\University\SEP3\Routeorama\Routeorama\bin\Debug\net5.0\Microsoft.JSInterop.We
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\PostPopUp.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\PostPopUp.razor.g.cs
 D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Post\PostPopUp.razor.rz.scp.css
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\bin\Debug\net5.0\Blazored.Modal.dll
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\bin\Debug\net5.0\Microsoft.JSInterop.WebAssembly.dll
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Post\PostPopUp.razor.g.cs
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Post\PostPopUp.razor.g.cs
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Post\PostPopUp.razor.rz.scp.css
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\NewsFeed\NewsFeed.razor.g.cs
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\NewsFeed\NewsFeed.razor.g.cs
+C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\NewsFeed\NewsFeed.razor.rz.scp.css

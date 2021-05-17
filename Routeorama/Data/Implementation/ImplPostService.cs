@@ -155,5 +155,64 @@ namespace Routeorama.Data.Implementation
             }
             
         }
+        public async Task<PostContainer> GetPostsForNewsFeed(int userId)
+        {
+            client = new HttpClient();
+
+            var contentAsJson = JsonSerializer.Serialize(userId);
+
+            var content = new StringContent(contentAsJson, Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await client.PostAsync("http://localhost:8080/post/getfeed", content);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var returnedPost = JsonSerializer.Deserialize<PostContainer>(responseContent, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+
+                if (returnedPost != null)
+                {
+                    return returnedPost;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Could not fetch posts for news feed " + e);
+            }
+
+            return null;
+        }
+        public async Task<PostContainer> LoadMorePostsForNewsFeed(int userId, int postId)
+        {
+            client = new HttpClient();
+
+            var contentAsJson = JsonSerializer.Serialize(new[] {userId, postId});
+
+            var content = new StringContent(contentAsJson, Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await client.PostAsync("http://localhost:8080/post/loadfeed", content);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var returnedPost = JsonSerializer.Deserialize<PostContainer>(responseContent,
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+
+                if (returnedPost != null)
+                {
+                    return returnedPost;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Could not fetch load more posts " + e);
+            }
+
+            return null;
+        }
     }
 }

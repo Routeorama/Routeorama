@@ -31,7 +31,8 @@
     <div class="sunrise" id="sunrise"></div>
     <div class="sunset" id="sunset"></div>
 
-    @if (_authState != 0){
+    @if (_authState != 0)
+    {
         <div>
             <button class="btn btn-primary" @onclick="FollowPlace" style="background-color: @_followColor">@_followText</button>
         </div>
@@ -39,7 +40,8 @@
             <button @onclick="@(() => ShowCreatePlace(_place.name, _place.id))" class="btn btn-primary">Create post</button>
         </div>
     }
-    else{
+    else
+    {
         <div>
             Login to post
         </div>
@@ -63,23 +65,25 @@
 
 
 @code {
-    [CascadingParameter] 
+
+    [CascadingParameter]
     public IModalService Modal { get; set; }
-    
-    [Parameter] 
+
+    [Parameter]
     public string PlaceName { get; set; }
-    
+
     private Place _place = new();
     private IList<Post> _posts = new List<Post>();
     private IList<Post>? _filteredPosts = new List<Post>();
-    
+
     private int _authState;
     private string _errorLabel = "";
     private bool _followState;
     private string _followText = "Follow";
     private string _followColor = "#1b6ec2";
 
-    protected override async Task OnInitializedAsync(){
+    protected override async Task OnInitializedAsync()
+    {
         try
         {
             _authState = ((CustomAuthenticationStateProvider) _provider).GetUserId();
@@ -94,14 +98,14 @@
             {
                 _errorLabel = "Could not fetch the weather.";
             }
-           
+
             var container = await _postService.FetchPosts(_place.id, 0);
             if (container != null)
             {
                 _posts = container.posts;
                 Filter();
             }
-            
+
         }
         catch (NullReferenceException ex)
         {
@@ -125,9 +129,7 @@
         {
             container = await _postService.FetchPosts(_place.id, _filteredPosts.Last().postId);
         }
-        if (container.posts == null)
-        {
-        }
+        if (container.posts == null) { }
         else
         {
             foreach (var post in container.posts)
@@ -136,15 +138,15 @@
             }
         }
     }
-    
+
     void ShowCreatePlace(string placeName, int placeId)
     {
         var parameters = new ModalParameters();
         parameters.Add(nameof(PostPopUp.PlaceName), placeName);
         parameters.Add(nameof(PostPopUp.PlaceId), placeId);
 
-        var options = new ModalOptions() 
-        { 
+        var options = new ModalOptions()
+        {
             Animation = ModalAnimation.FadeInOut(0.2),
             DisableBackgroundCancel = true
         };

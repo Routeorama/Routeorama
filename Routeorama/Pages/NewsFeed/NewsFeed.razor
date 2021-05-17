@@ -1,0 +1,103 @@
+﻿@inject IPlaceService _placeService;
+@inject IJSRuntime _runtime;
+@inject NavigationManager _navigationManager;
+@inject IPostService _postService;
+@inject AuthenticationStateProvider _provider;
+
+@page "/NewsFeed"
+@using Routeorama.Models.Post
+@using Routeorama.Data
+@using Microsoft.AspNetCore.Hosting
+@using Routeorama.Authentication
+
+<div class="page">
+    <AuthorizeView>
+        <NotAuthorized>
+            <Login/>
+        </NotAuthorized>
+        <Authorized>
+            <Nav/>
+            <!---------------------------------------------------------------------------------------------------------->
+            <div class="feed">
+                @if (_filteredPosts != null)
+                {
+                    <br/>
+                    @foreach (var post in _filteredPosts)
+                    {
+                        <PostComponent Post="@post"/>
+                    }
+                }
+            </div>
+            <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
+                <div style="background-color: gray; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts"> 
+                    Load more posts
+                </div>
+            </div>
+            <!---------------------------------------------------------------------------------------------------------->
+        </Authorized>
+    </AuthorizeView>
+</div>
+
+
+@code {
+    private IList<Post>? fetchedPosts = new List<Post>();
+    private IList<Post>? _filteredPosts = new List<Post>();
+    
+    private int userId;
+    private string _errorLabel = "";
+    
+    protected override async Task OnInitializedAsync(){
+        try
+        {
+            userId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
+            /* If we want to have location for the user in his/her area
+                try
+                {
+                    await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+                }
+                catch (NullReferenceException e)
+                {
+                    _errorLabel = "Could not fetch the weather.";
+                }
+            */
+           
+            PostContainer container = await _postService.GetPostsForNewsFeed(userId);
+            
+            if (container != null)
+            {
+                fetchedPosts = container.posts;
+                Filter();
+            }
+            
+        }
+        catch (NullReferenceException ex)
+        {
+            Console.WriteLine(ex);
+        }
+    }
+    
+    private void Filter()
+    {
+        _filteredPosts = fetchedPosts;
+    }
+    
+    private async Task FetchMorePosts()
+    {
+        PostContainer container = null;
+        if (_filteredPosts == null)
+        {
+            container = await _postService.LoadMorePostsForNewsFeed(userId, 0);
+        }
+        else
+        {
+            container = await _postService.LoadMorePostsForNewsFeed(userId, _filteredPosts.Last().postId);
+        }
+        if (container.posts != null)
+        {
+            foreach (var post in container.posts)
+            {
+                _filteredPosts?.Add(post);
+            }
+        }
+    }
+}
