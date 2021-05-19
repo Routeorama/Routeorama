@@ -2,39 +2,59 @@
 @using Routeorama.Authentication
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<nav class="navigation">
-    <ul>
-        <li>
-            <a href="/NewsFeed">Logo</a>
-        </li>
-        <li>
-            <a>Search bar</a>
-        </li>
-        <AuthorizeView>
-            <Authorized>
-                <li style="float:right">
-                    <a href="/" @onclick="PerformLogout">
-                        Log out
-                    </a>
-                </li>
-                <li style="float:right">
-                    <a href="/">Profile</a>
-                </li>
-                <li style="float:right">
-                    <a href="/createPlace">Create a Place</a>
-                </li>
-            </Authorized>
-            <NotAuthorized>
-                <li style="float:right">
-                    <a href="/login">Login</a>
-                </li>
-                <li style="float:right">
-                    <a href="/register">Sign up</a>
-                </li>
-            </NotAuthorized>
-        </AuthorizeView>
-    </ul>
-</nav>
+@* <nav class="navigation"> *@
+@*     <ul> *@
+@*         <li> *@
+@*             <a href="/NewsFeed">Logo</a> *@
+@*         </li> *@
+@*         <li> *@
+@*             <a>Search bar</a> *@
+@*         </li> *@
+@*         <AuthorizeView> *@
+@*             <Authorized> *@
+@*                 <li style="float:right"> *@
+@*                     <a href="/" @onclick="PerformLogout"> *@
+@*                         Log out *@
+@*                     </a> *@
+@*                 </li> *@
+@*                 <li style="float:right"> *@
+@*                     <a href="/">Profile</a> *@
+@*                 </li> *@
+@*                 <li style="float:right"> *@
+@*                     <a href="/createPlace">Create a Place</a> *@
+@*                 </li> *@
+@*             </Authorized> *@
+@*             <NotAuthorized> *@
+@*                 <li style="float:right"> *@
+@*                     <a href="/login">Login</a> *@
+@*                 </li> *@
+@*                 <li style="float:right"> *@
+@*                     <a href="/register">Sign up</a> *@
+@*                 </li> *@
+@*             </NotAuthorized> *@
+@*         </AuthorizeView> *@
+@*     </ul> *@
+@* </nav> *@
+<div class="nav-container">
+    <div class="nav-logo">
+        
+    </div>
+    <div class="nav-main">
+        <div class="nav-main-links">
+            <a>Home</a>
+            <a>Map</a>
+            <a>Contact</a>
+        </div>
+        <div class="nav-main-search">
+            <img src="icons/loupe.svg" width="25" height="25" alt="search">
+        </div>
+        <div class="nav-main-social">
+            <img src="icons/facebook.svg" alt="facebook">
+            <img src="icons/envelope.svg" alt="envelope">
+            <img src="icons/instagram.svg" alt="instagram">
+        </div>
+    </div>
+</div>
 
 @code {
 

@@ -1,60 +1,73 @@
-﻿.navigation{
-    
+﻿.nav-container{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
-.navigation ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-.navigation li {
-    float: left;
-}
-
-.navigation li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover:not(.active) {
-    background-color: #111;
-}
-
-.navigation ul li div{
+.nav-logo{
+    background-image: url("icons/linux.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 25px;
     cursor: pointer;
 }
 
-ul #logo{
+.nav-main{
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
+    flex-direction: row;
 }
 
-ul #search{
+.nav-main-links{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-ul #profile{
+.nav-main-links a{
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.nav-main-links a:hover{
+    border-bottom: 2px solid dodgerblue;
+}
+
+
+.nav-main-search{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s ease-in-out;
 }
 
-.login-button{
-    margin-right: 10px;
+.nav-main-social img{
+    margin-left: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 
-.signin-button{
-    margin-right: 10px;
+.nav-main-search:hover{
+    background-color: rgba(100,100,100,0.3);
 }
+
+
 
 div #rightSide{
     display: flex;

@@ -247,3 +247,6 @@ C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Sh
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\NewsFeed\NewsFeed.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\NewsFeed\NewsFeed.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\NewsFeed\NewsFeed.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\NewsFeed\NewsFeed.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\NewsFeed\NewsFeed.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\NewsFeed\NewsFeed.razor.rz.scp.css

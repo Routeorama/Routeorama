@@ -258,63 +258,76 @@
     align-content: center;
 }
 /* _content/Routeorama/Shared/Components/Nav/Nav.razor.rz.scp.css */
-.navigation[b-1xueg0a0iu]{
-    
+.nav-container[b-1xueg0a0iu]{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
-.navigation ul[b-1xueg0a0iu] {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-.navigation li[b-1xueg0a0iu] {
-    float: left;
-}
-
-.navigation li a[b-1xueg0a0iu] {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover:not(.active)[b-1xueg0a0iu] {
-    background-color: #111;
-}
-
-.navigation ul li div[b-1xueg0a0iu]{
+.nav-logo[b-1xueg0a0iu]{
+    background-image: url("icons/linux.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 25px;
     cursor: pointer;
 }
 
-ul #logo[b-1xueg0a0iu]{
+.nav-main[b-1xueg0a0iu]{
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
+    flex-direction: row;
 }
 
-ul #search[b-1xueg0a0iu]{
+.nav-main-links[b-1xueg0a0iu]{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-ul #profile[b-1xueg0a0iu]{
+.nav-main-links a[b-1xueg0a0iu]{
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.nav-main-links a:hover[b-1xueg0a0iu]{
+    border-bottom: 2px solid dodgerblue;
+}
+
+
+.nav-main-search[b-1xueg0a0iu]{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s ease-in-out;
 }
 
-.login-button[b-1xueg0a0iu]{
-    margin-right: 10px;
+.nav-main-social img[b-1xueg0a0iu]{
+    margin-left: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 
-.signin-button[b-1xueg0a0iu]{
-    margin-right: 10px;
+.nav-main-search:hover[b-1xueg0a0iu]{
+    background-color: rgba(100,100,100,0.3);
 }
+
+
 
 div #rightSide[b-1xueg0a0iu]{
     display: flex;
