@@ -1,0 +1,40 @@
+﻿@using Routeorama.Data
+@inject IPlaceService _placeService;
+@inject NavigationManager _navigationManager;
+
+@namespace Routeorama.Shared.Components
+
+<RadzenAutoComplete style="margin: 8px 0px 0px 0px;" Placeholder="Search..." Data=@places TextProperty="name" LoadData=@OnLoadData Change=@(args => OnChange(args))/>
+                                                                                                                                   
+@code {
+
+    private IList<Place> places = new List<Place>();
+    
+    private IList<Place> filteredPlaces = new List<Place>();
+
+    void OnChange(object value)
+    {
+        foreach (var place in places)
+        {
+            if(place.name.Equals(value.ToString()))
+            {
+                _navigationManager.NavigateTo($"/channel/{value}");
+            }
+        }
+    }
+
+    async void OnLoadData(LoadDataArgs args)
+    {
+        if (args.Filter != null || args.Filter != "")
+        {
+            places = await _placeService.SearchForPlaces(args.Filter);
+        }
+
+        if (places.Count != 0)
+        {
+            filteredPlaces = places.Where(c => c.name.Contains(args.Filter) || c.name.Contains(args.Filter)).ToList();
+
+            InvokeAsync(StateHasChanged);
+        }
+    }
+}

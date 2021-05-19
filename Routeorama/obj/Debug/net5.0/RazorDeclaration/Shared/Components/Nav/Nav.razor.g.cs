@@ -139,7 +139,7 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Nav\Nav.razor"
+#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Nav\Nav.razor"
 using Routeorama.Authentication;
 
 #line default

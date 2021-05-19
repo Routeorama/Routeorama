@@ -153,7 +153,7 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 32 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Auth\Login.razor"
+#line 29 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Shared\Components\Auth\Login.razor"
        
     private string username;
     private string password;
@@ -165,6 +165,7 @@ using Routeorama.Authentication;
         try
         {
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            NavigationManager.NavigateTo("/NewsFeed");
             username = "";
             password = "";
         }
@@ -172,6 +173,10 @@ using Routeorama.Authentication;
         {
             errorMessage = e.Message;
         }
+    }
+    private void PerformRegister()
+    {
+        NavigationManager.NavigateTo("/register");
     }
 
 #line default

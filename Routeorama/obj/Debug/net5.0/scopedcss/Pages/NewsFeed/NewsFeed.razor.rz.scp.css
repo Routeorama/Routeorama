@@ -1,3 +1,12 @@
+.everything[b-2n7fw7jwce] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: baseline;
+    align-content: center;
+}
+
 .feed[b-2n7fw7jwce]{
     display: flex;
     flex-direction: column;
@@ -5,6 +14,42 @@
     justify-content: center;
     align-items: center;
     align-content: stretch;
-    padding: 0;
-    margin: 0;
+    margin-top: 10px;
+}
+
+.suggestions[b-2n7fw7jwce] {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5px;
+    margin-top: 10px;
+    margin-left: 40px;
+    font-size: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+
+.most-followed-places[b-2n7fw7jwce] {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0px 20px 20px 0px;
+}
+
+.most-liked-places[b-2n7fw7jwce] {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 20px 20px 20px 0px;
+}
+
+.in-one-line[b-2n7fw7jwce] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
 }

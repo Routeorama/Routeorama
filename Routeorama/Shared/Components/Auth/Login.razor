@@ -18,12 +18,9 @@
     </div>
     
     <div class="button-placeholder">
-        <a class="login-button" href="/NewsFeed" @onclick="PerformLogin">
-            Login
-        </a>
-        <a class="register-button" href="/register">
-            Register
-        </a>
+        <br>
+        <RadzenButton style="margin: 0 1rem 1rem 0" Click=@(args => PerformLogin()) Text="Login" ButtonStyle="ButtonStyle.Light"/>
+        <RadzenButton style="margin: 0 1rem 1rem 0" Click=@(args => PerformRegister()) Text="Register" ButtonStyle="ButtonStyle.Light"/>
     </div>
     
     <div class="errorLabel">@errorMessage</div>
@@ -40,6 +37,7 @@
         try
         {
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            NavigationManager.NavigateTo("/NewsFeed");
             username = "";
             password = "";
         }
@@ -47,5 +45,9 @@
         {
             errorMessage = e.Message;
         }
+    }
+    private void PerformRegister()
+    {
+        NavigationManager.NavigateTo("/register");
     }
 }

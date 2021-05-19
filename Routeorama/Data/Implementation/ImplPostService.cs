@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Routeorama.Models;
 using Routeorama.Models.Post;
 
 namespace Routeorama.Data.Implementation
@@ -181,7 +183,6 @@ namespace Routeorama.Data.Implementation
             {
                 Console.WriteLine("Could not fetch posts for news feed " + e);
             }
-
             return null;
         }
         public async Task<PostContainer> LoadMorePostsForNewsFeed(int userId, int postId)

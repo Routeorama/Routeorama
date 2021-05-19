@@ -9,5 +9,7 @@
         public int placeId { get; set; }
         public int userId { get; set; } 
         public string photoType { get; set; }
+        
+        public string Creator { get; set; }
     }
 }

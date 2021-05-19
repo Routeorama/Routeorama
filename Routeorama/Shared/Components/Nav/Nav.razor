@@ -1,5 +1,5 @@
-﻿@inject NavigationManager _navigationManager
-@using Routeorama.Authentication
+﻿@using Routeorama.Authentication
+@inject NavigationManager _navigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <nav class="navigation">
@@ -8,7 +8,7 @@
             <a href="/NewsFeed">Logo</a>
         </li>
         <li>
-            <a>Search bar</a>
+            <Search/>
         </li>
         <AuthorizeView>
             <Authorized>

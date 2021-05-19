@@ -179,5 +179,78 @@ namespace Routeorama.Data.Implementation
 
             return success;
         }
+        public async Task<List<string>> GetMostFollowedPlaces()
+        {
+            _client = new HttpClient();
+
+            var responseMessage = await _client.GetAsync($"http://localhost:8080/auth/place/getmostfollowed");
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
+
+            var responseContent = await responseMessage.Content.ReadAsStringAsync();
+
+            var mostFollowed = JsonSerializer.Deserialize<List<string>>(responseContent, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+
+            if (mostFollowed == null) throw new Exception("Fetching mot followed places went wrong");
+            
+            return mostFollowed;
+        }
+        public async Task<List<string>> GetMostLikedPlaces()
+        {
+            _client = new HttpClient();
+
+            var responseMessage = await _client.GetAsync($"http://localhost:8080/auth/place/getmostliked");
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
+
+            var responseContent = await responseMessage.Content.ReadAsStringAsync();
+
+            var mostLiked = JsonSerializer.Deserialize<List<string>>(responseContent, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+
+            if (mostLiked == null) throw new Exception("Fetching mot followed places went wrong");
+            
+            return mostLiked;
+        }
+        public async Task<List<Place>> SearchForPlaces(string filter)
+        {
+            _client = new HttpClient();
+            var responseMessage = new HttpResponseMessage();
+
+            var body = new StringContent(filter, Encoding.UTF8, "application/json");
+            
+            try
+            {
+                responseMessage =
+                    await _client.PostAsync($"http://localhost:8080/auth/place/search", body);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            var content = await responseMessage.Content.ReadAsStringAsync();
+            List<Place> success = null;
+            try
+            {
+                success = JsonSerializer.Deserialize<List<Place>>(content, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
+            return success;
+        }
     }
 }

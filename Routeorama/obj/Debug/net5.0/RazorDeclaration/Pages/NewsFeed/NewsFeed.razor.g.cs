@@ -139,28 +139,21 @@ using Blazored.Modal.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
+#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
 using Routeorama.Models.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
+#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
 using Routeorama.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
-using Microsoft.AspNetCore.Hosting;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
+#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
 using Routeorama.Authentication;
 
 #line default
@@ -175,18 +168,22 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 42 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
+#line 114 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
        
-    private IList<Post>? fetchedPosts = new List<Post>();
-    private IList<Post>? _filteredPosts = new List<Post>();
-    
+    private IList<Post> fetchedPosts = new List<Post>();
+    private IList<Post> _filteredPosts = new List<Post>();
+    private IList<string> mostFollowedPlaces = new List<string>();
+    private IList<string> mostLikedPlaces = new List<string>();
+
     private int userId;
     private string _errorLabel = "";
-    
-    protected override async Task OnInitializedAsync(){
+
+    protected override async Task OnInitializedAsync()
+    {
         try
         {
             userId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
+
             /* If we want to have location for the user in his/her area
                 try
                 {
@@ -197,27 +194,35 @@ using Routeorama.Authentication;
                     _errorLabel = "Could not fetch the weather.";
                 }
             */
-           
+
             PostContainer container = await _postService.GetPostsForNewsFeed(userId);
+            mostFollowedPlaces = await _placeService.GetMostFollowedPlaces();
+            mostLikedPlaces = await _placeService.GetMostLikedPlaces();
+            
+            /*for (var x = 0; x < mostFollowedPlaces.Count; x++)
+            {
+                if (x % 2 == 0) { Console.WriteLine(mostFollowedPlaces[x]); }
+            }
+            Console.WriteLine(mostLikedPlaces);*/
             
             if (container != null)
             {
                 fetchedPosts = container.posts;
                 Filter();
             }
-            
+            StateHasChanged();
         }
         catch (NullReferenceException ex)
         {
             Console.WriteLine(ex);
         }
     }
-    
+
     private void Filter()
     {
         _filteredPosts = fetchedPosts;
     }
-    
+
     private async Task FetchMorePosts()
     {
         PostContainer container = null;
@@ -237,6 +242,11 @@ using Routeorama.Authentication;
             }
         }
     }
+    private void GoToPlace(string placeURL)
+    {
+        Console.WriteLine(placeURL);
+        _navigationManager.NavigateTo($"/channel/{placeURL}");
+    }
 
 #line default
 #line hidden
@@ -244,7 +254,6 @@ using Routeorama.Authentication;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _provider { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPostService _postService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager _navigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime _runtime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPlaceService _placeService { get; set; }
     }
 }
