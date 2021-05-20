@@ -41,8 +41,8 @@
     </div>
     <div class="nav-main">
         <div class="nav-main-links">
-            <a>Home</a>
-            <a>Map</a>
+            <a @onclick="NavigateToMain">Home</a>
+            <a @onclick="NavigateToCreatePlace">Map</a>
             <a>Contact</a>
         </div>
         <div class="nav-main-search">
@@ -74,7 +74,7 @@
     {
         _navigationManager.NavigateTo("/");
     }
-    private void CreateAPlace()
+    private void NavigateToCreatePlace()
     {
         _navigationManager.NavigateTo("/createPlace");
     }
