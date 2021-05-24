@@ -104,7 +104,7 @@
                     {
                         <div class="comment-container">
                             <p>
-                                @comment.displayName @comment.timestamp<br>
+                                @comment.displayName @comment.timestamp.Substring(0, 9) @comment.timestamp.Substring(11, 5)<br>
                                 @comment.content
                             </p>
                         </div>
