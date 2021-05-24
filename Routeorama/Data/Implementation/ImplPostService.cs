@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Routeorama.Models;
 using Routeorama.Models.Post;
 
 namespace Routeorama.Data.Implementation
@@ -210,9 +208,103 @@ namespace Routeorama.Data.Implementation
             }
             catch (Exception e)
             {
-                Console.WriteLine("Could not fetch load more posts " + e);
+                Console.WriteLine("Could not load more posts " + e);
             }
 
+            return null;
+        }
+
+        public async Task Comment(Comment newComment)
+        {
+            client = new HttpClient();
+
+            string commentAsJson = JsonSerializer.Serialize(newComment);
+
+            StringContent content = new StringContent(
+                commentAsJson, Encoding.UTF8, "application/json"
+            );
+            //TODO add path
+            HttpResponseMessage responseMessage =
+                await client.PostAsync("http://localhost:8080/post/comment", content);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
+        }
+
+        public async Task DeleteComment(Comment comment) {
+            client = new HttpClient();
+
+            string commentAsJson = JsonSerializer.Serialize(comment);
+
+            StringContent content = new StringContent(
+                commentAsJson, Encoding.UTF8, "application/json"
+            );
+            //TODO add path
+            HttpResponseMessage responseMessage =
+                await client.PostAsync("http://localhost:8080/post/deletecomment", content);
+
+            if (!responseMessage.IsSuccessStatusCode)
+                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
+        }
+
+        public async Task<CommentContainer> GetCommentsForPost(int postId)
+        {
+            client = new HttpClient();
+
+            var contentAsJson = JsonSerializer.Serialize(postId);
+
+            var content = new StringContent(contentAsJson, Encoding.UTF8, "application/json");
+
+            try
+            {
+                //TODO add path
+                var response = await client.PostAsync("http://localhost:8080/post/getcommentforpost", content);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var returnedComments = JsonSerializer.Deserialize<CommentContainer>(responseContent, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+
+                if (returnedComments != null)
+                {
+                    return returnedComments;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Could not fetch comments for the post " + e);
+            }
+            return null;
+        }
+
+        public async Task<CommentContainer> LoadMoreComments(int postId, Comment comment)
+        {
+            client = new HttpClient();
+
+            //var array = new object[] {postId, comment};
+            var contentAsJson = JsonSerializer.Serialize(comment);
+
+            var content = new StringContent(contentAsJson, Encoding.UTF8, "application/json");
+
+            try
+            {
+                //TODO add path
+                var response = await client.PostAsync("http://localhost:8080/post/loadmorecomments", content);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var returnedComments = JsonSerializer.Deserialize<CommentContainer>(responseContent, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+
+                if (returnedComments != null)
+                {
+                    return returnedComments;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Could not fetch more comments for the post " + e);
+            }
             return null;
         }
     }

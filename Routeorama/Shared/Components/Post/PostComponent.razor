@@ -2,6 +2,7 @@
 @using Routeorama.Data
 @using Routeorama.Authentication
 @using System.Text.RegularExpressions
+@using Microsoft.AspNetCore.Mvc.ModelBinding
 @inject IPostService _postService;
 @inject AuthenticationStateProvider _provider;
 @inject NavigationManager _navigationManager;
@@ -44,7 +45,8 @@
                     }
                     else
                     {
-                        <div>@str &nbsp;</div>;
+                        <div>@str &nbsp;</div>
+                        ;
                     }
                 }
             </div>
@@ -72,16 +74,53 @@
                 <img src="icons/@_likedIcon" width="18" height="18">
                 <span>@_likeText</span>
             </div>
-            <div class="post-comment-button">
+            <div class="post-comment-button" @onclick="ShowCommentComponent">
                 <img src="icons/comment.svg" width="18" height="18">
                 <span>Comment</span>
             </div>
         </div>
     </div>
+
+    <div class="comment-section">
+        @if (_commentComponent)
+        {
+            <RadzenTextBox Placeholder="Share your thoughts..." MaxLength="80" Style="width: 70%" Change=@(args => OnChange(args))/>
+            <RadzenButton Click=@(Comment) Style="width: 20%" Text="Comment"></RadzenButton>
+            <p>@errorLabel</p>
+            if (filteredComments.Count > 0)
+            {
+                foreach (var comment in filteredComments)
+                {
+                    if (comment.userId.Equals(((CustomAuthenticationStateProvider) _provider).GetUserId()))
+                    {
+                        <div class="comment-container">
+                            <p>
+                                @comment.displayName @comment.timestamp.Substring(0, 9) @comment.timestamp.Substring(11, 5) <button @onclick="@(() => DeleteComment(comment))">x</button><br>
+                                @comment.content
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="comment-container">
+                            <p>
+                                @comment.displayName @comment.timestamp<br>
+                                @comment.content
+                            </p>
+                        </div>
+                    }
+                }
+                if (!commentContainer.Equals(null) && hasMoreComments){
+                    <RadzenButton Click="LoadMoreComments" Style="width: 20%" Text="Load more comments">Load</RadzenButton>
+                }
+            }
+        }
+    </div>
 </div>
 
-@code {
 
+@code
+{
     [Parameter]
     public Post Post { get; set; }
 
@@ -89,14 +128,24 @@
     private string _likedIcon = "like.svg";
     private string _likeText = "Like";
     private string _color = "white";
-    private string[] _description = new []{""};
+    private string[] _description = new[] {""};
+
+    private bool _commentComponent;
+    private string commentContent;
+
+    private IList<Comment> fetchedComments = new List<Comment>();
+    private IList<Comment> filteredComments = new List<Comment>();
+
+    private CommentContainer commentContainer;
+
+    private bool hasMoreComments;
+    private string errorLabel;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
             _likeState = await _postService.GetLikeState(Post.postId, ((CustomAuthenticationStateProvider) _provider).GetUserId());
-            //Console.WriteLine(_likeState);
             SetLikeState();
             ParseTags(Post.content);
         }
@@ -109,15 +158,6 @@
 
     private void ParseTags(string description)
     {
-        // var regex = new Regex(@"#\w+");
-        // var matches = regex.Matches(description);
-        // foreach (var match in matches)
-        // {
-        //     description = description.Replace(match.ToString() ?? string.Empty, "<span>" + match + "</span>");
-        // }
-        // Console.WriteLine(description);
-        // _description = description;
-
         var a = description.Split(' ');
         _description = a;
     }
@@ -138,17 +178,13 @@
                 Console.WriteLine("Post failed to be deleted! " + e);
             }
         }
-        //else
-        //{
-        //    Console.WriteLine("Clicked");
-        //}
     }
 
     async void Like()
     {
         _likeState = !_likeState;
         SetLikeState();
-        await _postService.LikePost( Post.postId, ((CustomAuthenticationStateProvider) _provider).GetUserId(), _likeState);
+        await _postService.LikePost(Post.postId, ((CustomAuthenticationStateProvider) _provider).GetUserId(), _likeState);
         StateHasChanged();
     }
 
@@ -168,4 +204,99 @@
         }
     }
 
+    private async Task ShowCommentComponent()
+    {
+        if (_commentComponent)
+        {
+            _commentComponent = false;
+        }
+        else
+        {
+            commentContainer = await _postService.GetCommentsForPost(Post.postId);
+            if (!commentContainer.Equals(null))
+            {
+                fetchedComments = commentContainer.comments;
+                hasMoreComments = commentContainer.hasMoreComments;
+                Filter();
+            }
+
+            _commentComponent = true;
+        }
+    }
+
+    private void Filter()
+    {
+        filteredComments = fetchedComments;
+    }
+
+    private async void Comment()
+    {
+        Console.WriteLine(commentContent);
+        if (commentContent.Length == 0)
+        {
+            errorLabel = "Comment too short.";
+        }
+        else
+        {
+            Comment newComment = new Comment
+            {
+                userId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
+                displayName = ((CustomAuthenticationStateProvider) _provider).GetDisplayName(),
+                postId = Post.postId,
+                content = commentContent,
+                timestamp = null
+            };
+            await _postService.Comment(newComment);
+            
+            commentContainer = await _postService.GetCommentsForPost(Post.postId);
+            if (!commentContainer.Equals(null))
+            {
+                fetchedComments = commentContainer.comments;
+                hasMoreComments = commentContainer.hasMoreComments;
+                Filter();
+            }
+            StateHasChanged();
+            commentContent = "";
+        }
+    }
+
+
+    private async void DeleteComment(Comment comment)
+    {
+        await _postService.DeleteComment(comment);
+        commentContainer = await _postService.GetCommentsForPost(Post.postId);
+        if (!commentContainer.Equals(null))
+        {
+            fetchedComments = commentContainer.comments;
+            hasMoreComments = commentContainer.hasMoreComments;
+            Filter();
+        }
+        StateHasChanged();
+    }
+
+    private void OnChange(string args)
+    {
+        commentContent = args;
+        args = "";
+    }
+
+    private async void LoadMoreComments()
+    {
+        CommentContainer container = null;
+        if (filteredComments == null)
+        {
+            container = await _postService.LoadMoreComments(Post.postId, null);
+        }
+        else{
+            container = await _postService.LoadMoreComments(Post.postId, filteredComments.Last());
+        }
+        if (container.comments != null)
+        {
+            foreach (var comment in container.comments){
+                filteredComments?.Add(comment);
+            }
+            hasMoreComments = container.hasMoreComments;
+            StateHasChanged();
+        }
+    }
 }

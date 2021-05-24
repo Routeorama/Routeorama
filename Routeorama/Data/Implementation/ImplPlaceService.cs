@@ -183,8 +183,9 @@ namespace Routeorama.Data.Implementation
         {
             _client = new HttpClient();
 
-            var responseMessage = await _client.GetAsync($"http://localhost:8080/auth/place/getmostfollowed");
-
+            var responseMessage = await _client.GetAsync("http://localhost:8080/auth/place/getmostfollowed");
+            
+            
             if (!responseMessage.IsSuccessStatusCode)
                 throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
 

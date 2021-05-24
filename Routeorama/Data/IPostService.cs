@@ -14,5 +14,9 @@ namespace Routeorama.Data {
         Task LikePost(int postId, int userId, bool action);
         Task<PostContainer> GetPostsForNewsFeed(int userId);
         Task<PostContainer> LoadMorePostsForNewsFeed(int userId, int postId);
+        Task Comment(Comment newComment);
+        Task DeleteComment(Comment comment);
+        Task<CommentContainer> GetCommentsForPost(int postId);
+        Task<CommentContainer> LoadMoreComments(int postId, Comment comment);
     }
 }

@@ -129,5 +129,9 @@ namespace Routeorama.Authentication
         public int GetUserId() {
             return cachedUser?.UserId ?? 0;
         }
+        
+        public string GetDisplayName() {
+            return cachedUser?.displayName;
+        }
     }
 }
