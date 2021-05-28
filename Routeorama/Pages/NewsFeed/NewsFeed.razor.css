@@ -1,55 +1,101 @@
-﻿.everything {
+﻿.main-feed {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: baseline;
-    align-content: center;
-}
-
-.feed{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    align-content: stretch;
-    margin-top: 10px;
+    height: 92vh;
+    width: 100%;
 }
 
-.suggestions {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 5px;
-    margin-top: 10px;
-    margin-left: 40px;
-    font-size: 20px;
-    
+.main-feed-left, .main-feed-right, .main-feed-center {
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+    width: 29%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.main-feed-center {
+    width: 42%;
+    display: flex;
+    overflow: scroll;
+}
+
+.main-feed ::-webkit-scrollbar {
+    display: none;
+}
+
+.main-feed-center {
+    display: flex;
     align-items: center;
-    align-content: center;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.main-feed-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .most-followed-places {
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 0px 20px 20px 0px;
-}
-
-.most-liked-places {
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 20px 20px 20px 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 250px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    color: black;
+    padding: 10px;
 }
 
 .in-one-line {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: .2s ease-in-out;
+    cursor: pointer;
 }
+
+.most-followed-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.most-followed-name {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.in-one-line:hover{
+    background-color: rgba(50,50,50,0.2);
+}
+
+.most-followed-title {
+    font-size: 20px;
+    color: #e57261;
+    width: 100%;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.most-followed-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.most-followed-count img {
+    margin-left: 5px;
+    width: 16px;
+    height: 16px;
+}
+
+

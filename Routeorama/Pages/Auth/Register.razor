@@ -1,101 +1,122 @@
 ﻿@page "/register"
 @using Routeorama.Authentication
 @using System.Globalization
-@inject AuthenticationStateProvider AuthenticationStateProvider
-@inject NavigationManager NavigationManager
+@using System.Threading
+@inject AuthenticationStateProvider _authenticationStateProvider
+@inject NavigationManager _navigationManager
 
-<div class="registercontainer">
-    <h3>Register</h3>
+<div class="register-container">
+    <div class="register-inner">
+        <div class="register-title">Register</div>
+        <div class="register-group">
+            <img alt="username" src="icons/user.svg">
+            <input class="register-input" type="text" placeholder="Username" @bind-value="_username"/>
+        </div>
+        <div class="register-group">
+            <img alt="email" src="icons/envelope.svg">
+            <input class="register-input" type="text" placeholder="Email" @bind-value="_email"/>
+        </div>
+        <div class="register-group">
+            <img alt="password" src="icons/padlock.svg">
+            <input class="register-input" type="password" placeholder="Password" @bind-value="_password"/>
+        </div>
+        <div class="register-group">
+            <img alt="repeat password" src="icons/padlock.svg">
+            <input class="register-input" type="password" placeholder="Repeat Password" @bind-value="_repeatPassword"/>
+        </div>
+        <div class="register-group">
+            <img alt="display name" src="icons/name.svg">
+            <input class="register-input" type="text" placeholder="Display name" @bind-value="_displayName"/>
+        </div>
+        <div class="register-group">
+            <label for="file-upload" class="register-input-label">
+                <img alt="profile picture" src="icons/image.svg"> <span>Choose picture</span>
+            </label>
+            <InputFile id="file-upload" OnChange="@OnFileSelection"></InputFile>
+        </div>
+        <div class="register-group">
+            <img alt="birthday" src="icons/birthday-cake.svg">
+            <RadzenDatePicker @bind-Value=@_value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "MM/dd/yyyy")) />
+        </div>
 
-    <label class="registerlabel">Username</label>
-    <div class="username-placeholder">
-        <input type="text" placeholder="user name" @bind-value="username"/>
+        <div class="register-actions">
+            <button class="register-button" @onclick="PerformRegister">
+                Register
+            </button>
+            <button class="register-button" @onclick="Back">
+                Go back
+            </button>
+        </div>
+
+        <div class="errorLabel">@_errorMessage</div>
     </div>
-
-    <label class="registerlabel">Email</label>
-    <div class="email-placeholder">
-        <input type="email" placeholder="email" @bind-value="email"/>
-    </div>
-
-    <label class="registerlabel">Password</label>
-    <div class="password-placeholder">
-        <input type="password" placeholder="password" @bind-value="password"/>
-    </div>
-
-    <label class="registerlabel">Repeat Password</label>
-    <div class="repeatPassword-placeholder">
-        <input type="password" placeholder="repeat password" @bind-value="repeatPassword"/>
-    </div>
-
-    <label class="registerlabel">DisplayName</label>
-    <div class="password-placeholder">
-        <input type="displayName" placeholder="displayName" @bind-value="displayName"/>
-    </div>
-
-    <label class="registerlabel">DOB</label>
-    <div class="dob-placeholder">
-        <h4>DatePicker</h4>
-        <RadzenDatePicker @bind-Value=@value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "MM/dd/yyyy")) />
-    </div>
-
-    <div class="button-placeholder">
-        <a class="register-button" href="/register" @onclick="PerformRegister">
-            Register
-        </a>
-        <a class="goBack-button" href="/">
-            Go back
-        </a>
-    </div>
-
-    <div class="errorLabel">@errorMessage</div>
 </div>
 
 
 @code {
-    private string username = "";
-    private string password = "";
-    private string repeatPassword = "";
-    private string displayName = "";
-    private string dateOfBirth = "";
-    private string email = "";
-    private string errorMessage = "";
-    private DateTime? value = DateTime.Now;
-    
+    private string _username = "";
+    private string _password = "";
+    private string _repeatPassword = "";
+    private string _displayName = "";
+    private string _dateOfBirth = "";
+    private string _email = "";
+    private string _errorMessage = "";
+    private DateTime? _value = DateTime.Now;
+    private byte[] _byteArray = {};
+    private string _imageType = "";
+
     private async Task PerformRegister()
     {
-        errorMessage = "";
+        _errorMessage = "";
         try
         {
-            User registerUser = new User{
-                displayName = displayName, 
-                dob = dateOfBirth, 
-                password = password, 
-                username = username, 
-                email = email, 
-                role = RoleEnum.user
+            var registerUser = new User
+            {
+                displayName = _displayName,
+                dob = _dateOfBirth,
+                password = _password,
+                username = _username,
+                email = _email,
+                role = RoleEnum.user,
+                profilePicture = _byteArray,
+                imageType = _imageType
             };
 
-            if (!password.Equals(repeatPassword))
+            if (!_password.Equals(_repeatPassword))
                 throw new Exception("Passwords do not match.");
-            
-            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Register(registerUser);
 
-            username = "";
-            password = "";
-            displayName = "";
-            dateOfBirth = "";
-            NavigationManager.NavigateTo("/");
+            await ((CustomAuthenticationStateProvider) _authenticationStateProvider).Register(registerUser);
+
+            _username = "";
+            _password = "";
+            _displayName = "";
+            _dateOfBirth = "";
+            _navigationManager.NavigateTo("/");
         }
         catch (Exception e)
         {
-            errorMessage = e.Message;
+            _errorMessage = e.Message;
         }
     }
 
     private void OnChange(DateTime? args, string datepicker, string mmDdYyyy)
     {
-        if (value != null) dateOfBirth = value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
+        if (_value != null) _dateOfBirth = _value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
+    }
+
+    private void Back()
+    {
+        _navigationManager.NavigateTo("/");
     }
     
+    private async void OnFileSelection(InputFileChangeEventArgs e)
+    {
+        var imgFile = e.File;
+        _imageType = imgFile.ContentType;
+        var buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream(512000000, new CancellationToken(default)).ReadAsync(buffers);
+        _byteArray = buffers;
+    }
+
 
 }

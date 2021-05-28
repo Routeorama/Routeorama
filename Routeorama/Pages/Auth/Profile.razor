@@ -1,0 +1,176 @@
+﻿@page "/profile"
+@using Routeorama.Authentication
+@using System.Globalization
+@using System.Threading
+@inject AuthenticationStateProvider _provider;
+@inject NavigationManager _navigationManager;
+
+<Nav/>
+<div class="profile">
+    <div class="profile-card">
+        <div class="profile-card-up">
+            @if (_currentUser.profilePicture != null)
+            {
+                <div class="profile-image" style="background-image: url(@("data:" + _currentUser.imageType + ";base64," + Convert.ToBase64String(_currentUser.profilePicture))) ">
+                    <label for="profile-update">
+                        <div class="profile-image-inner">
+                            <img alt="" src="icons/image.svg">
+                        </div>
+                    </label>
+                    <InputFile id="profile-update" OnChange="@OnFileSelection"></InputFile>
+                </div>
+            }
+            else
+            {
+                <div class="profile-image" style="background-image: url('data:image/jpeg;base64,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')">
+                    <label for="profile-update">
+                        <div class="profile-image-inner">
+                            <img alt="" src="icons/image.svg">
+                        </div>
+                    </label>
+                    <InputFile id="profile-update" OnChange="@OnFileSelection"></InputFile>
+                </div>
+            }
+            <div class="profile-owner">
+                @_currentUser.displayName
+            </div>
+            <div class="profile-data">
+                <div class="profile-data-group">
+                    <img alt="" src="icons/user.svg">
+                    @_currentUser.username
+                </div>
+                <div class="profile-data-group">
+                    <img alt="" src="icons/envelope.svg">
+                    @_currentUser.email
+                </div>
+                <div class="profile-data-group">
+                    <img alt="" src="icons/birthday-cake.svg">
+                    @_currentUser.dob
+                </div>
+            </div>
+        </div>
+        <div class="profile-card-down">
+            <div class="profile-edit-button" @onclick="OpenModal">
+                Edit
+                <img alt="" src="icons/edit.svg">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="profile-edit-modal @_open">
+    <div class="profile-edit-modal-inner">
+        <div class="profile-edit-modal-top">
+            <div class="profile-edit-modal-title">
+                Edit profile
+            </div>
+            <div class="profile-edit-close-button" @onclick="CloseModal">
+                <img alt="" width="16" height="16" src="icons/close.svg">
+            </div>
+        </div>
+        <div class="profile-edit-modal-group">
+            <div class="profile-edit-modal-input">
+                <div>
+                    Username
+                </div>
+                <input type="text" id="username" placeholder="New username.." @bind-value="_username">
+            </div>
+            <div class="profile-edit-modal-input">
+                <div>
+                    Display name
+                </div>
+                <input type="text" id="display-name" placeholder="New display name.." @bind-value="_displayName">
+            </div>
+            <div class="profile-edit-modal-input">
+                <div>
+                    Email
+                </div>
+                <input type="text" id="email" placeholder="New email.." @bind-value="_email">
+            </div>
+            <div class="profile-edit-modal-input">
+                <div>
+                    Password
+                </div>
+                <input type="password" id="password" placeholder="New password.." @bind-value="_password">
+            </div>
+            <div class="profile-edit-modal-input">
+                <div>
+                    Date of birth
+                </div>
+                <RadzenDatePicker @bind-Value=@_value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "MM/dd/yyyy")) />
+            </div>
+        </div>
+        <div class="profile-edit-modal-actions">
+            <div class="profile-save-changes" @onclick="SaveChanges">
+                Save
+            </div>
+            <div class="profile-cancel-changes" @onclick="CloseModal">
+                Cancel
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private User _currentUser;
+    private string _username;
+    private string _password;
+    private string _email;
+    private string _displayName;
+    private string _dateOfBirth;
+    private DateTime? _value = DateTime.Now;
+    private byte[] _byteArray = {};
+    private string _imageType = "";
+    private string _open = ".";
+    private bool _isModalOpen = false;
+
+    protected override void OnInitialized()
+    {
+        _currentUser = ((CustomAuthenticationStateProvider) _provider).GetUser();
+    }
+
+    private void OnChange(DateTime? args, string datepicker, string mmDdYyyy)
+    {
+        if (_value != null) _dateOfBirth = _value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
+    }
+
+    private async void OnFileSelection(InputFileChangeEventArgs e)
+    {
+        var imgFile = e.File;
+        _imageType = imgFile.ContentType;
+        var buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream(512000000, new CancellationToken(default)).ReadAsync(buffers);
+        _byteArray = buffers;
+    }
+
+    private void OpenModal()
+    {
+        if (_isModalOpen) return;
+        _open = "open";
+        _isModalOpen = true;
+    }
+
+    private void CloseModal()
+    {
+        if(!_isModalOpen) return;
+        _open = ".";
+        _isModalOpen = false;
+    }
+
+    private async void SaveChanges()
+    {
+        CloseModal();
+        var user = new User()
+        {
+            displayName = _displayName,
+            dob = _dateOfBirth,
+            email = _email,
+            imageType = _imageType,
+            password = _password,
+            profilePicture = _byteArray,
+            role = RoleEnum.user,
+            UserId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
+            username = _username
+        };
+        await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
+    }
+}

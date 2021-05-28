@@ -1,61 +1,60 @@
 ﻿@using Routeorama.Authentication
 @inject NavigationManager _navigationManager
-@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject AuthenticationStateProvider _authenticationStateProvider
 
-<nav class="navigation">
-    <ul>
-        <li>
-            <a href="/NewsFeed">Logo</a>
-        </li>
-        <li>
-            <Search/>
-        </li>
-        <AuthorizeView>
-            <Authorized>
-                <li style="float:right">
-                    <a href="/" @onclick="PerformLogout">
-                        Log out
-                    </a>
-                </li>
-                <li style="float:right">
-                    <a href="/">Profile</a>
-                </li>
-                <li style="float:right">
-                    <a href="/createPlace">Create a Place</a>
-                </li>
-            </Authorized>
-            <NotAuthorized>
-                <li style="float:right">
-                    <a href="/login">Login</a>
-                </li>
-                <li style="float:right">
-                    <a href="/register">Sign up</a>
-                </li>
-            </NotAuthorized>
-        </AuthorizeView>
-    </ul>
-</nav>
+<div class="navigation">
+    <div class="navigation-left">
+        <div class="logo" @onclick="NavigateToFeed">
+            R
+        </div>
+        <Search/>
+    </div>
+    <div class="navigation-center">
+        <div class="nav-img-container" @onclick="NavigateToProfile">
+            <img alt="profile page" src="icons/user.svg">
+        </div>
+        <div class="nav-img-container" @onclick="CreateAPlace">
+            <img alt="map page" src="icons/map.svg">
+        </div>
+    </div>
+    <div class="navigation-right">
+        <div class="nav-img-container" @onclick="PerformLogout">
+            <img alt="logout button" src="icons/logout.svg">
+        </div>
+    </div>
+</div>
 
 @code {
 
-    public async Task PerformLogout()
+    private void PerformLogout()
     {
-        ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+        ((CustomAuthenticationStateProvider) _authenticationStateProvider).Logout();
+        _navigationManager.NavigateTo("/");
     }
+
     private void NavigateToLogin()
     {
         _navigationManager.NavigateTo("/login");
     }
+
     private void NavigateToRegister()
     {
         _navigationManager.NavigateTo("/register");
     }
-    private void NavigateToMain()
+
+    private void NavigateToProfile()
     {
-        _navigationManager.NavigateTo("/");
+        _navigationManager.NavigateTo("/profile");
     }
+
+    private void NavigateToFeed()
+    {
+        _navigationManager.NavigateTo("/newsFeed");
+    }
+    
     private void CreateAPlace()
     {
         _navigationManager.NavigateTo("/createPlace");
     }
+
 }

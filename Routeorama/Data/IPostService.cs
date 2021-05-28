@@ -18,5 +18,6 @@ namespace Routeorama.Data {
         Task DeleteComment(Comment comment);
         Task<CommentContainer> GetCommentsForPost(int postId);
         Task<CommentContainer> LoadMoreComments(int postId, Comment comment);
+        Task<int> GetCommentCount(int postId);
     }
 }

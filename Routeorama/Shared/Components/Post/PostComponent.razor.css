@@ -1,6 +1,6 @@
 ﻿.post {
-    background-color: #333;
-    color: whitesmoke;
+    background-color: #ffffff;
+    color: #65676b;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +8,7 @@
     width: 40vw;
     border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
     margin-bottom: 15px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .post-image {
@@ -17,6 +18,7 @@
 .post-upper, .post-middle, .post-bottom {
     width: 100%;
     border: 5px white;
+    height: auto;
 }
 
 .post-upper, .post-bottom {
@@ -40,7 +42,7 @@
 }
 
 .post-date, .post-likes {
-    color: #B0B3B8;
+    color: #65676b;
     font-size: 10px;
     font-weight: normal;
 }
@@ -48,6 +50,7 @@
 .post-owner {
     cursor: pointer;
     font-weight: bold;
+    color: black;
 }
 
 .post-owner:hover {
@@ -68,6 +71,7 @@
     padding-top: 10px;
     font-weight: normal;
     font-size: 15px;
+    color: black;
 }
 
 .post-description-inner {
@@ -76,7 +80,7 @@
     align-items: flex-start;
 }
 
-.post-description-inner span {
+.post-description-inner .post-tag {
     color: dodgerblue;
     cursor: pointer;
 }
@@ -86,7 +90,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #3E4042;
+    border-bottom: 1px solid #ced0d4;
 }
 
 .post-likes-inner {
@@ -110,10 +114,11 @@
     cursor: pointer;
     border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
     transition: .2s ease-in-out;
+
 }
 
 .post-like-button:hover, .post-comment-button:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(50, 50, 50, 0.2);
 }
 
 .post-comment-button span, .post-like-button span {
@@ -126,6 +131,130 @@
     padding-bottom: 5px;
 }
 
-.comment-section{
-    width: 98%;
+.comment-section {
+    width: 100%;
+    padding: 0 10px;
+}
+
+.comment-action {
+    margin-bottom: 15px;
+}
+
+.comment-input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    border-bottom: 1px solid gray;
+    width: 80%;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+.comment-input:focus {
+    border-bottom-color: #e57261;
+}
+
+.comment-input:focus::placeholder {
+    color: transparent;
+}
+
+.comment-button {
+    border-radius: 8px;
+    background-color: #e57261;
+    padding: 5px 20px;
+    border: none;
+    color: white;
+}
+
+.comment-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+.comment-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 3px 5px;
+    width: 100%;
+}
+
+.comment-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.comment-owner {
+    color: #e57261;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 15px;
+}
+
+.comment-time {
+    color: lightgray;
+    font-size: 10px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.comment-bottom {
+    color: #65676b;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
+
+.comment-delete {
+    color: #e57261;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #3a3b3c;
+}
+
+.comment-delete img {
+    height: 0;
+    width: 0;
+    transition: .2s ease-in-out;
+}
+
+.comment-container:hover .comment-delete {
+    padding: 8px;
+}
+
+.comment-container:hover .comment-delete:hover {
+    filter: brightness(1.3);
+}
+
+.comment-container:hover .comment-delete img {
+    height: 14px;
+    width: 14px;
+}
+
+.load-comments {
+    font-size: 10px;
+    color: slategray;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.load-comments:hover {
+    filter: brightness(1.3);
 }

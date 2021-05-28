@@ -13,161 +13,168 @@ namespace Routeorama.Shared.Components.Post
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 1 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 2 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 3 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 4 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 5 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 6 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 7 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 8 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 9 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 10 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 11 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 12 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Auth;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 13 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 14 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 15 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Nav;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 17 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 18 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
+#line 19 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+using Routeorama.Shared.Components.Search;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 1 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
 using Routeorama.Models.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
+#line 2 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
 using Routeorama.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
+#line 3 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
 using Routeorama.Authentication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
+#line 4 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
 using System.Text.RegularExpressions;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
+#line 5 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 #line default
@@ -181,7 +188,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 123 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
+#line 146 "D:\University\SEP3\Routeorama\Routeorama\Shared\Components\Post\PostComponent.razor"
  
     [Parameter]
     public Post Post { get; set; }
@@ -189,25 +196,27 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
     private bool _likeState = false;
     private string _likedIcon = "like.svg";
     private string _likeText = "Like";
-    private string _color = "white";
+    private string _color = "#65676b";
     private string[] _description = new[] {""};
+    private int _commentCount;
 
     private bool _commentComponent;
-    private string commentContent;
+    private string _commentContent;
 
-    private IList<Comment> fetchedComments = new List<Comment>();
-    private IList<Comment> filteredComments = new List<Comment>();
+    private IList<Comment> _fetchedComments = new List<Comment>();
+    private IList<Comment> _filteredComments = new List<Comment>();
 
-    private CommentContainer commentContainer;
+    private CommentContainer _commentContainer;
 
-    private bool hasMoreComments;
-    private string errorLabel;
+    private bool _hasMoreComments;
+    private string _errorLabel;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
             _likeState = await _postService.GetLikeState(Post.postId, ((CustomAuthenticationStateProvider) _provider).GetUserId());
+            _commentCount = await _postService.GetCommentCount(Post.postId);
             SetLikeState();
             ParseTags(Post.content);
         }
@@ -226,19 +235,17 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
     async void OnClick(RadzenSplitButtonItem item)
     {
-        if (item != null)
+        if (item == null) return;
+        if (int.Parse(item.Value) != 1) return;
+        try
         {
-            if (int.Parse(item.Value) != 1) return;
-            try
-            {
-                var deletePost = await _postService.DeletePost(Post.postId);
-                if (deletePost)
-                    _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Post failed to be deleted! " + e);
-            }
+            var deletePost = await _postService.DeletePost(Post.postId);
+            if (deletePost)
+                _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Post failed to be deleted! " + e);
         }
     }
 
@@ -255,13 +262,13 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
         if (_likeState)
         {
             _likedIcon = "liked.svg";
-            _color = "dodgerblue";
+            _color = "#e57621";
             _likeText = "Liked";
         }
         else
         {
             _likedIcon = "like.svg";
-            _color = "white";
+            _color = "#65676b";
             _likeText = "Like";
         }
     }
@@ -274,11 +281,11 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
         }
         else
         {
-            commentContainer = await _postService.GetCommentsForPost(Post.postId);
-            if (!commentContainer.Equals(null))
+            _commentContainer = await _postService.GetCommentsForPost(Post.postId);
+            if (!_commentContainer.Equals(null))
             {
-                fetchedComments = commentContainer.comments;
-                hasMoreComments = commentContainer.hasMoreComments;
+                _fetchedComments = _commentContainer.comments;
+                _hasMoreComments = _commentContainer.hasMoreComments;
                 Filter();
             }
 
@@ -288,37 +295,37 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
     private void Filter()
     {
-        filteredComments = fetchedComments;
+        _filteredComments = _fetchedComments;
     }
 
     private async void Comment()
     {
-        Console.WriteLine(commentContent);
-        if (commentContent.Length == 0)
+        Console.WriteLine(_commentContent);
+        if (_commentContent.Length == 0)
         {
-            errorLabel = "Comment too short.";
+            _errorLabel = "Comment too short.";
         }
         else
         {
-            Comment newComment = new Comment
+            var newComment = new Comment
             {
                 userId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
                 displayName = ((CustomAuthenticationStateProvider) _provider).GetDisplayName(),
                 postId = Post.postId,
-                content = commentContent,
+                content = _commentContent,
                 timestamp = null
             };
             await _postService.Comment(newComment);
-            
-            commentContainer = await _postService.GetCommentsForPost(Post.postId);
-            if (!commentContainer.Equals(null))
+
+            _commentContainer = await _postService.GetCommentsForPost(Post.postId);
+            if (!_commentContainer.Equals(null))
             {
-                fetchedComments = commentContainer.comments;
-                hasMoreComments = commentContainer.hasMoreComments;
+                _fetchedComments = _commentContainer.comments;
+                _hasMoreComments = _commentContainer.hasMoreComments;
                 Filter();
             }
             StateHasChanged();
-            commentContent = "";
+            _commentContent = "";
         }
     }
 
@@ -326,11 +333,11 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
     private async void DeleteComment(Comment comment)
     {
         await _postService.DeleteComment(comment);
-        commentContainer = await _postService.GetCommentsForPost(Post.postId);
-        if (!commentContainer.Equals(null))
+        _commentContainer = await _postService.GetCommentsForPost(Post.postId);
+        if (!_commentContainer.Equals(null))
         {
-            fetchedComments = commentContainer.comments;
-            hasMoreComments = commentContainer.hasMoreComments;
+            _fetchedComments = _commentContainer.comments;
+            _hasMoreComments = _commentContainer.hasMoreComments;
             Filter();
         }
         StateHasChanged();
@@ -338,28 +345,34 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
     private void OnChange(string args)
     {
-        commentContent = args;
+        _commentContent = args;
         args = "";
     }
 
     private async void LoadMoreComments()
     {
         CommentContainer container = null;
-        if (filteredComments == null)
+        if (_filteredComments == null)
         {
             container = await _postService.LoadMoreComments(Post.postId, null);
         }
-        else{
-            container = await _postService.LoadMoreComments(Post.postId, filteredComments.Last());
-        }
-        if (container.comments != null)
+        else
         {
-            foreach (var comment in container.comments){
-                filteredComments?.Add(comment);
-            }
-            hasMoreComments = container.hasMoreComments;
-            StateHasChanged();
+            container = await _postService.LoadMoreComments(Post.postId, _filteredComments.Last());
         }
+        if (container.comments == null) return;
+        foreach (var comment in container.comments)
+        {
+            _filteredComments?.Add(comment);
+        }
+        _hasMoreComments = container.hasMoreComments;
+        StateHasChanged();
+    }
+
+    private void OnComment(ChangeEventArgs obj)
+    {
+        _commentContent = obj.Value.ToString();
+        obj.Value = "";
     }
 
 #line default

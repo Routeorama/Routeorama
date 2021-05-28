@@ -8,91 +8,112 @@
 @using Routeorama.Data
 @using Routeorama.Authentication
 
-<div class="page">
-    <AuthorizeView>
-        <NotAuthorized>
-            <Login/>
-        </NotAuthorized>
-        <Authorized>
-            <Nav/>
-            <!---------------------------------------------------------------------------------------------------------->
-            <div class="everything">
-                <div class="feed">
-                    @if (_filteredPosts != null)
+
+<AuthorizeView>
+    <NotAuthorized>
+        <Login/>
+    </NotAuthorized>
+    <Authorized>
+        <Nav/>
+        <div class="main-feed">
+            <div class="main-feed-left">
+
+            </div>
+            <div class="main-feed-center">
+                @if (_filteredPosts != null)
+                {
+                    @foreach (var post in _filteredPosts)
                     {
-                        @foreach (var post in _filteredPosts)
-                        {
-                            <PostComponent Post="@post"/>
-                        }
+                        <PostComponent Post="@post"/>
                     }
+                }
+                <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
+                    <div style="background-color: gray; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts">
+                        Load more posts
+                    </div>
                 </div>
-                @if (mostFollowedPlaces.Count > 0 && mostLikedPlaces.Count > 0)
+            </div>
+            <div class="main-feed-right">
+                @if (_mostFollowedPlaces.Count > 0 && _mostLikedPlaces.Count > 0)
                 {
                     <div class="suggestions">
-                        <div class="most-followed-places">
-                            <p>Most followed places</p>
-                            @for (var x = 0; x < mostFollowedPlaces.Count; x++)
+                        <div class="most-followed-places" style="margin-bottom: 20px">
+                            <div class="most-followed-title">Most followed places</div>
+                            @for (var x = 0; x < _mostFollowedPlaces.Count; x++)
                             {
                                 @if (x == 0 || x == 2 || x == 4 || x == 6 || x == 8 || x == 10)
                                 {
                                     <div class="in-one-line">
-                                        @if (x == 0)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">1.</p>
-                                        }
-                                        @if (x == 2)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">2.</p>
-                                        }
-                                        @if (x == 4)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">3.</p>
-                                        }
-                                        @if (x == 6)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">4.</p>
-                                        }
-                                        @if (x == 8)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">5.</p>
-                                        }
-                                        @{ var tempint = @x; }
-                                        <div style="padding: 0px 10px 0px 10px;" @onclick="() => GoToPlace(mostFollowedPlaces[tempint])">@mostFollowedPlaces[x]</div>
-                                        <p style="padding: 3px 10px 0px 10px;">@mostFollowedPlaces[x + 1]</p>
+                                        <div class="most-followed-inner">
+
+
+                                            @if (x == 0)
+                                            {
+                                                <div>1.</div>
+                                            }
+                                            @if (x == 2)
+                                            {
+                                                <div>2.</div>
+                                            }
+                                            @if (x == 4)
+                                            {
+                                                <div>3.</div>
+                                            }
+                                            @if (x == 6)
+                                            {
+                                                <div>4.</div>
+                                            }
+                                            @if (x == 8)
+                                            {
+                                                <div>5.</div>
+                                            }
+                                            @{ var tempint = @x; }
+                                            <div class="most-followed-name" @onclick="() => GoToPlace(_mostFollowedPlaces[tempint])">@_mostFollowedPlaces[x]</div>
+                                        </div>
+                                        <div class="most-followed-count">
+                                            @_mostFollowedPlaces[x + 1]
+                                            <img alt="follow count" src="icons/follow.svg">
+                                        </div>
                                     </div>
                                 }
                             }
                         </div>
-                        <div class="most-liked-places">
-                            <p>Most liked places</p>
-                            @for (var x = 0; x < mostLikedPlaces.Count; x++)
+                        <div class="most-followed-places">
+                            <div class="most-followed-title">Most liked places</div>
+                            @for (var x = 0; x < _mostLikedPlaces.Count; x++)
                             {
                                 @if (x == 0 || x == 2 || x == 4 || x == 6 || x == 8 || x == 10)
                                 {
                                     <div class="in-one-line">
-                                        @if (x == 0)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">1.</p>
-                                        }
-                                        @if (x == 2)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">2.</p>
-                                        }
-                                        @if (x == 4)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">3.</p>
-                                        }
-                                        @if (x == 6)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">4.</p>
-                                        }
-                                        @if (x == 8)
-                                        {
-                                            <p style="padding: 3px 0px 0px 0px;">5.</p>
-                                        }
-                                        @{ var tempint = @x; }
-                                        <div style="padding: 0px 10px 0px 10px;" @onclick="() => GoToPlace(mostLikedPlaces[tempint])">@mostLikedPlaces[x]</div>
-                                        <p style="padding: 3px 10px 0px 10px;">@mostLikedPlaces[x + 1]</p>
+                                        <div class="most-followed-inner">
+
+                                            @if (x == 0)
+                                            {
+                                                <div>1.</div>
+                                            }
+                                            @if (x == 2)
+                                            {
+                                                <div>2.</div>
+                                            }
+                                            @if (x == 4)
+                                            {
+                                                <div>3.</div>
+                                            }
+                                            @if (x == 6)
+                                            {
+                                                <div>4.</div>
+                                            }
+                                            @if (x == 8)
+                                            {
+                                                <div>5.</div>
+                                            }
+                                            @{ var tempint = @x; }
+                                            <div class="most-followed-name" @onclick="() => GoToPlace(_mostLikedPlaces[tempint])">@_mostLikedPlaces[x]</div>
+                                        </div>
+                                        <div class="most-followed-count">
+                                            @_mostLikedPlaces[x + 1]
+                                            <img alt="like count" src="icons/liked.svg">
+                                        </div>
                                     </div>
                                 }
                             }
@@ -100,33 +121,27 @@
                     </div>
                 }
             </div>
-            <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
-                <div style="background-color: gray; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts">
-                    Load more posts
-                </div>
-            </div>
-            <!---------------------------------------------------------------------------------------------------------->
-        </Authorized>
-    </AuthorizeView>
-</div>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 
 @code {
-    private IList<Post> fetchedPosts = new List<Post>();
+    private IList<Post> _fetchedPosts = new List<Post>();
     private IList<Post> _filteredPosts = new List<Post>();
-    private IList<string> mostFollowedPlaces = new List<string>();
-    private IList<string> mostLikedPlaces = new List<string>();
+    private IList<string> _mostFollowedPlaces = new List<string>();
+    private IList<string> _mostLikedPlaces = new List<string>();
 
-    private int userId;
+    private int _userId;
     private string _errorLabel = "";
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            userId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
+            _userId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
 
-            /* If we want to have location for the user in his/her area
+    /* If we want to have location for the user in his/her area
                 try
                 {
                     await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
@@ -137,19 +152,19 @@
                 }
             */
 
-            PostContainer container = await _postService.GetPostsForNewsFeed(userId);
-            mostFollowedPlaces = await _placeService.GetMostFollowedPlaces();
-            mostLikedPlaces = await _placeService.GetMostLikedPlaces();
-            
-            /*for (var x = 0; x < mostFollowedPlaces.Count; x++)
+            var container = await _postService.GetPostsForNewsFeed(_userId);
+            _mostFollowedPlaces = await _placeService.GetMostFollowedPlaces();
+            _mostLikedPlaces = await _placeService.GetMostLikedPlaces();
+
+    /*for (var x = 0; x < mostFollowedPlaces.Count; x++)
             {
                 if (x % 2 == 0) { Console.WriteLine(mostFollowedPlaces[x]); }
             }
             Console.WriteLine(mostLikedPlaces);*/
-            
+
             if (container != null)
             {
-                fetchedPosts = container.posts;
+                _fetchedPosts = container.posts;
                 Filter();
             }
             StateHasChanged();
@@ -162,7 +177,7 @@
 
     private void Filter()
     {
-        _filteredPosts = fetchedPosts;
+        _filteredPosts = _fetchedPosts;
     }
 
     private async Task FetchMorePosts()
@@ -170,11 +185,11 @@
         PostContainer container = null;
         if (_filteredPosts == null)
         {
-            container = await _postService.LoadMorePostsForNewsFeed(userId, 0);
+            container = await _postService.LoadMorePostsForNewsFeed(_userId, 0);
         }
         else
         {
-            container = await _postService.LoadMorePostsForNewsFeed(userId, _filteredPosts.Last().postId);
+            container = await _postService.LoadMorePostsForNewsFeed(_userId, _filteredPosts.Last().postId);
         }
         if (container.posts != null)
         {
@@ -184,10 +199,11 @@
             }
         }
     }
-    
-    private void GoToPlace(string placeURL)
+
+    private void GoToPlace(string placeUrl)
     {
-        Console.WriteLine(placeURL);
-        _navigationManager.NavigateTo($"/channel/{placeURL}");
+        Console.WriteLine(placeUrl);
+        _navigationManager.NavigateTo($"/channel/{placeUrl}");
     }
+
 }

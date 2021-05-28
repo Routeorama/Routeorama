@@ -2,19 +2,19 @@
 @inject IPlaceService _placeService;
 @inject NavigationManager _navigationManager;
 
-@namespace Routeorama.Shared.Components
+@namespace Routeorama.Shared.Components.Search
 
-<RadzenAutoComplete style="margin: 8px 0px 0px 0px;" Placeholder="Search..." Data=@places TextProperty="name" LoadData=@OnLoadData Change=@(args => OnChange(args))/>
+<RadzenAutoComplete Style="background-color: transparent" Placeholder="Search..." Data=@_places TextProperty="name" LoadData=@OnLoadData Change=@(OnChange)/>
                                                                                                                                    
 @code {
 
-    private IList<Place> places = new List<Place>();
+    private IList<Place> _places = new List<Place>();
     
-    private IList<Place> filteredPlaces = new List<Place>();
+    private IList<Place> _filteredPlaces = new List<Place>();
 
     void OnChange(object value)
     {
-        foreach (var place in places)
+        foreach (var place in _places)
         {
             if(place.name.Equals(value.ToString()))
             {
@@ -25,16 +25,14 @@
 
     async void OnLoadData(LoadDataArgs args)
     {
-        if (args.Filter != null || args.Filter != "")
+        if (args.Filter is not (null or ""))
         {
-            places = await _placeService.SearchForPlaces(args.Filter);
+            _places = await _placeService.SearchForPlaces(args.Filter);
         }
 
-        if (places.Count != 0)
-        {
-            filteredPlaces = places.Where(c => c.name.Contains(args.Filter) || c.name.Contains(args.Filter)).ToList();
+        if (_places.Count == 0) return;
+        _filteredPlaces = _places.Where(c => c.name.Contains(args.Filter) || c.name.Contains(args.Filter)).ToList();
 
-            InvokeAsync(StateHasChanged);
-        }
+        await InvokeAsync(StateHasChanged);
     }
 }

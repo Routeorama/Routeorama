@@ -12,23 +12,23 @@ namespace Routeorama.Authentication
 {
     public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
-        private readonly IJSRuntime jsRuntime;
-        private readonly IUserService userService;
+        private readonly IJSRuntime _jsRuntime;
+        private readonly IUserService _userService;
 
-        private User cachedUser;
+        private User _cachedUser;
 
         public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, IUserService userService)
         {
-            this.jsRuntime = jsRuntime;
-            this.userService = userService;
+            this._jsRuntime = jsRuntime;
+            this._userService = userService;
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var identity = new ClaimsIdentity();
-            if (cachedUser == null)
+            if (_cachedUser == null)
             {
-                string userAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+                string userAsJson = await _jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
                 if (!string.IsNullOrEmpty(userAsJson))
                 {
                     User tmp = JsonSerializer.Deserialize<User>(userAsJson);
@@ -38,7 +38,7 @@ namespace Routeorama.Authentication
             }
             else
             {
-                identity = SetupClaimsForUser(cachedUser);
+                identity = SetupClaimsForUser(_cachedUser);
             }
 
             ClaimsPrincipal cachedClaimsPrincipal = new ClaimsPrincipal(identity);
@@ -55,12 +55,12 @@ namespace Routeorama.Authentication
 
             ClaimsIdentity identity = new ClaimsIdentity();
             try {
-                User user = await userService.ValidateLogin(username, password);
+                User user = await _userService.ValidateLogin(username, password);
                 identity = SetupClaimsForUser(user);
                 string serialisedData = JsonSerializer.Serialize(user);
-                await jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
-                cachedUser = user;
-            }
+                await _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
+                _cachedUser = user;
+            } 
             catch (Exception e){
                 throw new Exception("Wrong credentials");
             }
@@ -96,7 +96,7 @@ namespace Routeorama.Authentication
             
             try
             {
-                bool response = await userService.Register(user);
+                bool response = await _userService.Register(user);
                 if (!response) throw new Exception("Wrong credentials");
             }
             catch (Exception e)
@@ -107,10 +107,10 @@ namespace Routeorama.Authentication
 
         public void Logout()
         {
-            cachedUser = null;
+            _cachedUser = null;
             var user = new ClaimsPrincipal(new ClaimsIdentity());
             //TODO logout
-            jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
+            _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
 
@@ -127,11 +127,26 @@ namespace Routeorama.Authentication
         }
 
         public int GetUserId() {
-            return cachedUser?.UserId ?? 0;
+            return _cachedUser?.UserId ?? 0;
         }
         
         public string GetDisplayName() {
-            return cachedUser?.displayName;
+            return _cachedUser?.displayName;
+        }
+
+        public User GetUser()
+        {
+            return _cachedUser;
+        }
+
+        public async Task UpdateUser(User user)
+        {
+          var response = await _userService.UpdateUser(user);
+          if (response.Equals("Update of the profile successful"))
+          {
+              //_cachedUser = user;
+              await ValidateLogin(_cachedUser.username, _cachedUser.password);
+          } 
         }
     }
 }

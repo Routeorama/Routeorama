@@ -8,6 +8,8 @@
         public string email { get; set; }
         public RoleEnum role { get; set;}
         public string displayName { get; set;}
+        public byte[] profilePicture { get; set; }
+        public string imageType { get; set; }
         
     }
 }

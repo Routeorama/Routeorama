@@ -7,19 +7,26 @@ var name;
 var map;
 var wrapper;
 var markers = [];
+let latitude = 48.855348;
+let longitude = 2.344311;
 
-function initMap() {
-    const myLatlng = {lat: 48.855348, lng: 2.344311};
+getLocation();
+
+async function initMap() {
+    const actualPos = {lat: latitude, lng: longitude};
+    console.log(actualPos);
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 8,
-        center: myLatlng,
+        center: actualPos,
         disableDefaultUI: true,
         zoomControl: true,
         streetViewControl: true
     });
+
+
     // Create the initial InfoWindow.
     let infoWindow = new google.maps.InfoWindow({
-        position: myLatlng,
+        position: actualPos,
         content: "Welcome to Routeorama!"
     });
     infoWindow.open(map);
@@ -30,7 +37,7 @@ function initMap() {
 
         var ne = bounds.getNorthEast();
         var sw = bounds.getSouthWest();
-        
+
         if (map.getZoom() <= 6) {
             clearMarkers();
         } else {
@@ -124,6 +131,7 @@ function clearMarkers() {
 }
 
 var selectedInfoWindow;
+
 function MakeMarker(id3, name3, description3, userId3, followCount3,
                     city3, country3, lat3, lng3) {
     console.log("created markers");
@@ -134,7 +142,12 @@ function MakeMarker(id3, name3, description3, userId3, followCount3,
         '<div id="bodyContent">' +
         "<p><b>" + name3 + "</b>, " + description3 + "</p>" +
         "</div>" +
-        "<button onclick=\"navigateToChannel()\" >Go to channel</button>" +
+        "<button style='border: none;\n" +
+        "               background-color: dodgerblue;\n" +
+        "               color: white;    " +
+        "               border-radius: 5px;    " +
+        "               padding: 5px 10px' " +
+        "onclick=\"navigateToChannel()\" >Go to channel</button>" +
         "</div>";
 
     let infoWindow = new google.maps.InfoWindow({
@@ -149,7 +162,7 @@ function MakeMarker(id3, name3, description3, userId3, followCount3,
 
     var myMarker = new google.maps.Marker(myMarkerOptions);
 
-    google.maps.event.addListener(myMarker, "click", function() {
+    google.maps.event.addListener(myMarker, "click", function () {
         //Check if there some info window selected and if is opened then close it
         if (selectedInfoWindow != null && selectedInfoWindow.getMap() != null) {
             selectedInfoWindow.close();
@@ -171,7 +184,7 @@ function MakeMarker(id3, name3, description3, userId3, followCount3,
 function navigateToChannel() {
     var asdf = document.getElementById("firstHeading").innerHTML;
     wrapper.invokeMethodAsync("channel", asdf);
-} 
+}
 
 function FetchCity() {
     return city.value;
@@ -190,6 +203,23 @@ function ClearData() {
     coords.value = "";
     country.value = "";
     city.value = "";
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+        console.log("not supported in browser")
+    }
+}
+
+function error() {
+    console.log("shit hit the fan");
+}
+
+function success(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
 }
 
 

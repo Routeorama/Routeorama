@@ -307,5 +307,27 @@ namespace Routeorama.Data.Implementation
             }
             return null;
         }
+
+        public async Task<int> GetCommentCount(int postId)
+        {
+            client = new HttpClient();
+            var returnedCount = 0;
+            var content = new StringContent(JsonSerializer.Serialize(postId), Encoding.UTF8, "application/json");
+            try
+            {
+                var response = await client.PostAsync("http://localhost:8080/post/commentcount", content);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                returnedCount = JsonSerializer.Deserialize<int>(responseContent, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return returnedCount;
+        }
     }
 }

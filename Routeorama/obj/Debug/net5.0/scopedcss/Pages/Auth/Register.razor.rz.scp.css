@@ -1,9 +1,81 @@
 
-.registercontainer[b-c1tvx1re69]{
+.register-container[b-c1tvx1re69]{
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
     align-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("icons/background.svg");
+    background-size: cover;
+    background-position: top;
+}
+
+.register-inner[b-c1tvx1re69]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 100px;
+}
+
+.register-title[b-c1tvx1re69]{
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.register-group[b-c1tvx1re69]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.register-group img[b-c1tvx1re69]{
+    width: 16px;
+    height: 16px;
+}
+
+.register-input[b-c1tvx1re69]{
+    background-color: transparent;
+    border: none;
+    margin-left: 5px;
+}
+
+.register-input-label[b-c1tvx1re69]{
+    cursor: pointer;
+    width: 100%;
+    color: gray;
+}
+
+.register-input-label img[b-c1tvx1re69]{
+    margin-left: 9px;
+}
+
+.register-input-label span[b-c1tvx1re69]{
+    margin-left: 5px;
+}
+
+.register-actions[b-c1tvx1re69]{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top:15px;
+}
+
+.register-button[b-c1tvx1re69]{
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    width: 100px;
+    background-color: #e57261;
+    outline: none;
+    transition: .2s ease-in-out;
+}
+
+.register-button:hover[b-c1tvx1re69]{
+    filter: brightness(1.3);
 }

@@ -254,3 +254,11 @@ C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclara
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Search\Search.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\NewsFeed\NewsFeed.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\NewsFeed\NewsFeed.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Search\Search.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\NewsFeed\NewsFeed.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Search\Search.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\NewsFeed\NewsFeed.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\NewsFeed\NewsFeed.razor.rz.scp.css
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\Profile.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Auth\Profile.razor.g.cs
+D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Auth\Profile.razor.rz.scp.css
