@@ -2,8 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 90vh;
+    height: 92vh;
+    width: 100%;
+    
+    background-image: url("/icons/background2.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .profile-card[b-gtde9d145a] {
@@ -208,4 +212,8 @@
 
 .profile-edit-close-button:hover[b-gtde9d145a]{
     background-color: rgba(50,50,50,0.2);
+}
+
+.errorLabel[b-gtde9d145a] {
+    position: center;
 }

@@ -47,8 +47,9 @@
 .exit[b-aai2lqi8ku] {
     color: #aaaaaa;
     float: right;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
+    padding-left: 80%;
 }
 
 .exit:hover[b-aai2lqi8ku],
@@ -60,12 +61,13 @@
 
 .inner-field[b-aai2lqi8ku]{
     margin-left: 10px;
+    width: 300px;
 }
 
 .create-place[b-aai2lqi8ku]{
     border: none;
     border-radius: 5px;
-    background-color: deepskyblue;
+    background-color: #E57261;
     color: white;
     outline: none;
     cursor: pointer;
@@ -74,4 +76,19 @@
 
 .create-place:focus[b-aai2lqi8ku]{
     outline: none;
+}
+
+.create-place-input[b-aai2lqi8ku]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 15px;
+}
+
+.create-place-input input[b-aai2lqi8ku]{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: .2s ease-in-out;
 }

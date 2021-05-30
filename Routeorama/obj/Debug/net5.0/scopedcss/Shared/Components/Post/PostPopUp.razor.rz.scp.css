@@ -6,3 +6,23 @@
     align-items: center;
     align-content: center;
 }
+
+.inner-field[b-6cocbwefpe]{
+    margin-left: 10px;
+    width: 300px;
+}
+
+.post-input[b-6cocbwefpe] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 15px;
+}
+
+.post-input input[b-6cocbwefpe]{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: .2s ease-in-out;
+}

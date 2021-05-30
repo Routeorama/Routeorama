@@ -1,14 +1,14 @@
 ﻿.login-container{
-    height: 100%;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
     align-content: flex-start;
-    background-image: url("icons/background.svg");
-    background-position: top;
+    
+    background-image: url("/icons/BackgroundLoginRegister.svg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -18,12 +18,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-left: 100px;
+    margin-left: 22%;
+    padding: 30px 10px 40px 10px;
+    border: 2px solid #e57261;
+    border-radius: 5px;
 }
 
 .login-title{
     font-weight: bold;
     font-size: 3rem;
+    padding-bottom: 30px;
 }
 
 .login-svg-container{
@@ -58,6 +62,7 @@
     justify-content: space-between;
     align-items: center;
     width: 220px;
+    padding-top: 20px;
 }
 
 .login-button{

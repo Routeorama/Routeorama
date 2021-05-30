@@ -12,168 +12,175 @@ namespace Routeorama.Pages.Channel
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 5 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 6 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Auth;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 15 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Nav;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 17 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 18 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 19 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Search;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Routeorama.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Routeorama.Models.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using System.Linq;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Microsoft.AspNetCore.Hosting;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
 using Routeorama.Authentication;
 
 #line default
@@ -188,7 +195,7 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 67 "D:\University\SEP3\Routeorama\Routeorama\Pages\Channel\Channel.razor"
+#line 107 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Channel\Channel.razor"
        
 
     [CascadingParameter]
@@ -199,29 +206,35 @@ using Routeorama.Authentication;
 
     private Place _place = new();
     private IList<Post> _posts = new List<Post>();
-    private IList<Post>? _filteredPosts = new List<Post>();
+    private IList<Post> _filteredPosts = new List<Post>();
 
     private int _authState;
     private string _errorLabel = "";
     private bool _followState;
     private string _followText = "Follow";
-    private string _followColor = "#1b6ec2";
+    private string _followColor = "#742696";
+    private bool _isWeatherHere = false;
+    JsonDocument weather = null;
 
     protected override async Task OnInitializedAsync()
     {
+        _filteredPosts = new List<Post>();
+        
         try
         {
             _authState = ((CustomAuthenticationStateProvider) _provider).GetUserId();
             _place = await _placeService.FetchPlaceData(PlaceName);
-            _followState = await _placeService.GetFollowState(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId());
+            _followState = await _placeService.GetFollowState(_place.id, _authState);
             SetFollowState();
             try
             {
-                await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+                weather = await _runtime.InvokeAsync<JsonDocument>("fetchWeather", _place.location.lat, _place.location.lng);
+                _isWeatherHere = true;
             }
             catch (NullReferenceException e)
             {
                 _errorLabel = "Could not fetch the weather.";
+                _isWeatherHere = false;
             }
 
             var container = await _postService.FetchPosts(_place.id, 0);
@@ -230,7 +243,7 @@ using Routeorama.Authentication;
                 _posts = container.posts;
                 Filter();
             }
-
+            StateHasChanged();
         }
         catch (NullReferenceException ex)
         {
@@ -283,7 +296,7 @@ using Routeorama.Authentication;
     {
         _followState = !_followState;
         SetFollowState();
-        await _placeService.FollowPlace(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId(), _followState);
+        await _placeService.FollowPlace(_place.id, _authState, _followState);
         StateHasChanged();
     }
 
@@ -292,15 +305,19 @@ using Routeorama.Authentication;
         if (_followState)
         {
             _followText = "Following";
-            _followColor = "#ff6d41";
+            _followColor = "#E57261";
         }
         else
         {
             _followText = "Follow";
-            _followColor = "#1b6ec2";
+            _followColor = "#742696";
         }
     }
 
+    private async Task loadWeather()
+    {
+        await _runtime.InvokeVoidAsync("drawWeather", weather.RootElement);
+    }
 
 #line default
 #line hidden

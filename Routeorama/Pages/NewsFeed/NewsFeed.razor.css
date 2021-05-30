@@ -4,6 +4,10 @@
     align-items: center;
     height: 92vh;
     width: 100%;
+
+    background-image: url("/icons/background2.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .main-feed-left, .main-feed-right, .main-feed-center {
@@ -71,8 +75,8 @@
     margin-right: 10px;
 }
 
-.in-one-line:hover{
-    background-color: rgba(50,50,50,0.2);
+.in-one-line:hover {
+    background-color: rgba(50, 50, 50, 0.2);
 }
 
 .most-followed-title {

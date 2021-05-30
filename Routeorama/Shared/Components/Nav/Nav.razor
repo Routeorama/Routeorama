@@ -4,12 +4,13 @@
 
 <div class="navigation">
     <div class="navigation-left">
-        <div class="logo" @onclick="NavigateToFeed">
-            R
-        </div>
+        <img class="logo" src="icons/camping.gif"/>
         <Search/>
     </div>
     <div class="navigation-center">
+        <div class="nav-img-container" @onclick="NewsFeedRedirect">
+            <img alt="newsfeed" src="icons/newsfeed.svg">
+        </div>
         <div class="nav-img-container" @onclick="NavigateToProfile">
             <img alt="profile page" src="icons/user.svg">
         </div>
@@ -51,10 +52,14 @@
     {
         _navigationManager.NavigateTo("/newsFeed");
     }
-    
+
     private void CreateAPlace()
     {
         _navigationManager.NavigateTo("/createPlace");
     }
 
+    private void NewsFeedRedirect()
+    {
+        _navigationManager.NavigateTo("/newsFeed");
+    }
 }

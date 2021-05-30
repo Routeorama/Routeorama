@@ -19,11 +19,11 @@
             </div>
             <input type="password" placeholder="Password" @bind-value="_password"/>
         </div>
+        <div class="errorLabel">@_errorMessage</div>
         <div class="login-action">
             <button class="login-button" @onclick="PerformLogin">Login</button>
             <button class="login-button" @onclick="PerformRegister">Register</button>
         </div>
-        <div class="errorLabel">@_errorMessage</div>
     </div>
 </div>
 

@@ -13,154 +13,154 @@ namespace Routeorama.Pages.NewsFeed
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 5 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 6 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Auth;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 15 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Nav;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 17 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 18 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 19 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Search;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\University\SEP3\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
+#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
 using Routeorama.Models.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\University\SEP3\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
+#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
 using Routeorama.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\University\SEP3\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
+#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
 using Routeorama.Authentication;
 
 #line default
@@ -175,7 +175,7 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 129 "D:\University\SEP3\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
+#line 135 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\NewsFeed\NewsFeed.razor"
        
     private IList<Post> _fetchedPosts = new List<Post>();
     private IList<Post> _filteredPosts = new List<Post>();
@@ -191,26 +191,9 @@ using Routeorama.Authentication;
         {
             _userId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
 
-    /* If we want to have location for the user in his/her area
-                try
-                {
-                    await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
-                }
-                catch (NullReferenceException e)
-                {
-                    _errorLabel = "Could not fetch the weather.";
-                }
-            */
-
             var container = await _postService.GetPostsForNewsFeed(_userId);
             _mostFollowedPlaces = await _placeService.GetMostFollowedPlaces();
             _mostLikedPlaces = await _placeService.GetMostLikedPlaces();
-
-    /*for (var x = 0; x < mostFollowedPlaces.Count; x++)
-            {
-                if (x % 2 == 0) { Console.WriteLine(mostFollowedPlaces[x]); }
-            }
-            Console.WriteLine(mostLikedPlaces);*/
 
             if (container != null)
             {
@@ -252,10 +235,8 @@ using Routeorama.Authentication;
 
     private void GoToPlace(string placeUrl)
     {
-        Console.WriteLine(placeUrl);
         _navigationManager.NavigateTo($"/channel/{placeUrl}");
     }
-
 
 #line default
 #line hidden

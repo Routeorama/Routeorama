@@ -57,9 +57,23 @@ namespace Routeorama.Authentication
             try {
                 User user = await _userService.ValidateLogin(username, password);
                 identity = SetupClaimsForUser(user);
-                string serialisedData = JsonSerializer.Serialize(user);
-                await _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
                 _cachedUser = user;
+                User userToSerialize = new User
+                {
+                    userId = user.userId,
+                    username = user.username,
+                    password = user.password,
+                    dob = user.dob,
+                    dateCreated = user.dateCreated,
+                    email = user.email,
+                    role = RoleEnum.user,
+                    displayName = user.displayName,
+                    photo = new byte[]
+                        {},
+                    photoType = null
+                };
+                string serialisedData = JsonSerializer.Serialize(userToSerialize);
+                await _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
             } 
             catch (Exception e){
                 throw new Exception("Wrong credentials");
@@ -97,7 +111,7 @@ namespace Routeorama.Authentication
             try
             {
                 bool response = await _userService.Register(user);
-                if (!response) throw new Exception("Wrong credentials");
+                if (!response) Console.WriteLine("Wrong credentials");
             }
             catch (Exception e)
             {
@@ -119,7 +133,7 @@ namespace Routeorama.Authentication
             List<Claim> claims = new List<Claim>();
 
             claims.Add(new Claim(ClaimTypes.Name, user.username));
-            claims.Add(new Claim("userId", user.UserId.ToString()));
+            claims.Add(new Claim("userId", user.userId.ToString()));
             claims.Add(new Claim("role", user.role.ToString()));
 
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
@@ -127,26 +141,27 @@ namespace Routeorama.Authentication
         }
 
         public int GetUserId() {
-            return _cachedUser?.UserId ?? 0;
+            return _cachedUser.userId;
         }
         
         public string GetDisplayName() {
             return _cachedUser?.displayName;
         }
 
-        public User GetUser()
+        public async Task<User> GetUser()
         {
             return _cachedUser;
         }
 
-        public async Task UpdateUser(User user)
+        public async Task<string> UpdateUser(User user)
         {
           var response = await _userService.UpdateUser(user);
           if (response.Equals("Update of the profile successful"))
           {
               //_cachedUser = user;
-              await ValidateLogin(_cachedUser.username, _cachedUser.password);
-          } 
+              await ValidateLogin(user.username, user.password);
+          }
+          return response;
         }
     }
 }

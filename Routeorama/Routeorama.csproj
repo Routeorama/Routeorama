@@ -23,8 +23,4 @@
       <_ContentIncludedByDefault Remove="Shared\Components\Map\Map.razor" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="wwwroot\icons" />
-    </ItemGroup>
-
 </Project>

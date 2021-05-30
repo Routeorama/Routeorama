@@ -80,7 +80,6 @@ function geocode(geocoder, map, infoWindow, latLng) {
                 var span = document.getElementsByClassName("exit")[0];
                 city = document.getElementById("city");
                 country = document.getElementById("country");
-                //name = document.getElementById("name");
                 coords = document.getElementById("coords");
 
                 coords.value = results[0].geometry.location;
@@ -96,7 +95,6 @@ function geocode(geocoder, map, infoWindow, latLng) {
                         country.value = item.long_name;
                     }
                 });
-                console.log(name.value);
 
                 btn.onclick = function () {
                     modal.style.display = "flex";

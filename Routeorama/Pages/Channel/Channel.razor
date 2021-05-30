@@ -9,60 +9,100 @@
 @using Routeorama.Data
 @using Routeorama.Models.Post
 @using System.Linq
+@using System.Text.Json
 @using Microsoft.AspNetCore.Hosting
 @using Routeorama.Authentication
 
-<Nav/>
-<div class="everything-place">
-    <div class="place">
-        <h1>
-            @_place.name
-        </h1>
-        <h1>
-            @_place.description
-        </h1>
-    </div>
-    <div class="errorLabel">@_errorLabel</div>
-    <div class="location" id="location"></div>
-    <div class="weather-description" id="description"></div>
-    <div class="degrees" id="temp"></div>
-    <div class="feels-like_degrees" id="feels_like"></div>
-    <div class="pressure" id="pressure"></div>
-    <div class="sunrise" id="sunrise"></div>
-    <div class="sunset" id="sunset"></div>
+<AuthorizeView>
+    <NotAuthorized>
+        <Login/>
+    </NotAuthorized>
+    <Authorized>
+        <Nav/>
+        <div class="whole-page">
+            @if (_filteredPosts is {Count: 0})
+            {
+                <img style="object-fit: scale-down;" src="icons/ezgif.com-gif-maker.gif"/>
+            }
+            else
+            {
+                <div style="display: none;">
+                    @loadWeather();
+                    </div>
+                <div class="everything-place">
+                    <div class="place">
+                        <div>
+                            <h1>
+                                @_place.name
+                            </h1>
+                            <p class="separate-description">
+                                @_place.description
+                            </p>
+                        </div>
+                        <div class="follow-button">
+                            <button class="btn btn-primary" @onclick="FollowPlace" style="border: 0px solid; background-color: @_followColor">@_followText</button>
+                        </div>
+                    </div>
+                    <div class="weather">
+                        <div class="errorLabel">@_errorLabel</div>
+                        <div class="nav-img-container">
+                            <img style="width: 42px; " src="icons/weatherIcons/location1.svg"/>
+                            <div class="location" id="location"></div>
+                        </div>
+                        <div class="nav-img-container">
+                            <img style="width: 42px; " src="icons/weatherIcons/weather.svg"/>
+                            <div class="weather-description" id="description"></div>
+                        </div>
+                        <div class="nav-img-container">
+                            <img style="width: 42px; " src="icons/weatherIcons/temperature.svg"/>
+                            <div class="degrees" id="temp"></div>
+                        </div>
+                        <div class="nav-img-container">
+                            <img style="width: 42px; " src="icons/weatherIcons/pressure-indicator-svg.svg"/>
+                            <div class="pressure" id="pressure"></div>
+                        </div>
+                        <div class="nav-img-container">
+                            <img style="width: 42px; " src="icons/weatherIcons/sunrise.svg"/>
+                            <div class="sunrise" id="sunrise"></div>
+                        </div>
+                        <div class="nav-img-container">
+                            <img style="width: 42px; " src="icons/weatherIcons/sunset.svg"/>
+                            <div class="sunset" id="sunset"></div>
+                        </div>
+                    </div>
+                    @if (_authState != 0)
+                    {
+                        <div class="buttonCreatePlace">
+                            <button @onclick="@(() => ShowCreatePlace(_place.name, _place.id))" class="btn btn-primary" style="background-color: #E57261;
+                            cursor:pointer; padding: 10px;border: 0px solid;">Create post</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            Login to post
+                        </div>
+                    }
 
-    @if (_authState != 0)
-    {
-        <div>
-            <button class="btn btn-primary" @onclick="FollowPlace" style="background-color: @_followColor">@_followText</button>
+                </div>
+                <div class="feed">
+                    @if (_filteredPosts != null)
+                    {
+                        @foreach (var post in _filteredPosts)
+                        {
+                            <PostComponent Post="@post"/>
+                        }
+                    }
+                </div>
+                <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
+                    <div style="background-color: #E57261; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts">
+                        Load more posts
+                    </div>
+                </div>
+            }
         </div>
-        <div class="buttonCreatePlace">
-            <button @onclick="@(() => ShowCreatePlace(_place.name, _place.id))" class="btn btn-primary">Create post</button>
-        </div>
-    }
-    else
-    {
-        <div>
-            Login to post
-        </div>
-    }
-
-</div>
-<div class="feed">
-    @if (_filteredPosts != null)
-    {
-        @foreach (var post in _filteredPosts)
-        {
-            <PostComponent Post="@post"/>
-        }
-    }
-</div>
-<div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
-    <div style="background-color: gray; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts">
-        Load more posts
-    </div>
-</div>
-
+    </Authorized>
+</AuthorizeView>
 
 @code {
 
@@ -74,29 +114,35 @@
 
     private Place _place = new();
     private IList<Post> _posts = new List<Post>();
-    private IList<Post>? _filteredPosts = new List<Post>();
+    private IList<Post> _filteredPosts = new List<Post>();
 
     private int _authState;
     private string _errorLabel = "";
     private bool _followState;
     private string _followText = "Follow";
-    private string _followColor = "#1b6ec2";
+    private string _followColor = "#742696";
+    private bool _isWeatherHere = false;
+    JsonDocument weather = null;
 
     protected override async Task OnInitializedAsync()
     {
+        _filteredPosts = new List<Post>();
+        
         try
         {
             _authState = ((CustomAuthenticationStateProvider) _provider).GetUserId();
             _place = await _placeService.FetchPlaceData(PlaceName);
-            _followState = await _placeService.GetFollowState(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId());
+            _followState = await _placeService.GetFollowState(_place.id, _authState);
             SetFollowState();
             try
             {
-                await _runtime.InvokeVoidAsync("fetchWeather", _place.location.lat, _place.location.lng);
+                weather = await _runtime.InvokeAsync<JsonDocument>("fetchWeather", _place.location.lat, _place.location.lng);
+                _isWeatherHere = true;
             }
             catch (NullReferenceException e)
             {
                 _errorLabel = "Could not fetch the weather.";
+                _isWeatherHere = false;
             }
 
             var container = await _postService.FetchPosts(_place.id, 0);
@@ -105,7 +151,7 @@
                 _posts = container.posts;
                 Filter();
             }
-
+            StateHasChanged();
         }
         catch (NullReferenceException ex)
         {
@@ -158,7 +204,7 @@
     {
         _followState = !_followState;
         SetFollowState();
-        await _placeService.FollowPlace(_place.id, ((CustomAuthenticationStateProvider) _provider).GetUserId(), _followState);
+        await _placeService.FollowPlace(_place.id, _authState, _followState);
         StateHasChanged();
     }
 
@@ -167,13 +213,17 @@
         if (_followState)
         {
             _followText = "Following";
-            _followColor = "#ff6d41";
+            _followColor = "#E57261";
         }
         else
         {
             _followText = "Follow";
-            _followColor = "#1b6ec2";
+            _followColor = "#742696";
         }
     }
 
+    private async Task loadWeather()
+    {
+        await _runtime.InvokeVoidAsync("drawWeather", weather.RootElement);
+    }
 }

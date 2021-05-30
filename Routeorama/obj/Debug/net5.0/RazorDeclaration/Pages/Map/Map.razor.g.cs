@@ -13,147 +13,147 @@ namespace Routeorama.Pages.Map
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 5 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 6 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Auth;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 15 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Nav;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 17 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 18 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 19 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Search;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\University\SEP3\Routeorama\Routeorama\Pages\Map\Map.razor"
+#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Map\Map.razor"
 using Routeorama.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\University\SEP3\Routeorama\Routeorama\Pages\Map\Map.razor"
+#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Map\Map.razor"
 using Routeorama.Authentication;
 
 #line default
@@ -168,7 +168,7 @@ using Routeorama.Authentication;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "D:\University\SEP3\Routeorama\Routeorama\Pages\Map\Map.razor"
+#line 40 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Map\Map.razor"
        
 
     private string Name;
@@ -181,23 +181,21 @@ using Routeorama.Authentication;
     private string label;
     private double NELat, NELng, SWLat, SWLng;
 
-    [JSInvokable("invokeFromJS")]
-    public Task ChangeValue(double NELat, double NELng, double SWLat, double SWLng)
+    [JSInvokable("invokeFromJS")] public Task ChangeValue(double NELat, double NELng, double SWLat, double SWLng)
     {
         this.NELat = NELat;
         this.NELng = NELng;
         this.SWLat = SWLat;
         this.SWLng = SWLng;
-        
+
         StateHasChanged();
-        
+
         makeMarkers();
-        
+
         return Task.CompletedTask;
     }
-    
-    [JSInvokable("channel")]
-    public Task GoToPlace(string name)
+
+    [JSInvokable("channel")] public Task GoToPlace(string name)
     {
         NavigationManager.NavigateTo($"/channel/{name}");
         return Task.CompletedTask;
@@ -212,9 +210,9 @@ using Routeorama.Authentication;
         bounds.Add(NELat);
 
         List<Place> places = await PlaceService.GetPlacesInBounds(bounds);
-        
+
         await _runtime.InvokeVoidAsync("clearMarkers");
-        
+
         foreach (Place place in places)
         {
             await _runtime.InvokeVoidAsync("MakeMarker", place.id, place.name, place.description, place.userId, place.followCount,
@@ -229,16 +227,17 @@ using Routeorama.Authentication;
         await _runtime.InvokeVoidAsync("setWrapper", DotNetObjectReference.Create(this));
     }
 
-    private async Task CreateThePlace(){  
+    private async Task CreateThePlace()
+    {
         if (string.IsNullOrEmpty(Description) && string.IsNullOrEmpty(Name))
-                 label = ("Fill out the name and description of the place.");
+            label = ("Fill out the name and description of the place.");
 
         else if (string.IsNullOrEmpty(Name))
             label = ("Fill out the name of the place.");
 
         else if (string.IsNullOrEmpty(Description))
             label = ("Fill out the description of the place.");
-        
+
         else
         {
             if (string.IsNullOrEmpty(City))
@@ -255,14 +254,15 @@ using Routeorama.Authentication;
             var coordinates = Coordinates.Split(", ");
             Lat = coordinates[0].TrimStart('(');
             Lng = coordinates[1].TrimEnd(')');
-       
+
             Location location = new Location
             {
                 city = City, country = Country, lat = Double.Parse(Lat), lng = Double.Parse(Lng)
             };
 
             int Id = ((CustomAuthenticationStateProvider) StateProvider).GetUserId();
-            Place place = new Place() {
+            Place place = new Place()
+            {
                 userId = Id,
                 description = Description,
                 id = 0,
@@ -276,7 +276,7 @@ using Routeorama.Authentication;
                 await PlaceService.CreateNewPlace(place);
                 PlaceService.SetPlaceName(Name);
                 await ClearData();
-                NavigationManager.NavigateTo("/channel");   
+                NavigationManager.NavigateTo("/channel");
             }
             catch (Exception e)
             {
@@ -285,7 +285,8 @@ using Routeorama.Authentication;
         }
     }
 
-    private async Task ClearData(){
+    private async Task ClearData()
+    {
         Name = "";
         Description = "";
         Coordinates = "";

@@ -7,16 +7,14 @@
 @inject IPostService _postService;
 
 <div class="createplace-container">
-    <label class="titlelabel">Title</label>
-    <div class="title-placeholder">
-        <input type="text" placeholder="title" @bind-value="_post.title"/>
+    <div class="post-input">
+        <input class="inner-field" placeholder="Title" @bind-value="@_post.title"><br>
     </div>
-    <label class="contentlabel">Content</label>
-    <div class="content-placeholder">
-        <input type="text" placeholder="content" @bind-value="_post.content"/>
+    <div class="post-input">
+        <input class="inner-field" placeholder="Content" @bind-value="@_post.content"><br>
     </div>
     <label class="imagelabel">Image</label>
-    <div class="image-placeholder">
+    <div style="padding: 10px 10px 10px 10px">
         <InputFile OnChange="@OnFileSelection"></InputFile>
     </div>
     <div class="errorLabel">@_errorMessage</div>
@@ -87,6 +85,10 @@
             }
             if(_post1 != null)
                 _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad:true);
+            else
+            {
+                _errorMessage = "Creating a post failed.";
+            }
         }
     }
 

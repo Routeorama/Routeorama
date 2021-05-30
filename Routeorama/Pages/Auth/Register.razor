@@ -5,50 +5,54 @@
 @inject AuthenticationStateProvider _authenticationStateProvider
 @inject NavigationManager _navigationManager
 
-<div class="register-container">
-    <div class="register-inner">
-        <div class="register-title">Register</div>
-        <div class="register-group">
-            <img alt="username" src="icons/user.svg">
-            <input class="register-input" type="text" placeholder="Username" @bind-value="_username"/>
-        </div>
-        <div class="register-group">
-            <img alt="email" src="icons/envelope.svg">
-            <input class="register-input" type="text" placeholder="Email" @bind-value="_email"/>
-        </div>
-        <div class="register-group">
-            <img alt="password" src="icons/padlock.svg">
-            <input class="register-input" type="password" placeholder="Password" @bind-value="_password"/>
-        </div>
-        <div class="register-group">
-            <img alt="repeat password" src="icons/padlock.svg">
-            <input class="register-input" type="password" placeholder="Repeat Password" @bind-value="_repeatPassword"/>
-        </div>
-        <div class="register-group">
-            <img alt="display name" src="icons/name.svg">
-            <input class="register-input" type="text" placeholder="Display name" @bind-value="_displayName"/>
-        </div>
-        <div class="register-group">
-            <label for="file-upload" class="register-input-label">
-                <img alt="profile picture" src="icons/image.svg"> <span>Choose picture</span>
-            </label>
-            <InputFile id="file-upload" OnChange="@OnFileSelection"></InputFile>
-        </div>
-        <div class="register-group">
-            <img alt="birthday" src="icons/birthday-cake.svg">
-            <RadzenDatePicker @bind-Value=@_value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "MM/dd/yyyy")) />
-        </div>
+<div class="page" style="height: 100vh; width: 100vw; margin: 0; padding: 0;">
+    <div class="register-container">
+        <div class="register-inner">
+            <div class="register-title">Register</div>
+            <div class="register-group">
+                <img alt="username" src="icons/user.svg">
+                <input class="register-input" type="text" placeholder="Username" @bind-value="_username"/>
+            </div>
+            <div class="register-group">
+                <img alt="email" src="icons/envelope.svg">
+                <input class="register-input" type="text" placeholder="Email" @bind-value="_email"/>
+            </div>
+            <div class="register-group">
+                <img alt="password" src="icons/padlock.svg">
+                <input class="register-input" type="password" placeholder="Password" @bind-value="_password"/>
+            </div>
+            <div class="register-group">
+                <img alt="repeat password" src="icons/padlock.svg">
+                <input class="register-input" type="password" placeholder="Repeat Password" @bind-value="_repeatPassword"/>
+            </div>
+            <div class="register-group">
+                <img alt="display name" src="icons/name.svg">
+                <input class="register-input" type="text" placeholder="Display name" @bind-value="_displayName"/>
+            </div>
+            <div class="register-group">
+                <label for="file-upload" class="register-input-label">
+                    <img alt="profile picture" src="icons/image.svg"> <span>Choose picture</span>
+                </label>
+                <InputFile id="file-upload" OnChange="@OnFileSelection"></InputFile>
+            </div>
+            <div class="register-group">
+                <img alt="birthday" src="icons/birthday-cake.svg">
+                <div class="register-input">
+                    <RadzenDatePicker @bind-Value=@_value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "MM/dd/yyyy"))></RadzenDatePicker>
+                </div>
+            </div>
 
-        <div class="register-actions">
-            <button class="register-button" @onclick="PerformRegister">
-                Register
-            </button>
-            <button class="register-button" @onclick="Back">
-                Go back
-            </button>
-        </div>
+            <div class="errorLabel">@_errorMessage</div>
 
-        <div class="errorLabel">@_errorMessage</div>
+            <div class="register-actions">
+                <button class="register-button" @onclick="PerformRegister">
+                    Register
+                </button>
+                <button class="register-button" @onclick="Back">
+                    Go back
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -62,7 +66,10 @@
     private string _email = "";
     private string _errorMessage = "";
     private DateTime? _value = DateTime.Now;
-    private byte[] _byteArray = {};
+
+    private byte[] _byteArray =
+    {};
+
     private string _imageType = "";
 
     private async Task PerformRegister()
@@ -78,8 +85,8 @@
                 username = _username,
                 email = _email,
                 role = RoleEnum.user,
-                profilePicture = _byteArray,
-                imageType = _imageType
+                photo = _byteArray,
+                photoType = _imageType
             };
 
             if (!_password.Equals(_repeatPassword))
@@ -108,7 +115,7 @@
     {
         _navigationManager.NavigateTo("/");
     }
-    
+
     private async void OnFileSelection(InputFileChangeEventArgs e)
     {
         var imgFile = e.File;

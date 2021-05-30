@@ -79,6 +79,28 @@ namespace Routeorama.Data.Implementation
 
         public async Task<string> UpdateUser(User updatedUser)
         {
+            if (string.IsNullOrEmpty(updatedUser.username) && string.IsNullOrEmpty(updatedUser.password) &&
+                string.IsNullOrEmpty(updatedUser.dob) && string.IsNullOrEmpty(updatedUser.displayName) &&
+                string.IsNullOrEmpty(updatedUser.email)) return ("Enter credentials");
+
+            if (string.IsNullOrEmpty(updatedUser.username)) return ("Enter username");
+            if (updatedUser.username.Length is < 5 or > 30)
+                return ("Username has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(updatedUser.email)) return ("Enter email");
+            if (!updatedUser.email.Contains("@"))
+                return ("Email has to be specified");
+
+            if (string.IsNullOrEmpty(updatedUser.password)) return ("Enter password");
+            if (updatedUser.password.Length is < 5 or > 30)
+                return ("Password has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(updatedUser.displayName)) return ("Enter display name");
+            if (updatedUser.displayName.Length is < 5 or > 30)
+                return ("Display name has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(updatedUser.dob)) return ("Enter date of birth");
+            
             _client = new HttpClient();
             var content = new StringContent(
                 JsonSerializer.Serialize(updatedUser), Encoding.UTF8, "application/json");
@@ -87,7 +109,6 @@ namespace Routeorama.Data.Implementation
             {
                 var response = await _client.PostAsync("http://localhost:8080/auth/updateuser", content);
                 var responseContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(responseContent);
                 responseBack = responseContent;
             }
             catch (Exception e)

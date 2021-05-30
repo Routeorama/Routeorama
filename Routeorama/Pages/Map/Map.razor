@@ -1,5 +1,4 @@
-﻿
-@using Routeorama.Data
+﻿@using Routeorama.Data
 @using Routeorama.Authentication
 @inject IJSRuntime _runtime;
 @inject IPlaceService PlaceService;
@@ -16,12 +15,22 @@
     <div class="modal-content">
         <span class="exit" @onclick="ClearData">&times;</span>
         <div class="modal-inner-content">
-            Is this information correct?<br><br>
-            Placename:<input class="inner-field" @bind-value="@Name"><br>
-            Description:<textarea style="resize: none" class="inner-field" @bind="@Description"></textarea><br>
-            Coordinates:<input disabled class="inner-field" id="coords" @bind-value="@Coordinates"><br>
-            Country:<input disabled class="inner-field" id="country" @bind-value="@Country"><br>
-            City:<input class="inner-field" id="city" @bind-value="@City"><br>
+            <p style="justify-content: center;display: flex;">Is this information correct?</p>
+            <div class="create-place-input">
+                <input class="inner-field" placeholder="Name of the place" @bind-value="@Name"><br>
+            </div>
+            <div class="create-place-input">
+                <input style="resize: none" placeholder="Description" class="inner-field" @bind-value="@Description"/>
+            </div>
+            <div class="create-place-input">
+                <input disabled class="inner-field" placeholder="Coordinates" id="coords" @bind-value="@Coordinates">
+            </div>
+            <div class="create-place-input">
+                <input disabled class="inner-field" placeholder="Country" id="country" @bind-value="@Country">
+            </div>
+            <div class="create-place-input">
+                <input class="inner-field" id="city" placeholder="City" @bind-value="@City">
+            </div>
             <label>@label</label>
         </div>
         <button class="create-place" id="create-place-button" @onclick="CreateThePlace">Create place</button>
@@ -40,23 +49,21 @@
     private string label;
     private double NELat, NELng, SWLat, SWLng;
 
-    [JSInvokable("invokeFromJS")]
-    public Task ChangeValue(double NELat, double NELng, double SWLat, double SWLng)
+    [JSInvokable("invokeFromJS")] public Task ChangeValue(double NELat, double NELng, double SWLat, double SWLng)
     {
         this.NELat = NELat;
         this.NELng = NELng;
         this.SWLat = SWLat;
         this.SWLng = SWLng;
-        
+
         StateHasChanged();
-        
+
         makeMarkers();
-        
+
         return Task.CompletedTask;
     }
-    
-    [JSInvokable("channel")]
-    public Task GoToPlace(string name)
+
+    [JSInvokable("channel")] public Task GoToPlace(string name)
     {
         NavigationManager.NavigateTo($"/channel/{name}");
         return Task.CompletedTask;
@@ -71,9 +78,9 @@
         bounds.Add(NELat);
 
         List<Place> places = await PlaceService.GetPlacesInBounds(bounds);
-        
+
         await _runtime.InvokeVoidAsync("clearMarkers");
-        
+
         foreach (Place place in places)
         {
             await _runtime.InvokeVoidAsync("MakeMarker", place.id, place.name, place.description, place.userId, place.followCount,
@@ -88,16 +95,17 @@
         await _runtime.InvokeVoidAsync("setWrapper", DotNetObjectReference.Create(this));
     }
 
-    private async Task CreateThePlace(){  
+    private async Task CreateThePlace()
+    {
         if (string.IsNullOrEmpty(Description) && string.IsNullOrEmpty(Name))
-                 label = ("Fill out the name and description of the place.");
+            label = ("Fill out the name and description of the place.");
 
         else if (string.IsNullOrEmpty(Name))
             label = ("Fill out the name of the place.");
 
         else if (string.IsNullOrEmpty(Description))
             label = ("Fill out the description of the place.");
-        
+
         else
         {
             if (string.IsNullOrEmpty(City))
@@ -114,14 +122,15 @@
             var coordinates = Coordinates.Split(", ");
             Lat = coordinates[0].TrimStart('(');
             Lng = coordinates[1].TrimEnd(')');
-       
+
             Location location = new Location
             {
                 city = City, country = Country, lat = Double.Parse(Lat), lng = Double.Parse(Lng)
             };
 
             int Id = ((CustomAuthenticationStateProvider) StateProvider).GetUserId();
-            Place place = new Place() {
+            Place place = new Place()
+            {
                 userId = Id,
                 description = Description,
                 id = 0,
@@ -135,7 +144,7 @@
                 await PlaceService.CreateNewPlace(place);
                 PlaceService.SetPlaceName(Name);
                 await ClearData();
-                NavigationManager.NavigateTo("/channel");   
+                NavigationManager.NavigateTo("/channel");
             }
             catch (Exception e)
             {
@@ -144,7 +153,8 @@
         }
     }
 
-    private async Task ClearData(){
+    private async Task ClearData()
+    {
         Name = "";
         Description = "";
         Coordinates = "";

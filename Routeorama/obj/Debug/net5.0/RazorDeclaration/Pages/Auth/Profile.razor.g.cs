@@ -13,154 +13,154 @@ namespace Routeorama.Pages.Auth
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 5 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 6 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Auth;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 15 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Nav;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 17 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 18 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "D:\University\SEP3\Routeorama\Routeorama\_Imports.razor"
+#line 19 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Search;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\University\SEP3\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
 using Routeorama.Authentication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\University\SEP3\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
 using System.Globalization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\University\SEP3\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
 using System.Threading;
 
 #line default
@@ -175,7 +175,7 @@ using System.Threading;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 113 "D:\University\SEP3\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 121 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
        
     private User _currentUser;
     private string _username;
@@ -184,17 +184,24 @@ using System.Threading;
     private string _displayName;
     private string _dateOfBirth;
     private DateTime? _value = DateTime.Now;
-    private byte[] _byteArray = {};
+
+    private byte[] _byteArray ={};
+
     private string _imageType = "";
     private string _open = ".";
     private bool _isModalOpen = false;
+    private string errorLabel = "";
+    private int userid;
+    private string url = "";
 
-    protected override void OnInitialized()
+    protected override async void OnInitialized()
     {
-        _currentUser = ((CustomAuthenticationStateProvider) _provider).GetUser();
+        _currentUser = await ((CustomAuthenticationStateProvider) _provider).GetUser();
+        url = "data:" + _currentUser.photoType + ";base64," + Convert.ToBase64String(_currentUser.photo);
+        StateHasChanged();
     }
 
-    private void OnChange(DateTime? args, string datepicker, string mmDdYyyy)
+    private void OnChange(DateTime? args, string datepicker, string yyyyMMdd)
     {
         if (_value != null) _dateOfBirth = _value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
     }
@@ -206,10 +213,35 @@ using System.Threading;
         var buffers = new byte[imgFile.Size];
         await imgFile.OpenReadStream(512000000, new CancellationToken(default)).ReadAsync(buffers);
         _byteArray = buffers;
+
+        var user = new User
+        {
+            userId = _currentUser.userId,
+            username = _currentUser.username,
+            password = _currentUser.password,
+            dob = _currentUser.dob,
+            email = _currentUser.email,
+            role = RoleEnum.user,
+            displayName = _currentUser.displayName,
+            photo = _byteArray,
+            photoType = _imageType
+        };
+        var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
+        errorLabel = response;
+        Console.WriteLine(response);
+        if (response.Equals("Update of the profile successful"))
+            _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
     }
 
     private void OpenModal()
     {
+        _username = _currentUser.username;
+        _password = _currentUser.password;
+        _email = _currentUser.email;
+        _displayName = _currentUser.displayName;
+        _dateOfBirth = _currentUser.dob;
+        _value = DateTime.Parse(_dateOfBirth);
+        
         if (_isModalOpen) return;
         _open = "open";
         _isModalOpen = true;
@@ -217,27 +249,34 @@ using System.Threading;
 
     private void CloseModal()
     {
-        if(!_isModalOpen) return;
+        if (!_isModalOpen) return;
         _open = ".";
         _isModalOpen = false;
     }
 
     private async void SaveChanges()
     {
-        CloseModal();
-        var user = new User()
+        var user = new User
         {
-            displayName = _displayName,
+            userId = _currentUser.userId,
+            username = _username,
+            password = _password,
             dob = _dateOfBirth,
             email = _email,
-            imageType = _imageType,
-            password = _password,
-            profilePicture = _byteArray,
             role = RoleEnum.user,
-            UserId = ((CustomAuthenticationStateProvider) _provider).GetUserId(),
-            username = _username
+            displayName = _displayName,
+            photo = new byte[]
+            {},
+            photoType = ""
         };
-        await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
+        var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
+        errorLabel = response;
+        Console.WriteLine(response);
+        if (response.Equals("Update of the profile successful"))
+        {
+            CloseModal();
+            _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+        }
     }
 
 #line default
