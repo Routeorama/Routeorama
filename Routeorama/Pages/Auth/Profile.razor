@@ -99,9 +99,16 @@
                     </div>
                     <div class="profile-edit-modal-input">
                         <div>
-                            Date of birth
+                            Repeat password
                         </div>
-                        <RadzenDatePicker @bind-Value=@_value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "yyyy-MM-dd"))></RadzenDatePicker>
+                        <input type="password" id="repeatpassword" placeholder="Repeat password.." @bind-value="_repeatPassword">
+                    </div>
+                    <div class="profile-edit-modal-input">
+                        <div>
+                            Date of birth
+                            <RadzenDatePicker @bind-Value=@_value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "yyyy-MM-dd"))></RadzenDatePicker>
+                        </div>
+                        
                     </div>
                     <div class="errorLabel">@errorLabel</div>
                 </div>
@@ -127,7 +134,7 @@
     private string _dateOfBirth;
     private DateTime? _value = DateTime.Now;
 
-    private byte[] _byteArray ={};
+    private byte[] _byteArray = {};
 
     private string _imageType = "";
     private string _open = ".";
@@ -136,10 +143,19 @@
     private int userid;
     private string url = "";
 
+    private string _repeatPassword;
+
     protected override async void OnInitialized()
     {
         _currentUser = await ((CustomAuthenticationStateProvider) _provider).GetUser();
-        url = "data:" + _currentUser.photoType + ";base64," + Convert.ToBase64String(_currentUser.photo);
+        if (_currentUser.photo == null)
+        {
+            url = null;
+        }
+        else
+        {
+            url = "data:" + _currentUser.photoType + ";base64," + Convert.ToBase64String(_currentUser.photo);
+        }
         StateHasChanged();
     }
 
@@ -183,7 +199,7 @@
         _displayName = _currentUser.displayName;
         _dateOfBirth = _currentUser.dob;
         _value = DateTime.Parse(_dateOfBirth);
-        
+        _repeatPassword = _currentUser.password;
         if (_isModalOpen) return;
         _open = "open";
         _isModalOpen = true;
@@ -198,26 +214,64 @@
 
     private async void SaveChanges()
     {
-        var user = new User
+        try
         {
-            userId = _currentUser.userId,
-            username = _username,
-            password = _password,
-            dob = _dateOfBirth,
-            email = _email,
-            role = RoleEnum.user,
-            displayName = _displayName,
-            photo = new byte[]
-            {},
-            photoType = ""
-        };
-        var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
-        errorLabel = response;
-        Console.WriteLine(response);
-        if (response.Equals("Update of the profile successful"))
+            var user = new User
+            {
+                userId = _currentUser.userId,
+                username = _username,
+                password = _password,
+                dob = _dateOfBirth,
+                email = _email,
+                role = RoleEnum.user,
+                displayName = _displayName,
+                photo = new byte[]
+                {},
+                photoType = ""
+            };
+            if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) &&
+                string.IsNullOrEmpty(user.displayName) &&
+                string.IsNullOrEmpty(user.email)) throw new Exception("Enter credentials");
+
+            if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
+            if (user.username.Length is < 5 or > 30)
+                throw new Exception("Username has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.email)) throw new Exception("Enter email");
+            if (!user.email.Contains("@"))
+                throw new Exception("Email has to be specified");
+
+            if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
+            if (user.password.Length is < 5 or > 30)
+                throw new Exception("Password has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
+            if (user.displayName.Length is < 5 or > 30)
+                throw new Exception("Display name has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
+
+
+            if (!_password.Equals(_repeatPassword))
+                throw new Exception("Passwords do not match.");
+
+            var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
+            errorLabel = response;
+            Console.WriteLine(response);
+            if (response.Equals("Update of the profile successful"))
+            {
+                CloseModal();
+                _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+            }
+            else if (response.Equals("Update of the profile un-successful"))
+            {
+                errorLabel = response;
+            }
+        }
+        catch (Exception e)
         {
-            CloseModal();
-            _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+            errorLabel = e.Message;
         }
     }
+
 }

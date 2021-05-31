@@ -29,7 +29,7 @@
                 <input disabled class="inner-field" placeholder="Country" id="country" @bind-value="@Country">
             </div>
             <div class="create-place-input">
-                <input class="inner-field" id="city" placeholder="City" @bind-value="@City">
+                <input disabled class="inner-field" id="city" placeholder="City" @bind-value="@City">
             </div>
             <label>@label</label>
         </div>
@@ -143,8 +143,9 @@
             {
                 await PlaceService.CreateNewPlace(place);
                 PlaceService.SetPlaceName(Name);
+                NavigationManager.NavigateTo($"/channel/{Name}");
                 await ClearData();
-                NavigationManager.NavigateTo("/channel");
+                
             }
             catch (Exception e)
             {

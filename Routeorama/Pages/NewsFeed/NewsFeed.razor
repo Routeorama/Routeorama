@@ -16,7 +16,7 @@
     <Authorized>
         <Nav/>
         <div class="main-feed">
-            @if (_filteredPosts.Count == 0)
+            @if (_filteredPosts == null || _filteredPosts is {Count: 0})
             {
                 <img src="icons/ezgif.com-gif-maker.gif"/>
             }
@@ -41,7 +41,7 @@
                 <div class="main-feed-right">
                     @if (_mostFollowedPlaces.Count > 0 && _mostLikedPlaces.Count > 0)
                     {
-                        <div class="suggestions">
+                        <div class="suggestions" style="position: fixed; top: auto;">
                             <div class="most-followed-places" style="margin-bottom: 20px">
                                 <div class="most-followed-title">Most followed places</div>
                                 @for (var x = 0; x < _mostFollowedPlaces.Count; x++)
@@ -134,7 +134,7 @@
 
 @code {
     private IList<Post> _fetchedPosts = new List<Post>();
-    private IList<Post> _filteredPosts = new List<Post>();
+    private IList<Post> _filteredPosts;
     private IList<string> _mostFollowedPlaces = new List<string>();
     private IList<string> _mostLikedPlaces = new List<string>();
 
@@ -145,6 +145,7 @@
     {
         try
         {
+            _filteredPosts = new List<Post>();
             _userId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
 
             var container = await _postService.GetPostsForNewsFeed(_userId);

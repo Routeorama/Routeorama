@@ -752,19 +752,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\karl1\\.nuget\\packages\\": {}
+    "C:\\Users\\Gosia\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj",
+      "projectUniqueName": "C:\\Users\\Gosia\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj",
       "projectName": "Routeorama",
-      "projectPath": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj",
-      "packagesPath": "C:\\Users\\karl1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\karl1\\RiderProjects\\Routeorama\\Routeorama\\obj\\",
+      "projectPath": "C:\\Users\\Gosia\\RiderProjects\\Routeorama\\Routeorama\\Routeorama.csproj",
+      "packagesPath": "C:\\Users\\Gosia\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gosia\\RiderProjects\\Routeorama\\Routeorama\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\karl1\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Gosia\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -823,7 +823,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   },

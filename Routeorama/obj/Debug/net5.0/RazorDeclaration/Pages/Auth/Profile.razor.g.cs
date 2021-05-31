@@ -13,154 +13,154 @@ namespace Routeorama.Pages.Auth
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 1 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 2 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 4 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 5 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 6 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 7 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 8 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 9 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 10 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 11 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 12 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Auth;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 13 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 14 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 15 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Nav;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 16 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Post;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 17 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 18 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 18 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Blazored.Modal.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 19 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\_Imports.razor"
+#line 19 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\_Imports.razor"
 using Routeorama.Shared.Components.Search;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 2 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
 using Routeorama.Authentication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
 using System.Globalization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 4 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
 using System.Threading;
 
 #line default
@@ -175,7 +175,7 @@ using System.Threading;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 121 "C:\Users\karl1\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 128 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
        
     private User _currentUser;
     private string _username;
@@ -185,7 +185,7 @@ using System.Threading;
     private string _dateOfBirth;
     private DateTime? _value = DateTime.Now;
 
-    private byte[] _byteArray ={};
+    private byte[] _byteArray = {};
 
     private string _imageType = "";
     private string _open = ".";
@@ -194,10 +194,19 @@ using System.Threading;
     private int userid;
     private string url = "";
 
+    private string _repeatPassword;
+
     protected override async void OnInitialized()
     {
         _currentUser = await ((CustomAuthenticationStateProvider) _provider).GetUser();
-        url = "data:" + _currentUser.photoType + ";base64," + Convert.ToBase64String(_currentUser.photo);
+        if (_currentUser.photo == null)
+        {
+            url = null;
+        }
+        else
+        {
+            url = "data:" + _currentUser.photoType + ";base64," + Convert.ToBase64String(_currentUser.photo);
+        }
         StateHasChanged();
     }
 
@@ -241,7 +250,7 @@ using System.Threading;
         _displayName = _currentUser.displayName;
         _dateOfBirth = _currentUser.dob;
         _value = DateTime.Parse(_dateOfBirth);
-        
+        _repeatPassword = _currentUser.password;
         if (_isModalOpen) return;
         _open = "open";
         _isModalOpen = true;
@@ -256,28 +265,66 @@ using System.Threading;
 
     private async void SaveChanges()
     {
-        var user = new User
+        try
         {
-            userId = _currentUser.userId,
-            username = _username,
-            password = _password,
-            dob = _dateOfBirth,
-            email = _email,
-            role = RoleEnum.user,
-            displayName = _displayName,
-            photo = new byte[]
-            {},
-            photoType = ""
-        };
-        var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
-        errorLabel = response;
-        Console.WriteLine(response);
-        if (response.Equals("Update of the profile successful"))
+            var user = new User
+            {
+                userId = _currentUser.userId,
+                username = _username,
+                password = _password,
+                dob = _dateOfBirth,
+                email = _email,
+                role = RoleEnum.user,
+                displayName = _displayName,
+                photo = new byte[]
+                {},
+                photoType = ""
+            };
+            if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) &&
+                string.IsNullOrEmpty(user.displayName) &&
+                string.IsNullOrEmpty(user.email)) throw new Exception("Enter credentials");
+
+            if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
+            if (user.username.Length is < 5 or > 30)
+                throw new Exception("Username has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.email)) throw new Exception("Enter email");
+            if (!user.email.Contains("@"))
+                throw new Exception("Email has to be specified");
+
+            if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
+            if (user.password.Length is < 5 or > 30)
+                throw new Exception("Password has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
+            if (user.displayName.Length is < 5 or > 30)
+                throw new Exception("Display name has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
+
+
+            if (!_password.Equals(_repeatPassword))
+                throw new Exception("Passwords do not match.");
+
+            var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
+            errorLabel = response;
+            Console.WriteLine(response);
+            if (response.Equals("Update of the profile successful"))
+            {
+                CloseModal();
+                _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+            }
+            else if (response.Equals("Update of the profile un-successful"))
+            {
+                errorLabel = response;
+            }
+        }
+        catch (Exception e)
         {
-            CloseModal();
-            _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+            errorLabel = e.Message;
         }
     }
+
 
 #line default
 #line hidden

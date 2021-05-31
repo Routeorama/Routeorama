@@ -85,29 +85,29 @@ namespace Routeorama.Authentication
 
         public async Task Register(User user)
         {
-            Console.WriteLine("Validating register...");
-            if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) &&
-                string.IsNullOrEmpty(user.dob) && string.IsNullOrEmpty(user.displayName) &&
-                string.IsNullOrEmpty(user.email)) throw new Exception("Enter credentials");
-
-            if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
-            if (user.username.Length is < 5 or > 30)
-                throw new Exception("Username has to be between 5 and 30 characters");
-
-            if (string.IsNullOrEmpty(user.email)) throw new Exception("Enter email");
-            if (!user.email.Contains("@"))
-                throw new Exception("Email has to be specified");
-
-            if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
-            if (user.password.Length is < 5 or > 30)
-                throw new Exception("Password has to be between 5 and 30 characters");
-
-            if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
-            if (user.displayName.Length is < 5 or > 30)
-                throw new Exception("Display name has to be between 5 and 30 characters");
-
-            if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
-            
+        //     Console.WriteLine("Validating register...");
+        //     if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) &&
+        //         string.IsNullOrEmpty(user.dob) && string.IsNullOrEmpty(user.displayName) &&
+        //         string.IsNullOrEmpty(user.email)) throw new Exception("Enter credentials");
+        //
+        //     if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
+        //     if (user.username.Length is < 5 or > 30)
+        //         throw new Exception("Username has to be between 5 and 30 characters");
+        //
+        //     if (string.IsNullOrEmpty(user.email)) throw new Exception("Enter email");
+        //     if (!user.email.Contains("@"))
+        //         throw new Exception("Email has to be specified");
+        //
+        //     if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
+        //     if (user.password.Length is < 5 or > 30)
+        //         throw new Exception("Password has to be between 5 and 30 characters");
+        //
+        //     if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
+        //     if (user.displayName.Length is < 5 or > 30)
+        //         throw new Exception("Display name has to be between 5 and 30 characters");
+        //
+        //     if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
+        //     
             try
             {
                 bool response = await _userService.Register(user);

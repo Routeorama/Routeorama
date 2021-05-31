@@ -77,17 +77,41 @@
         _errorMessage = "";
         try
         {
+            
             var registerUser = new User
             {
-                displayName = _displayName,
+                username = _username,
                 dob = _dateOfBirth,
                 password = _password,
-                username = _username,
+                displayName = _displayName,
                 email = _email,
                 role = RoleEnum.user,
                 photo = _byteArray,
                 photoType = _imageType
             };
+            
+            if (string.IsNullOrEmpty(registerUser.username) && string.IsNullOrEmpty(registerUser.password) &&
+                string.IsNullOrEmpty(registerUser.dob) && string.IsNullOrEmpty(registerUser.displayName) &&
+                string.IsNullOrEmpty(registerUser.email)) throw new Exception("Enter credentials");
+
+            if (string.IsNullOrEmpty(registerUser.username)) throw new Exception("Enter username");
+            if (registerUser.username.Length is < 5 or > 30)
+                throw new Exception("Username has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(registerUser.email)) throw new Exception("Enter email");
+            if (!registerUser.email.Contains("@"))
+                throw new Exception("Email has to be specified");
+
+            if (string.IsNullOrEmpty(registerUser.password)) throw new Exception("Enter password");
+            if (registerUser.password.Length is < 5 or > 30)
+                throw new Exception("Password has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(registerUser.displayName)) throw new Exception("Enter display name");
+            if (registerUser.displayName.Length is < 5 or > 30)
+                throw new Exception("Display name has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(registerUser.dob)) throw new Exception("Enter date of birth");
+
 
             if (!_password.Equals(_repeatPassword))
                 throw new Exception("Passwords do not match.");

@@ -60,7 +60,7 @@
     <div class="post-bottom">
         <div class="post-likes">
             <div class="post-likes-inner">
-                <span>@Post.likeCount</span> Likes
+                <span>@_likeCount</span> Likes
             </div>
             <div class="post-likes-inner">
                 <span>@_commentCount</span> Comments
@@ -155,8 +155,10 @@
     private string[] _description = new[] {""};
     private int _commentCount;
 
+    private int _likeCount;
     private bool _commentComponent;
     private string _commentContent;
+    
 
     private IList<Comment> _fetchedComments = new List<Comment>();
     private IList<Comment> _filteredComments = new List<Comment>();
@@ -173,6 +175,7 @@
             cashedUserId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
             _likeState = await _postService.GetLikeState(Post.postId, cashedUserId);
             _commentCount = await _postService.GetCommentCount(Post.postId);
+            _likeCount = Post.likeCount;
             SetLikeState();
             ParseTags(Post.content);
         }
@@ -208,6 +211,14 @@
     async void Like()
     {
         _likeState = !_likeState;
+        if (_likeState)
+        {
+            _likeCount++;
+        }
+        else
+        {
+            _likeCount--;
+        }
         SetLikeState();
         await _postService.LikePost(Post.postId, cashedUserId, _likeState);
         StateHasChanged();
@@ -256,8 +267,7 @@
 
     private async void Comment()
     {
-        Console.WriteLine(_commentContent);
-        if (_commentContent.Length == 0)
+        if (string.IsNullOrEmpty(_commentContent))
         {
             _errorLabel = "Comment too short.";
         }
@@ -272,7 +282,7 @@
                 timestamp = null
             };
             await _postService.Comment(newComment);
-
+            _commentCount++;
             _commentContainer = await _postService.GetCommentsForPost(Post.postId);
             if (!_commentContainer.Equals(null))
             {
@@ -280,8 +290,9 @@
                 _hasMoreComments = _commentContainer.hasMoreComments;
                 Filter();
             }
-            StateHasChanged();
             _commentContent = "";
+            _errorLabel ="";
+            StateHasChanged();
         }
     }
 

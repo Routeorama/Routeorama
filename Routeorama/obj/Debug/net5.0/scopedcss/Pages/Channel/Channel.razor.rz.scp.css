@@ -1,13 +1,18 @@
+
+
 .whole-page[b-cnnkug9k5o] {
     height: 92vh;
     width: 100%;
-
     display: flex;
     flex-direction: column;
-    
     background-image: url("/icons/background2.svg");
     background-repeat: no-repeat;
     background-size: cover;
+    overflow-y: scroll;
+}
+
+.whole-page[b-cnnkug9k5o]::-webkit-scrollbar {
+    display: none;
 }
 
 .everything-place[b-cnnkug9k5o]{
@@ -85,7 +90,7 @@
     border: 16px solid orange;
     background-color: white;
     z-index:1002;
-    overflow: auto;
+    /*overflow: auto;*/
     align-content: center;
 }
 

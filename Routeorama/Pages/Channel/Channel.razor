@@ -19,6 +19,7 @@
     </NotAuthorized>
     <Authorized>
         <Nav/>
+     
         <div class="whole-page">
             @if (_filteredPosts is {Count: 0})
             {
@@ -28,7 +29,7 @@
             {
                 <div style="display: none;">
                     @loadWeather();
-                    </div>
+                </div>
                 <div class="everything-place">
                     <div class="place">
                         <div>
@@ -73,7 +74,7 @@
                     @if (_authState != 0)
                     {
                         <div class="buttonCreatePlace">
-                            <button @onclick="@(() => ShowCreatePlace(_place.name, _place.id))" class="btn btn-primary" style="background-color: #E57261;
+                            <button @onclick="@(() => ShowCreatePost(_place.name, _place.id))" class="btn btn-primary" style="background-color: #E57261;
                             cursor:pointer; padding: 10px;border: 0px solid;">Create post</button>
                         </div>
                     }
@@ -94,13 +95,16 @@
                         }
                     }
                 </div>
-                <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
-                    <div style="background-color: #E57261; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts">
-                        Load more posts
+                @if(isThereMorePosts){
+                    <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 15px">
+                        <div style="background-color: #E57261; color: white; cursor:pointer; padding: 15px" @onclick="FetchMorePosts">
+                            Load more posts
+                        </div>
                     </div>
-                </div>
+                }
             }
         </div>
+      
     </Authorized>
 </AuthorizeView>
 
@@ -124,6 +128,8 @@
     private bool _isWeatherHere = false;
     JsonDocument weather = null;
 
+    private bool isThereMorePosts;
+
     protected override async Task OnInitializedAsync()
     {
         _filteredPosts = new List<Post>();
@@ -146,6 +152,16 @@
             }
 
             var container = await _postService.FetchPosts(_place.id, 0);
+            if (container.hasMorePosts)
+            {
+                isThereMorePosts = true;
+            }
+            else if (!container.hasMorePosts)
+            {
+                isThereMorePosts = false;
+            }
+            StateHasChanged();
+            
             if (container != null)
             {
                 _posts = container.posts;
@@ -175,7 +191,19 @@
         {
             container = await _postService.FetchPosts(_place.id, _filteredPosts.Last().postId);
         }
-        if (container.posts == null) { }
+
+        if (container.hasMorePosts)
+        {
+            isThereMorePosts = true;
+        }
+        else if (!container.hasMorePosts)
+        {
+            isThereMorePosts = false;
+        }
+        StateHasChanged();
+        if (container.posts == null)
+        {
+        }
         else
         {
             foreach (var post in container.posts)
@@ -185,7 +213,7 @@
         }
     }
 
-    void ShowCreatePlace(string placeName, int placeId)
+    void ShowCreatePost(string placeName, int placeId)
     {
         var parameters = new ModalParameters();
         parameters.Add(nameof(PostPopUp.PlaceName), placeName);
@@ -197,7 +225,7 @@
             DisableBackgroundCancel = true
         };
 
-        Modal.Show<PostPopUp>("Create Place", parameters, options);
+        Modal.Show<PostPopUp>("Create Post", parameters, options);
     }
 
     async void FollowPlace()

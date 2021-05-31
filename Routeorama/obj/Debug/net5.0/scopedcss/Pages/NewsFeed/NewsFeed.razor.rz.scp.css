@@ -8,19 +8,22 @@
     background-image: url("/icons/background2.svg");
     background-repeat: no-repeat;
     background-size: 100%;
+    overflow-y: scroll;
 }
-
+.main-feed[b-2n7fw7jwce]::-webkit-scrollbar {
+    display: none;
+}
 .main-feed-left[b-2n7fw7jwce], .main-feed-right[b-2n7fw7jwce], .main-feed-center[b-2n7fw7jwce] {
     display: flex;
     width: 29%;
     height: 100%;
-    overflow-y: scroll;
+    
 }
 
 .main-feed-center[b-2n7fw7jwce] {
     width: 42%;
     display: flex;
-    overflow: scroll;
+    /*overflow: scroll;*/
 }
 
 .main-feed [b-2n7fw7jwce]::-webkit-scrollbar {
@@ -88,6 +91,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    
 }
 
 .most-followed-count[b-2n7fw7jwce] {

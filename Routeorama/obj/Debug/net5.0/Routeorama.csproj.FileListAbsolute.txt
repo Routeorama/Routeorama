@@ -265,3 +265,7 @@ D:\University\SEP3\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Auth\P
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\Profile.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Auth\Profile.razor.g.cs
 C:\Users\karl1\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Auth\Profile.razor.rz.scp.css
+C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\Profile.razor.g.cs
+C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Auth\Profile.razor.g.cs
+C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Auth\Profile.razor.rz.scp.css
+C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Index.razor.rz.scp.css
