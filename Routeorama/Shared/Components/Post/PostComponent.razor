@@ -8,7 +8,7 @@
 @inject NavigationManager _navigationManager;
 
 <div class="post">
-    <div class="post-upper">
+    <div class="post-upper" style="word-wrap: break-word">
         <div class="post-upper-profile">
             <div class="post-profile">
                 <div class="post-owner">@Post.Creator</div>
@@ -36,7 +36,7 @@
         <div class="post-description">
             <b>@Post.title</b>
             <br>
-            <div class="post-description-inner">
+            <div class="post-description-inner" style="word-wrap: break-word">
                 @foreach (var str in _description)
                 {
                     if (str.Contains('#'))
@@ -82,7 +82,7 @@
         @if (_commentComponent)
         {
             <div class="comment-action">
-                <input class="comment-input" placeholder="Share your thoughts" type="text" @onchange="OnComment">
+                <input class="comment-input" placeholder="Share your thoughts" type="text" @bind-value="@_commentContent">
                 <button class="comment-button" @onclick="Comment">Comment</button>
                 <div style="color: red">@_errorLabel</div>
             </div>
@@ -336,9 +336,5 @@
         StateHasChanged();
     }
 
-    private void OnComment(ChangeEventArgs obj)
-    {
-        _commentContent = obj.Value.ToString();
-        obj.Value = "";
-    }
+    
 }

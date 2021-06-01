@@ -18,7 +18,7 @@
         {
             if(place.name.Equals(value.ToString()))
             {
-                _navigationManager.NavigateTo($"/channel/{value}");
+                _navigationManager.NavigateTo($"/channel/{value}", forceLoad:true);
             }
         }
     }

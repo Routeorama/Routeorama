@@ -382,11 +382,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
         StateHasChanged();
     }
 
-    private void OnComment(ChangeEventArgs obj)
-    {
-        _commentContent = obj.Value.ToString();
-        obj.Value = "";
-    }
+    
 
 #line default
 #line hidden

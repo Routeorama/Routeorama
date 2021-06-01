@@ -1,0 +1,145 @@
+﻿@using Routeorama.Authentication
+@using System.Globalization
+@inject AuthenticationStateProvider _provider;
+@inject NavigationManager _navigationManager;
+
+
+<div class="profile-edit-modal-input">
+    <div class="editgroup">
+    <img alt="username" class="imagesedit" src="icons/user.svg">
+    <input type="text" id="username" placeholder="New username.." @bind-value="_username">
+    </div>
+</div>
+<div class="profile-edit-modal-input">
+    <div class="editgroup">
+    <img alt="displayname" class="imagesedit" src="icons/name.svg">
+    <input type="text" id="display-name" placeholder="New display name.." @bind-value="_displayName">
+    </div>
+</div>
+<div class="profile-edit-modal-input">
+    <div class="editgroup">
+    <img alt="username" class="imagesedit" src="icons/envelope.svg">
+    <input type="text" id="email" placeholder="New email.." @bind-value="_email">
+    </div>
+</div>
+<div class="profile-edit-modal-input">
+    <div class="editgroup">
+    <img alt="username" class="imagesedit" src="icons/padlock.svg">
+    <input type="password" id="password" placeholder="New password.." @bind-value="_password">
+    </div>
+</div>
+<div class="profile-edit-modal-input">
+    <div class="editgroup">
+    <img alt="username" class="imagesedit" src="icons/padlock.svg">
+    <input type="password" id="repeatpassword" placeholder="Repeat password.." @bind-value="_repeatPassword">
+    </div>
+</div>
+<div class="profile-edit-modal-input">
+    <div class="editgroup">
+        <img alt="birthday" class="imagesedit" src="icons/birthday-cake.svg">
+        <RadzenDatePicker @bind-Value=@_value DateFormat="d" Change=@(args => OnChange(args, "DatePicker", "yyyy-MM-dd"))></RadzenDatePicker>
+    </div>
+    </div>
+
+
+<div class="profile-edit-modal-actions">
+    <div class="profile-save-changes" @onclick="SaveChanges">
+        Save
+    </div>
+</div>
+<div class="errorLabel">@errorLabel</div>
+
+@code {
+    private string _username;
+    private string _password;
+    private string _email;
+    private string _displayName;
+    private string _dateOfBirth;
+    private DateTime? _value = DateTime.Now;
+    private string errorLabel = "";
+    private int userid;
+    private string _repeatPassword;
+
+    [Parameter]
+    public User _currentUser { get; set; }
+
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _username = _currentUser.username;
+        _password = _currentUser.password;
+        _email = _currentUser.email;
+        _displayName = _currentUser.displayName;
+        _dateOfBirth = _currentUser.dob;
+        _value = DateTime.Parse(_dateOfBirth);
+        _repeatPassword = _currentUser.password;
+    }
+
+    private void OnChange(DateTime? args, string datepicker, string mmDdYyyy)
+    {
+        if (_value != null) _dateOfBirth = _value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
+    }
+
+    private async void SaveChanges()
+    {
+        try
+        {
+            var user = new User
+            {
+                userId = _currentUser.userId,
+                username = _username,
+                password = _password,
+                dob = _dateOfBirth,
+                email = _email,
+                role = RoleEnum.user,
+                displayName = _displayName,
+                photo = new byte[]
+                {},
+                photoType = ""
+            };
+            if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) &&
+                string.IsNullOrEmpty(user.displayName) &&
+                string.IsNullOrEmpty(user.email)) throw new Exception("Enter credentials");
+
+            if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
+            if (user.username.Length is < 5 or > 30)
+                throw new Exception("Username has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.email)) throw new Exception("Enter email");
+            if (!user.email.Contains("@"))
+                throw new Exception("Email has to be specified");
+
+            if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
+            if (user.password.Length is < 5 or > 30)
+                throw new Exception("Password has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
+            if (user.displayName.Length is < 5 or > 30)
+                throw new Exception("Display name has to be between 5 and 30 characters");
+
+            if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
+
+
+            if (!_password.Equals(_repeatPassword))
+                throw new Exception("Passwords do not match.");
+
+            var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
+            errorLabel = response;
+            if (response.Equals("Update of the profile successful"))
+            {
+                _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+            }
+            else if (response.Equals("Update of the profile un-successful"))
+            {
+                errorLabel = response;
+            }
+        }
+        catch (Exception e)
+        {
+            errorLabel = e.Message;
+        }
+    }
+
+}

@@ -1,0 +1,61 @@
+﻿
+.profile-save-changes{
+    border-radius: 8px;
+    background-color: #e57261;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+.profile-edit-modal-input{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+.profile-edit-modal-input input{
+    border: none;
+    border-bottom: 1px solid #e57261;
+    outline: none;
+    width: 100%;
+    margin-top: 3px;
+}
+
+.profile-edit-modal-actions{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-top: 10px;
+    
+}
+
+.profile-save-changes:hover, .profile-cancel-changes:hover{
+    filter: brightness(1.3);
+}
+
+.errorLabel {
+    position: center;
+}
+
+.imagesedit{
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+}
+
+.editgroup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.blazored-modal-close {
+    margin: -2rem -1rem -1rem auto;
+    
+}

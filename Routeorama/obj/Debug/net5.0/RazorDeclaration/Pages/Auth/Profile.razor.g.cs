@@ -161,6 +161,13 @@ using System.Globalization;
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
 using System.Threading;
 
 #line default
@@ -175,9 +182,12 @@ using System.Threading;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 128 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 70 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
        
-    private User _currentUser;
+    [CascadingParameter]
+    public IModalService Modal { get; set; }
+    [Parameter]
+    public User _currentUser { get; set; }
     private string _username;
     private string _password;
     private string _email;
@@ -188,19 +198,17 @@ using System.Threading;
     private byte[] _byteArray = {};
 
     private string _imageType = "";
-    private string _open = ".";
-    private bool _isModalOpen = false;
     private string errorLabel = "";
     private int userid;
     private string url = "";
 
-    private string _repeatPassword;
 
     protected override async void OnInitialized()
     {
         _currentUser = await ((CustomAuthenticationStateProvider) _provider).GetUser();
         if (_currentUser.photo == null)
         {
+            
             url = null;
         }
         else
@@ -241,88 +249,20 @@ using System.Threading;
         if (response.Equals("Update of the profile successful"))
             _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
     }
-
-    private void OpenModal()
+    
+    void ShowEditProfile()
     {
-        _username = _currentUser.username;
-        _password = _currentUser.password;
-        _email = _currentUser.email;
-        _displayName = _currentUser.displayName;
-        _dateOfBirth = _currentUser.dob;
-        _value = DateTime.Parse(_dateOfBirth);
-        _repeatPassword = _currentUser.password;
-        if (_isModalOpen) return;
-        _open = "open";
-        _isModalOpen = true;
-    }
-
-    private void CloseModal()
-    {
-        if (!_isModalOpen) return;
-        _open = ".";
-        _isModalOpen = false;
-    }
-
-    private async void SaveChanges()
-    {
-        try
+        var parameters = new ModalParameters();
+        parameters.Add(nameof(EditProfile._currentUser), _currentUser);
+        
+        var options = new ModalOptions()
         {
-            var user = new User
-            {
-                userId = _currentUser.userId,
-                username = _username,
-                password = _password,
-                dob = _dateOfBirth,
-                email = _email,
-                role = RoleEnum.user,
-                displayName = _displayName,
-                photo = new byte[]
-                {},
-                photoType = ""
-            };
-            if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) &&
-                string.IsNullOrEmpty(user.displayName) &&
-                string.IsNullOrEmpty(user.email)) throw new Exception("Enter credentials");
+            Animation = ModalAnimation.FadeInOut(0.2),
+            DisableBackgroundCancel = true,
+            OverlayCustomClass = "EditProfile.razor.css"
+        };
 
-            if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
-            if (user.username.Length is < 5 or > 30)
-                throw new Exception("Username has to be between 5 and 30 characters");
-
-            if (string.IsNullOrEmpty(user.email)) throw new Exception("Enter email");
-            if (!user.email.Contains("@"))
-                throw new Exception("Email has to be specified");
-
-            if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
-            if (user.password.Length is < 5 or > 30)
-                throw new Exception("Password has to be between 5 and 30 characters");
-
-            if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
-            if (user.displayName.Length is < 5 or > 30)
-                throw new Exception("Display name has to be between 5 and 30 characters");
-
-            if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
-
-
-            if (!_password.Equals(_repeatPassword))
-                throw new Exception("Passwords do not match.");
-
-            var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
-            errorLabel = response;
-            Console.WriteLine(response);
-            if (response.Equals("Update of the profile successful"))
-            {
-                CloseModal();
-                _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
-            }
-            else if (response.Equals("Update of the profile un-successful"))
-            {
-                errorLabel = response;
-            }
-        }
-        catch (Exception e)
-        {
-            errorLabel = e.Message;
-        }
+        Modal.Show<EditProfile>("Edit profile", parameters, options);
     }
 
 
