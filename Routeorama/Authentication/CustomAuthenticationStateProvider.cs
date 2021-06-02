@@ -45,9 +45,7 @@ namespace Routeorama.Authentication
             return await Task.FromResult(new AuthenticationState(cachedClaimsPrincipal));
         }
 
-        public async Task ValidateLogin(string username, string password)
-        {
-            Console.WriteLine("Validating log in...");
+        public async Task ValidateLogin(string username, string password) {
             if (string.IsNullOrEmpty(username) && string.IsNullOrEmpty(password))
                 throw new Exception("Enter credentials");
             if (string.IsNullOrEmpty(username)) throw new Exception("Enter username");
@@ -83,47 +81,18 @@ namespace Routeorama.Authentication
                 Task.FromResult(new AuthenticationState(new ClaimsPrincipal(identity))));
         }
 
-        public async Task Register(User user)
-        {
-        //     Console.WriteLine("Validating register...");
-        //     if (string.IsNullOrEmpty(user.username) && string.IsNullOrEmpty(user.password) &&
-        //         string.IsNullOrEmpty(user.dob) && string.IsNullOrEmpty(user.displayName) &&
-        //         string.IsNullOrEmpty(user.email)) throw new Exception("Enter credentials");
-        //
-        //     if (string.IsNullOrEmpty(user.username)) throw new Exception("Enter username");
-        //     if (user.username.Length is < 5 or > 30)
-        //         throw new Exception("Username has to be between 5 and 30 characters");
-        //
-        //     if (string.IsNullOrEmpty(user.email)) throw new Exception("Enter email");
-        //     if (!user.email.Contains("@"))
-        //         throw new Exception("Email has to be specified");
-        //
-        //     if (string.IsNullOrEmpty(user.password)) throw new Exception("Enter password");
-        //     if (user.password.Length is < 5 or > 30)
-        //         throw new Exception("Password has to be between 5 and 30 characters");
-        //
-        //     if (string.IsNullOrEmpty(user.displayName)) throw new Exception("Enter display name");
-        //     if (user.displayName.Length is < 5 or > 30)
-        //         throw new Exception("Display name has to be between 5 and 30 characters");
-        //
-        //     if (string.IsNullOrEmpty(user.dob)) throw new Exception("Enter date of birth");
-        //     
-            try
-            {
+        public async Task Register(User user) {
+            try {
                 bool response = await _userService.Register(user);
-                if (!response) Console.WriteLine("Wrong credentials");
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 throw new Exception("Wrong credentials");
             }
         }
 
-        public void Logout()
-        {
+        public void Logout() {
             _cachedUser = null;
             var user = new ClaimsPrincipal(new ClaimsIdentity());
-            //TODO logout
             _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
@@ -158,7 +127,6 @@ namespace Routeorama.Authentication
           var response = await _userService.UpdateUser(user);
           if (response.Equals("Update of the profile successful"))
           {
-              //_cachedUser = user;
               await ValidateLogin(user.username, user.password);
           }
           return response;

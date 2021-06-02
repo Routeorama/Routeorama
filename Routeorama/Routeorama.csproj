@@ -21,6 +21,7 @@
       <_ContentIncludedByDefault Remove="Shared\Components\Post\Post.razor" />
       <_ContentIncludedByDefault Remove="Shared\Components\Feed\Feed.razor" />
       <_ContentIncludedByDefault Remove="Shared\Components\Map\Map.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Main\Main.razor" />
     </ItemGroup>
 
 </Project>

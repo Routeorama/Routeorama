@@ -5,8 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Routeorama.Models.Post;
 
-namespace Routeorama.Data.Implementation
-{
+namespace Routeorama.Data.Implementation {
     public class ImplPostService : IPostService
     {
         private HttpClient client;
@@ -162,7 +161,6 @@ namespace Routeorama.Data.Implementation
             var contentAsJson = JsonSerializer.Serialize(userId);
 
             var content = new StringContent(contentAsJson, Encoding.UTF8, "application/json");
-
             try
             {
                 var response = await client.PostAsync("http://localhost:8080/post/getfeed", content);
@@ -223,7 +221,6 @@ namespace Routeorama.Data.Implementation
             StringContent content = new StringContent(
                 commentAsJson, Encoding.UTF8, "application/json"
             );
-            //TODO add path
             HttpResponseMessage responseMessage =
                 await client.PostAsync("http://localhost:8080/post/comment", content);
 
@@ -239,7 +236,7 @@ namespace Routeorama.Data.Implementation
             StringContent content = new StringContent(
                 commentAsJson, Encoding.UTF8, "application/json"
             );
-            //TODO add path
+            
             HttpResponseMessage responseMessage =
                 await client.PostAsync("http://localhost:8080/post/deletecomment", content);
 
@@ -257,7 +254,6 @@ namespace Routeorama.Data.Implementation
 
             try
             {
-                //TODO add path
                 var response = await client.PostAsync("http://localhost:8080/post/getcommentforpost", content);
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var returnedComments = JsonSerializer.Deserialize<CommentContainer>(responseContent, new JsonSerializerOptions
@@ -280,15 +276,13 @@ namespace Routeorama.Data.Implementation
         public async Task<CommentContainer> LoadMoreComments(int postId, Comment comment)
         {
             client = new HttpClient();
-
-            //var array = new object[] {postId, comment};
+            
             var contentAsJson = JsonSerializer.Serialize(comment);
 
             var content = new StringContent(contentAsJson, Encoding.UTF8, "application/json");
 
             try
             {
-                //TODO add path
                 var response = await client.PostAsync("http://localhost:8080/post/loadmorecomments", content);
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var returnedComments = JsonSerializer.Deserialize<CommentContainer>(responseContent, new JsonSerializerOptions
@@ -308,8 +302,7 @@ namespace Routeorama.Data.Implementation
             return null;
         }
 
-        public async Task<int> GetCommentCount(int postId)
-        {
+        public async Task<int> GetCommentCount(int postId) {
             client = new HttpClient();
             var returnedCount = 0;
             var content = new StringContent(JsonSerializer.Serialize(postId), Encoding.UTF8, "application/json");

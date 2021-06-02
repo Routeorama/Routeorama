@@ -44,26 +44,6 @@ namespace Routeorama.Data.Implementation
             return finalPlace;
         }
         
-        public async Task<Place> FetchPlaceData()
-        {
-            _client = new HttpClient();
-
-            var responseMessage =
-                await _client.GetAsync($"http://localhost:8080/auth/place/{_placeName}");
-
-            if (!responseMessage.IsSuccessStatusCode)
-                throw new Exception($"Error: {responseMessage.StatusCode}, {responseMessage.ReasonPhrase}");
-
-            var responseContent = await responseMessage.Content.ReadAsStringAsync();
-
-            var finalPlace = JsonSerializer.Deserialize<Place>(responseContent, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
-
-            if (finalPlace == null) throw new Exception("Fetching place went wrong");
-            return finalPlace;
-        }
 
         public async Task<Place> FetchPlaceData(string name)
         {
@@ -119,19 +99,15 @@ namespace Routeorama.Data.Implementation
             var array = new[] {placeId, userId};
             var body = new StringContent(JsonSerializer.Serialize(array), Encoding.UTF8, "application/json");
 
-            if (action)
-            {
-                try
-                {
+            if (action) {
+                try {
                     await _client.PostAsync("http://localhost:8080/auth/place/follow", body);
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     Console.WriteLine(e);
                 }
             }
-            else
-            {
+            else {
                 try
                 {
                     await _client.PostAsync("http://localhost:8080/auth/place/unfollow", body);
@@ -175,8 +151,6 @@ namespace Routeorama.Data.Implementation
             {
                 Console.WriteLine(e);
             }
-
-
             return success;
         }
         public async Task<List<string>> GetMostFollowedPlaces()

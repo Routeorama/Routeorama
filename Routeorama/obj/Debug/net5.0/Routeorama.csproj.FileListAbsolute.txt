@@ -137,7 +137,6 @@ C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclara
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Auth\Logout.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Auth\Register.razor.g.cs
-C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Pages\Main\Main.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Auth\Login.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\Components\Nav\Nav.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
@@ -168,7 +167,6 @@ C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Auth\Logout.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Auth\Register.razor.g.cs
-C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Pages\Main\Main.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Auth\Login.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\Components\Nav\Nav.razor.g.cs
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
@@ -179,7 +177,6 @@ C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\Routeorama.R
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\staticwebassets\Routeorama.StaticWebAssets.Manifest.cache
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\staticwebassets\Routeorama.StaticWebAssets.xml
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Auth\Register.razor.rz.scp.css
-C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Pages\Main\Main.razor.rz.scp.css
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Auth\Login.razor.rz.scp.css
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\Components\Nav\Nav.razor.rz.scp.css
 C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css

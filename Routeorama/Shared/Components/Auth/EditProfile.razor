@@ -47,7 +47,7 @@
         Save
     </div>
 </div>
-<div class="errorLabel">@errorLabel</div>
+<div class="errorLabel">@_errorLabel</div>
 
 @code {
     private string _username;
@@ -56,25 +56,24 @@
     private string _displayName;
     private string _dateOfBirth;
     private DateTime? _value = DateTime.Now;
-    private string errorLabel = "";
-    private int userid;
+    private string _errorLabel = "";
     private string _repeatPassword;
 
     [Parameter]
-    public User _currentUser { get; set; }
+    public User CurrentUser { get; set; }
 
     [CascadingParameter]
     public IModalService Modal { get; set; }
 
     protected override void OnInitialized()
     {
-        _username = _currentUser.username;
-        _password = _currentUser.password;
-        _email = _currentUser.email;
-        _displayName = _currentUser.displayName;
-        _dateOfBirth = _currentUser.dob;
+        _username = CurrentUser.username;
+        _password = CurrentUser.password;
+        _email = CurrentUser.email;
+        _displayName = CurrentUser.displayName;
+        _dateOfBirth = CurrentUser.dob;
         _value = DateTime.Parse(_dateOfBirth);
-        _repeatPassword = _currentUser.password;
+        _repeatPassword = CurrentUser.password;
     }
 
     private void OnChange(DateTime? args, string datepicker, string mmDdYyyy)
@@ -88,7 +87,7 @@
         {
             var user = new User
             {
-                userId = _currentUser.userId,
+                userId = CurrentUser.userId,
                 username = _username,
                 password = _password,
                 dob = _dateOfBirth,
@@ -126,19 +125,19 @@
                 throw new Exception("Passwords do not match.");
 
             var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
-            errorLabel = response;
+            _errorLabel = response;
             if (response.Equals("Update of the profile successful"))
             {
                 _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
             }
             else if (response.Equals("Update of the profile un-successful"))
             {
-                errorLabel = response;
+                _errorLabel = response;
             }
         }
         catch (Exception e)
         {
-            errorLabel = e.Message;
+            _errorLabel = e.Message;
         }
     }
 

@@ -154,20 +154,6 @@ using Routeorama.Authentication;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
-using System.Globalization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
-using System.IO;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
 using System.Threading;
 
 #line default
@@ -182,7 +168,7 @@ using System.Threading;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 70 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
+#line 68 "C:\Users\Gosia\RiderProjects\Routeorama\Routeorama\Pages\Auth\Profile.razor"
        
     [CascadingParameter]
     public IModalService Modal { get; set; }
@@ -198,29 +184,12 @@ using System.Threading;
     private byte[] _byteArray = {};
 
     private string _imageType = "";
-    private string errorLabel = "";
-    private int userid;
-    private string url = "";
-
-
+    private string _errorLabel = "";
+    
     protected override async void OnInitialized()
     {
         _currentUser = await ((CustomAuthenticationStateProvider) _provider).GetUser();
-        if (_currentUser.photo == null)
-        {
-            
-            url = null;
-        }
-        else
-        {
-            url = "data:" + _currentUser.photoType + ";base64," + Convert.ToBase64String(_currentUser.photo);
-        }
         StateHasChanged();
-    }
-
-    private void OnChange(DateTime? args, string datepicker, string yyyyMMdd)
-    {
-        if (_value != null) _dateOfBirth = _value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
     }
 
     private async void OnFileSelection(InputFileChangeEventArgs e)
@@ -244,16 +213,18 @@ using System.Threading;
             photoType = _imageType
         };
         var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
-        errorLabel = response;
-        Console.WriteLine(response);
+        
         if (response.Equals("Update of the profile successful"))
             _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+        else
+           _errorLabel = response; 
+        
     }
     
     void ShowEditProfile()
     {
         var parameters = new ModalParameters();
-        parameters.Add(nameof(EditProfile._currentUser), _currentUser);
+        parameters.Add(nameof(EditProfile.CurrentUser), _currentUser);
         
         var options = new ModalOptions()
         {

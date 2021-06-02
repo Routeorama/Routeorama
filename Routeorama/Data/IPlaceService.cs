@@ -9,7 +9,6 @@ namespace Routeorama.Data
     {
         Task<Place> CreateNewPlace(Place place);
         void SetPlaceName(string placeName);
-        Task<Place> FetchPlaceData();
         Task<Place> FetchPlaceData(string name);
         Task<List<Place>> GetPlacesInBounds(List<double> bounds);
         Task FollowPlace(int placeId, int userId, bool action);

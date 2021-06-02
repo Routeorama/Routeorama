@@ -15,7 +15,7 @@
                 <div class="post-date">@Post.dateOfCreation</div>
             </div>
             <div class="post-options">
-                @if (Post.userId.Equals(cashedUserId))
+                @if (Post.userId.Equals(_cashedUserId))
                 {
                     <RadzenSplitButton Click=@(OnClick) Icon="account_circle">
                         <ChildContent>
@@ -23,7 +23,7 @@
                         </ChildContent>
                     </RadzenSplitButton>
                 }
-                else if (!Post.userId.Equals(cashedUserId))
+                else if (!Post.userId.Equals(_cashedUserId))
                 {
                     <RadzenSplitButton Disabled="true" Click=@(args => OnClick(args)) Icon="account_circle">
                         <ChildContent>
@@ -90,7 +90,7 @@
             {
                 foreach (var comment in _filteredComments)
                 {
-                    if (comment.userId.Equals(cashedUserId))
+                    if (comment.userId.Equals(_cashedUserId))
                     {
                         <div class="comment-container" style="color:#3a3b3c;">
                             <div class="comment-content">
@@ -147,7 +147,7 @@
     [Parameter]
     public Post Post { get; set; }
 
-    private int cashedUserId;
+    private int _cashedUserId;
     private bool _likeState = false;
     private string _likedIcon = "like.svg";
     private string _likeText = "Like";
@@ -172,8 +172,8 @@
     {
         try
         {
-            cashedUserId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
-            _likeState = await _postService.GetLikeState(Post.postId, cashedUserId);
+            _cashedUserId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
+            _likeState = await _postService.GetLikeState(Post.postId, _cashedUserId);
             _commentCount = await _postService.GetCommentCount(Post.postId);
             _likeCount = Post.likeCount;
             SetLikeState();
@@ -220,7 +220,7 @@
             _likeCount--;
         }
         SetLikeState();
-        await _postService.LikePost(Post.postId, cashedUserId, _likeState);
+        await _postService.LikePost(Post.postId, _cashedUserId, _likeState);
         StateHasChanged();
     }
 
@@ -275,7 +275,7 @@
         {
             var newComment = new Comment
             {
-                userId = cashedUserId,
+                userId = _cashedUserId,
                 displayName = ((CustomAuthenticationStateProvider) _provider).GetDisplayName(),
                 postId = Post.postId,
                 content = _commentContent,
@@ -313,7 +313,6 @@
     private void OnChange(string args)
     {
         _commentContent = args;
-        args = "";
     }
 
     private async void LoadMoreComments()

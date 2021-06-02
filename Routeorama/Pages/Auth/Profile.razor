@@ -1,7 +1,5 @@
 ﻿@page "/profile"
 @using Routeorama.Authentication
-@using System.Globalization
-@using System.IO
 @using System.Threading
 @inject AuthenticationStateProvider _provider;
 @inject NavigationManager _navigationManager;
@@ -62,8 +60,8 @@
                     </div>
                 </div>
             </div>
+            <div>@_errorLabel</div>
         </div>
-        
     </Authorized>
 </AuthorizeView>
 
@@ -82,29 +80,12 @@
     private byte[] _byteArray = {};
 
     private string _imageType = "";
-    private string errorLabel = "";
-    private int userid;
-    private string url = "";
-
-
+    private string _errorLabel = "";
+    
     protected override async void OnInitialized()
     {
         _currentUser = await ((CustomAuthenticationStateProvider) _provider).GetUser();
-        if (_currentUser.photo == null)
-        {
-            
-            url = null;
-        }
-        else
-        {
-            url = "data:" + _currentUser.photoType + ";base64," + Convert.ToBase64String(_currentUser.photo);
-        }
         StateHasChanged();
-    }
-
-    private void OnChange(DateTime? args, string datepicker, string yyyyMMdd)
-    {
-        if (_value != null) _dateOfBirth = _value.Value.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo);
     }
 
     private async void OnFileSelection(InputFileChangeEventArgs e)
@@ -128,16 +109,18 @@
             photoType = _imageType
         };
         var response = await ((CustomAuthenticationStateProvider) _provider).UpdateUser(user);
-        errorLabel = response;
-        Console.WriteLine(response);
+        
         if (response.Equals("Update of the profile successful"))
             _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+        else
+           _errorLabel = response; 
+        
     }
     
     void ShowEditProfile()
     {
         var parameters = new ModalParameters();
-        parameters.Add(nameof(EditProfile._currentUser), _currentUser);
+        parameters.Add(nameof(EditProfile.CurrentUser), _currentUser);
         
         var options = new ModalOptions()
         {

@@ -234,8 +234,7 @@ using Routeorama.Authentication;
         }
     }
 
-    private void GoToPlace(string placeUrl)
-    {
+    private void GoToPlace(string placeUrl){
         _navigationManager.NavigateTo($"/channel/{placeUrl}");
     }
 

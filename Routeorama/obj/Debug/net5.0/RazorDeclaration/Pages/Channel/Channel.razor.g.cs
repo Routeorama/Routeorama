@@ -213,10 +213,9 @@ using Routeorama.Authentication;
     private bool _followState;
     private string _followText = "Follow";
     private string _followColor = "#742696";
-    private bool _isWeatherHere = false;
-    JsonDocument weather = null;
+    JsonDocument _weather = null;
 
-    private bool isThereMorePosts;
+    private bool _isThereMorePosts;
 
     protected override async Task OnInitializedAsync()
     {
@@ -230,23 +229,23 @@ using Routeorama.Authentication;
             SetFollowState();
             try
             {
-                weather = await _runtime.InvokeAsync<JsonDocument>("fetchWeather", _place.location.lat, _place.location.lng);
-                _isWeatherHere = true;
+                _weather = await _runtime.InvokeAsync<JsonDocument>("fetchWeather", _place.location.lat, _place.location.lng);
+                
             }
             catch (NullReferenceException e)
             {
                 _errorLabel = "Could not fetch the weather.";
-                _isWeatherHere = false;
+                
             }
 
             var container = await _postService.FetchPosts(_place.id, 0);
             if (container.hasMorePosts)
             {
-                isThereMorePosts = true;
+                _isThereMorePosts = true;
             }
             else if (!container.hasMorePosts)
             {
-                isThereMorePosts = false;
+                _isThereMorePosts = false;
             }
             StateHasChanged();
             
@@ -282,11 +281,11 @@ using Routeorama.Authentication;
 
         if (container.hasMorePosts)
         {
-            isThereMorePosts = true;
+            _isThereMorePosts = true;
         }
         else if (!container.hasMorePosts)
         {
-            isThereMorePosts = false;
+            _isThereMorePosts = false;
         }
         StateHasChanged();
         if (container.posts == null)
@@ -340,7 +339,7 @@ using Routeorama.Authentication;
 
     private async Task loadWeather()
     {
-        await _runtime.InvokeVoidAsync("drawWeather", weather.RootElement);
+        await _runtime.InvokeVoidAsync("drawWeather", _weather.RootElement);
     }
 
 #line default

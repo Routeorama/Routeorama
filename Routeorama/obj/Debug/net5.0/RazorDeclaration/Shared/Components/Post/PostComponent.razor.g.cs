@@ -193,7 +193,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
     [Parameter]
     public Post Post { get; set; }
 
-    private int cashedUserId;
+    private int _cashedUserId;
     private bool _likeState = false;
     private string _likedIcon = "like.svg";
     private string _likeText = "Like";
@@ -218,8 +218,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
     {
         try
         {
-            cashedUserId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
-            _likeState = await _postService.GetLikeState(Post.postId, cashedUserId);
+            _cashedUserId = ((CustomAuthenticationStateProvider) _provider).GetUserId();
+            _likeState = await _postService.GetLikeState(Post.postId, _cashedUserId);
             _commentCount = await _postService.GetCommentCount(Post.postId);
             _likeCount = Post.likeCount;
             SetLikeState();
@@ -266,7 +266,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
             _likeCount--;
         }
         SetLikeState();
-        await _postService.LikePost(Post.postId, cashedUserId, _likeState);
+        await _postService.LikePost(Post.postId, _cashedUserId, _likeState);
         StateHasChanged();
     }
 
@@ -321,7 +321,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
         {
             var newComment = new Comment
             {
-                userId = cashedUserId,
+                userId = _cashedUserId,
                 displayName = ((CustomAuthenticationStateProvider) _provider).GetDisplayName(),
                 postId = Post.postId,
                 content = _commentContent,
@@ -359,7 +359,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
     private void OnChange(string args)
     {
         _commentContent = args;
-        args = "";
     }
 
     private async void LoadMoreComments()

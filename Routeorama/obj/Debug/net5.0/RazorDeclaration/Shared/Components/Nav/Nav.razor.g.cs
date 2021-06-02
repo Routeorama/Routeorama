@@ -184,11 +184,6 @@ using Routeorama.Authentication;
         _navigationManager.NavigateTo("/profile");
     }
 
-    private void NavigateToFeed()
-    {
-        _navigationManager.NavigateTo("/newsFeed");
-    }
-
     private void CreateAPlace()
     {
         _navigationManager.NavigateTo("/createPlace");
